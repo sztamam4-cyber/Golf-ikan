@@ -1,0 +1,3007 @@
+<!doctype html>
+<html lang="en" data-theme="light">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#10251d">
+<title>Golf v12 · Shahar</title>
+
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<style>
+:root{--bg:#eef2ef;--card:#fff;--ink:#17251f;--muted:#68766f;--green:#123b2b;--green2:#1f6749;--soft:#edf3ef;--line:#d5dfd8;--input:#fff;--red:#a73535;--shadow:0 3px 12px #183b2b0b;--gold:#8a6d1c;--gold-bg:#fdf6e3;--gold-line:#eadba8;--pen:#b74700;--pen-bg:#fff1e6;--win-bg:#e4f5e9;--win-ink:#155b34;--carry-bg:#f7f1dc;--carry-ink:#725b17;--eagle:#17643a;--birdie:#d8f0df;--par:#dcecff;--bogey:#fff0c9;--double:#ffe0bd;--triple:#f8d5d5;--eagle-ink:#fff;--birdie-ink:#155b34;--par-ink:#164b83;--bogey-ink:#765000;--double-ink:#8a3b00;--triple-ink:#8c2020}
+html[data-theme=dark]{--bg:#0f1512;--card:#17201b;--ink:#edf5f0;--muted:#9dafa4;--green:#2d7657;--green2:#55a57c;--soft:#202c25;--line:#35453b;--input:#111914;--red:#ff8d88;--shadow:0 5px 18px #0005;--gold:#e8d8a4;--gold-bg:#302b1b;--gold-line:#554a28;--pen:#ffb083;--pen-bg:#3a2417;--win-bg:#1d3a29;--win-ink:#8fd4ab;--carry-bg:#3a321a;--carry-ink:#e8d8a4;--eagle:#267c4c;--birdie:#1c5031;--par:#1b3e60;--bogey:#594719;--double:#633819;--triple:#5a2528;--eagle-ink:#f4fff7;--birdie-ink:#c8f2d5;--par-ink:#cce5ff;--bogey-ink:#ffebae;--double-ink:#ffd1a8;--triple-ink:#ffd0d0;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}header{background:linear-gradient(135deg,#10251d,#1c4b36);color:#fff;padding:calc(11px + env(safe-area-inset-top,0px)) 12px 10px;box-shadow:0 3px 12px #0003}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}h1{margin:0;font-size:18px}header p{margin:3px 0 0;color:#d4e4da;font-size:11px}.header-actions{display:flex;align-items:center;gap:7px}.pill{border:1px solid #ffffff55;border-radius:999px;padding:4px 7px;font-size:10px}.theme-button{border:1px solid #ffffff66;background:#ffffff16;color:#fff;border-radius:9px;padding:6px 9px;cursor:pointer;font-weight:700}.tabs{display:flex;gap:4px;overflow:auto;padding:7px 8px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;scrollbar-width:thin}.tab{border:0;background:var(--soft);color:var(--ink);border-radius:999px;padding:8px 11px;font-weight:700;white-space:nowrap;font-size:12px;cursor:pointer}.tab.active{background:var(--green);color:#fff}main{max-width:1100px;margin:auto;padding:9px 8px 82px}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px;margin-bottom:8px;box-shadow:var(--shadow)}h2{margin:0 0 8px;font-size:15px}h3{margin:12px 0 6px;font-size:13px}.sub{margin:-3px 0 8px;color:var(--muted);font-size:11px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.field label{display:block;margin-bottom:3px;color:var(--muted);font-size:11px;font-weight:700}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--input);color:var(--ink);font:inherit}.field input:focus,.field select:focus,.score-input:focus{outline:2px solid var(--green2);border-color:var(--green2)}.button-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.button{border:0;border-radius:999px;padding:9px 13px;background:var(--green);color:#fff;font-size:12px;font-weight:750;cursor:pointer}.button.secondary{background:var(--soft);color:var(--ink)}.button.warning{background:#fff0ee;color:#8e2929}html[data-theme=dark] .button.warning{background:#3a1f1f;color:#ffb0ad}.note{margin-top:7px;padding:7px 9px;background:var(--gold-bg);border:1px solid var(--gold-line);border-radius:8px;color:var(--gold);font-size:11px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px;scrollbar-width:thin;overscroll-behavior-inline:contain}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:11px}th,td{padding:6px 7px;border-bottom:1px solid var(--line);text-align:center}th{position:sticky;top:0;z-index:1;background:var(--soft);color:var(--ink);font-weight:800}th:first-child,td:first-child{text-align:left}.score-table{min-width:920px}.score-table th,.score-table td{padding:5px 4px}.score-table .player-column{position:sticky;left:0;z-index:3;min-width:92px;background:var(--card);box-shadow:2px 0 4px #0001;font-weight:750}.score-table th.player-column{z-index:4;background:var(--soft)}.score-input{width:43px;height:36px;padding:4px 2px;border:1px solid var(--line);border-radius:6px;text-align:center;background:var(--input);color:var(--ink);font:inherit;font-variant-numeric:tabular-nums}.score-input.saved{border-color:#62a27d;background:#edf8f1}html[data-theme=dark] .score-input.saved{background:#183225}.net-line{font-size:9px;color:var(--muted);margin-top:1px;min-height:11px}.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.stat-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.stat{min-width:0;padding:7px;background:var(--soft);border-radius:8px}.stat .label,.small{color:var(--muted);font-size:10px}.stat strong{display:block;margin-top:2px;font-size:16px;font-variant-numeric:tabular-nums}.positive{color:#18804a}.negative{color:var(--red)}.tie{color:var(--muted)}.match-card{margin-top:7px;padding:9px;border:1px solid var(--line);border-radius:10px}.match-header{display:flex;justify-content:space-between;align-items:center;gap:7px;margin-bottom:7px}.status{padding:3px 7px;background:var(--soft);border-radius:999px;font-size:10px;font-weight:800}.status.win{background:var(--win-bg);color:var(--win-ink)}.status.loss{background:#fbe7e5;color:#8d2929}.match-state{margin:6px 0 9px;text-align:center;font-size:23px;font-weight:900}.checks{display:grid;grid-template-columns:repeat(9,minmax(31px,1fr));gap:4px}.check-hole{padding:3px 1px;border:1px solid var(--line);border-radius:6px;text-align:center;font-size:10px}.check-hole.checked{background:var(--win-bg);color:var(--win-ink);font-weight:800}.check-hole input{display:block;width:16px;height:16px;margin:2px auto 0;accent-color:var(--green2)}.course-input{width:54px;padding:6px;border:1px solid var(--line);border-radius:6px;text-align:center;background:var(--input);color:var(--ink)}.checkbox-row{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--soft);border-radius:8px;margin-bottom:6px;font-size:12px}.checkbox-row input{width:18px;height:18px;accent-color:var(--green2)}.footer{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 9px calc(6px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);color:var(--muted);font-size:10px}.legend{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;font-size:10px;color:var(--muted)}.chip{display:inline-block;border-radius:6px;padding:3px 6px;font-weight:800;min-width:24px}.c-eagle{background:var(--eagle);color:var(--eagle-ink)}.c-birdie{background:var(--birdie);color:var(--birdie-ink)}.c-par{background:var(--par);color:var(--par-ink)}.c-bogey{background:var(--bogey);color:var(--bogey-ink)}.c-double{background:var(--double);color:var(--double-ink)}.c-triple{background:var(--triple);color:var(--triple-ink)}.score-cell{font-weight:800;border-radius:5px}.mobile-entry{display:none}.mobile-entry.active{display:block}.mobile-entry .score-display{font-size:48px;font-weight:900;text-align:center;padding:12px;background:var(--soft);border-radius:12px;margin:8px 0}.avatar{width:42px;height:42px;border-radius:50%;background:var(--green);color:white;display:inline-grid;place-items:center;font-weight:900;font-size:18px;margin-right:8px}.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.keypad button{padding:15px 5px;border:1px solid var(--line);border-radius:10px;background:var(--soft);color:var(--ink);font-size:20px;font-weight:800}.keypad button.confirm{background:var(--green);color:white}.mobile-nav{display:flex;justify-content:space-between;gap:8px;margin-top:8px}.mobile-nav button{flex:1}.segmented{display:flex;gap:5px;margin-bottom:8px}.segmented button{flex:1}.segmented button.active{background:var(--green);color:white}.hidden{display:none!important}.muted-cell{color:var(--muted)}.money{font-variant-numeric:tabular-nums;font-weight:800}.rules-list{margin:0;padding-left:18px;font-size:12px;line-height:1.65}.rules-list li{margin-bottom:4px}.balance-pass{display:inline-block;padding:4px 7px;border-radius:7px;background:#e2f4e8;color:#155b34;font-weight:800}.balance-error{display:inline-block;padding:4px 7px;border-radius:7px;background:#fdeceb;color:#8d2929;font-weight:800}
+.mobile-entry .current-hole{background:var(--win-bg);color:var(--win-ink);font-weight:800}
+.mobile-entry .current-hole-peer{background:var(--soft)}
+.mobile-player-line .mobile-hole-meta{color:var(--muted);font-size:11px;font-weight:700}
+/* New Mobile Hole Layout */
+.mobile-hole-header{background:linear-gradient(135deg, #6bb854, #58a842);color:#fff;text-align:center;padding:15px;border-radius:12px;margin-bottom:12px;position:relative}
+.mobile-course-title{font-size:12px;font-weight:700;opacity:0.9;margin-bottom:5px}
+.mobile-hole-number{font-size:28px;font-weight:900;margin:0}
+.mobile-hole-sub{font-size:14px;opacity:0.9;margin-top:2px}
+.mobile-hole-si{font-size:13px;font-weight:700;margin-top:4px}
+.mobile-hole-si .highlight{color:#ff7043}
+.mobile-nav-btn{position:absolute;top:50%;transform:translateY(-50%);background:rgba(0,0,0,0.15);border:0;color:#fff;border-radius:50%;width:38px;height:38px;font-size:22px;cursor:pointer;display:grid;place-items:center}
+.mobile-nav-btn:active{background:rgba(0,0,0,0.3)}
+.mobile-nav-btn.left{left:12px}
+.mobile-nav-btn.right{right:12px}
+.mobile-player-card{background:#2d5a27;color:#fff;border-radius:12px;padding:12px 15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}
+.mobile-player-info{display:flex;flex-direction:column;gap:2px}
+.mobile-player-slot{font-size:11px;font-weight:700;opacity:0.8}
+.mobile-player-name{font-size:18px;font-weight:800}
+.mobile-player-hcp{font-size:12px;opacity:0.8}
+.mobile-score-controls{display:flex;align-items:center;gap:15px}
+.mobile-score-btn{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.25);border:0;color:#fff;font-size:24px;font-weight:700;display:grid;place-items:center;cursor:pointer}
+.mobile-score-btn:active{background:rgba(0,0,0,0.4)}
+.mobile-score-val{font-size:32px;font-weight:900;min-width:30px;text-align:center}
+.mobile-score-input{font-size:42px;font-weight:900;width:65px;text-align:center;background:transparent!important;border:2px solid transparent!important;color:#fff!important;padding:0;margin:0;font-variant-numeric:tabular-nums;border-radius:8px;outline:none!important;-webkit-appearance:none;appearance:none;box-shadow:none!important}
+.mobile-score-input:focus{border-color:rgba(255,255,255,0.4)!important}
+.mobile-net-line{font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;margin-top:2px;height:16px;letter-spacing:0.5px}
+.mobile-net-line.has-stroke{color:#ffeb3b}
+.mobile-hole-select{font-size:28px;font-weight:900;background:transparent;border:none;color:#fff;outline:none;-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;padding-right:5px}
+.mobile-hole-select option{color:#000;font-size:16px;font-weight:normal}
+.mobile-score-input.score-birdie, .mobile-score-input.score-eagle { color: #ffd740 !important; } /* Gold */
+.mobile-score-input.score-bogey, .mobile-score-input.score-double { color: #90caf9 !important; } /* Light Blue */
+.mobile-score-input.score-triple { color: #ff5252 !important; } /* Red */
+ .mobile-score-input.score-triple { color: #ff5252 !important; } /* Red */
+  /* Results dashboard additions */
+.summary-section-title{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:8px;
+  margin-bottom:8px;
+}
+
+.summary-section-title h2{
+  margin:0;
+}
+
+.live-summary-grid{
+  display:grid;
+  grid-template-columns:repeat(5,minmax(0,1fr));
+  gap:6px;
+  margin-bottom:9px;
+}
+
+.live-summary-item{
+  min-width:0;
+  padding:8px;
+  background:var(--soft);
+  border:1px solid var(--line);
+  border-radius:9px;
+}
+
+.live-summary-item .label{
+  display:block;
+  color:var(--muted);
+  font-size:10px;
+  font-weight:700;
+}
+
+.live-summary-item strong{
+  display:block;
+  margin-top:3px;
+  font-size:16px;
+  font-variant-numeric:tabular-nums;
+}
+
+.result-win{
+  color:var(--win-ink);
+  font-weight:900;
+}
+
+.result-penalty{
+  color:var(--red);
+  font-weight:900;
+}
+
+.result-carry{
+  color:var(--carry-ink);
+  font-weight:800;
+}
+
+.bank-total{
+  font-weight:900;
+}
+
+.bank-cell{
+  font-weight:800;
+  font-variant-numeric:tabular-nums;
+}
+
+.match-position{
+  font-weight:900;
+}
+
+.match-position.leading{
+  color:var(--win-ink);
+}
+
+.match-position-square{
+  color:var(--muted);
+}
+
+.match-complete{
+  background:var(--win-bg);
+  color:var(--win-ink);
+}
+
+.match-live{
+  background:var(--carry-bg);
+  color:var(--carry-ink);
+}
+
+.match-unplayed{
+  background:var(--soft);
+  color:var(--muted);
+}
+
+.player-bank-list{
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
+  margin-top:8px;
+}
+
+.player-bank-chip{
+  display:inline-flex;
+  align-items:center;
+  gap:5px;
+  padding:5px 8px;
+  border:1px solid var(--line);
+  border-radius:999px;
+  background:var(--soft);
+  font-size:11px;
+  font-weight:750;
+}
+
+.player-bank-chip strong{
+  font-size:13px;
+}
+
+.progress-winner{
+  color:var(--win-ink);
+  font-weight:900;
+}
+
+.progress-loser{
+  color:var(--red);
+  font-weight:800;
+}
+
+.nowrap{
+  white-space:nowrap;
+}
+
+@media(max-width:650px){
+  .live-summary-grid{
+    grid-template-columns:repeat(2,minmax(0,1fr));
+  }
+
+  .live-summary-item:last-child{
+    grid-column:1 / -1;
+  }
+}
+
+@media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.tabs{justify-content:center}.checks{grid-template-columns:repeat(18,minmax(30px,1fr))}}@media(max-width:650px){.field input,.field select,.score-input,.course-input{font-size:16px}.score-input{width:48px;height:40px}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+/* Settlement layout improvements */
+.nassau-subtotal td{background:var(--soft);border-top:2px solid var(--line);}
+.nassau-grand td{background:var(--soft);border-top:2px solid var(--line);font-weight:900;}
+.settlement-payline{margin-top:10px;padding:10px 12px;border-radius:10px;background:var(--win-bg);border:1px solid var(--line);text-align:center;font-size:15px;font-weight:800;color:var(--win-ink);}
+.settlement-payline.settlement-level{background:var(--soft);color:var(--muted);font-weight:700;}
+.combined-total-row td{background:var(--soft);border-top:2px solid var(--line);font-weight:900;}
+
+/* --- +/- stroke controls (horizontal layout) --- */
+.stroke-control{display:flex;flex-direction:row;align-items:center;gap:8px;flex-wrap:nowrap}
+.stroke-btn{width:38px;height:38px;border-radius:50%;border:1px solid var(--line);background:var(--soft);color:var(--ink);font-size:18px;font-weight:900;cursor:pointer;display:grid;place-items:center;user-select:none;line-height:1;transition:background .15s,color .15s;flex-shrink:0}
+.stroke-btn:hover,.stroke-btn:active{background:var(--green);color:#fff;border-color:var(--green)}
+.stroke-value{min-width:48px;text-align:center;font-size:20px;font-weight:900;font-variant-numeric:tabular-nums;padding:0 4px;flex:1}
+
+/* --- Settlement / Results filter chips --- */
+.filter-panel{display:flex;flex-wrap:wrap;gap:8px;margin-top:6px}
+.filter-chip{display:inline-flex;align-items:center;gap:6px;padding:8px 14px;border:1px solid var(--line);border-radius:999px;background:var(--soft);color:var(--ink);cursor:pointer;font-size:13px;font-weight:700;user-select:none;transition:background .15s,color .15s,border-color .15s}
+.filter-chip.active{background:var(--green);color:#fff;border-color:var(--green)}
+/* input stays visually hidden via zero size + opacity, but remains click-delegatable */
+.filter-chip input{position:absolute;opacity:0;width:0;height:0;margin:0;padding:0}
+@media print{#nassauResults .table-wrap,#nassauSettlement .table-wrap{overflow:visible}#nassauResults .card,#nassauSettlement .card{break-inside:avoid}#nassauResults table{font-size:8px}header,.tabs,.footer,.button-row,.note,.no-print,.segmented,.mobile-entry{display:none!important}.panel{display:block!important}.card{box-shadow:none;break-inside:avoid}main{max-width:none;padding:0}.table-wrap{overflow:visible}.table-wrap table{font-size:9px}.score-table .player-column{position:static}}
+/* --- Public view: hide admin-only elements until unlocked --- */
+body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
+</style></head>
+<body>
+<header><div class="top"><h1>🐟 Kalkulator Ikan · Shahar</h1><div class="header-actions"><span class="pill">LOCAL • OFFLINE</span><button class="theme-button" id="themeToggle">🌙 Dark</button></div></div><p>Ikan · Cut Throat · System 36 Scorecard</p></header>
+<nav class="tabs" id="tabs">
+  <button type="button" class="tab" data-tab="round"       data-admin-only>Round</button>
+  <button type="button" class="tab" data-tab="course"      data-admin-only>Course</button>
+  <button type="button" class="tab" data-tab="strokes"     data-admin-only>Strokes</button>
+  <button type="button" class="tab" data-tab="scores"      data-admin-only>Scores</button>
+  <button type="button" class="tab" data-tab="results"     data-admin-only>Results</button>
+  <button type="button" class="tab" data-tab="settlements" data-admin-only>Settlements</button>
+  <button type="button" class="tab" data-tab="rules"       data-admin-only>Rules</button>
+  <button type="button" class="tab active" data-tab="public">Public</button>
+</nav>
+<main>
+<section class="panel" id="round" data-admin-only>
+<div class="card"><h2>Round Setup</h2><div class="grid">
+<div class="field"><label>Game date</label><input id="gameDate" type="date"></div><div class="field"><label>Players</label><select id="playerCount"><option>2</option><option>3</option><option>4</option></select></div><div class="field"><label>Starting hole</label><select id="startHole"></select></div>
+<div class="field"><label>Play format</label><select id="playFormat"><option value="both">Both</option><option value="skins">Skins only</option><option value="matchplay">Match play only</option></select></div></div>
+<h3>Player Names</h3>
+<div id="playerNames" class="grid"></div>
+<div id="skinsSetup"><h3>Skins</h3><div class="grid"><div class="field"><label>Buy-in per player (QAR)</label><input id="buyIn" type="number" min="0" step="0.01"></div><div class="field"><label>Score basis</label><select id="scoreBasis"><option value="net">Net (handicap)</option><option value="gross">Gross</option></select></div><div class="field"><label>Winning threshold</label><select id="winThreshold"><option value="bogey">Bogey or better</option><option value="par">Par or better</option></select></div><div class="field"><label>Carryover</label><select id="carryover"><option value="true">On</option><option value="false">Off</option></select></div><div class="field"><label>Triple bogey penalty</label><select id="triplePenalty"><option value="all">Lose all skins</option><option value="two">Lose 2 skins</option><option value="off">Off</option></select></div><div class="field"><label>Final-hole carryover</label><select id="lastCarry"><option value="void">Void</option><option value="split">Split among tied leaders</option></select></div></div><label class="checkbox-row"><input type="checkbox" id="ruleDouble"><span>Double bogey penalty: lose 1 skin</span></label><div class="note" id="potPreview"></div></div>
+<div id="matchSetup"><h3>Match Play</h3><div class="field" style="max-width:220px"><label>Stake per hole (QAR)</label><input id="stake" type="number" min="0" step="0.01"></div></div><div id="nassauSetup"></div></div>
+<div class="card"><h2>Handicaps · Skins Only</h2><p class="sub">Handicaps are used by Skins only when Score basis = Net.</p><div id="players"></div><div class="small" id="handicapHelp">Used by Skins only.</div></div>
+<div class="card"><h2>Backup</h2><div class="button-row"><button class="button secondary" id="exportData">Export</button><label class="button secondary" for="importFile">Import</label><input id="importFile" type="file" accept=".json" hidden><button class="button secondary" id="printPage">Print / PDF</button><button class="button warning" id="newRound">Clear Round</button></div><div id="saveStatus" class="small" style="margin-top:6px"></div></div>
+</section>
+<section class="panel" id="course" data-admin-only>
+  <!-- NEW: Course preset selector -->
+  <div class="card">
+    <h2>Select Course</h2>
+    <div class="field">
+      <label for="coursePreset">Load a preset course</label>
+      <select id="coursePreset">
+        <option value="">— Custom / Default —</option>
+        <!-- options populated by JavaScript -->
+      </select>
+    </div>
+    <p class="small">Selecting a course will replace the current par and stroke-index values.</p>
+  </div>
+
+  <div class="card">
+    <h2>Course Setup</h2>
+    <p class="sub">Par must be 3–6. Stroke Index must contain each value from 1 to 18 exactly once.</p>
+    <div id="courseStats" class="stat-grid three"></div>
+    <div id="courseSetup"></div>
+    <div id="courseValidation" class="small" style="margin-top:7px"></div>
+    <div class="button-row">
+      <button class="button secondary" id="resetCourse">Restore Default Course</button>
+    </div>
+  </div>
+</section>
+<section class="panel" id="strokes" data-admin-only><div class="card"><h2>Base Strokes</h2><p class="sub">Positive gives strokes to the second player; negative gives strokes to the first. Applied to the lowest-SI holes in each nine.</p><div id="baseSettings"></div></div><div class="card"><h2>Progressive Strokes</h2><p class="sub">Choose a receiver and tick holes. Combined strokes use MAX(base, progressive), capped at one stroke per player per hole.</p><div id="progressiveStrokes"></div></div><div id="nassauStrokes"></div><div class="card"><h2>Stroke Summary</h2><div id="strokeSummaryContent"></div></div></section>
+<section class="panel" id="scores" data-admin-only><div class="card"><h2>Gross Score Entry</h2><p class="sub">Table entry advances to the next player on the same hole. Mobile entry follows each player's full round in playing sequence.</p><div class="segmented no-print"><button class="button secondary active" data-view="table">Table</button><button class="button secondary" data-view="mobile">Mobile</button></div><div id="scoreEntry" class="table-entry"></div><div id="mobileEntry" class="mobile-entry"></div></div>
+
+<div class="card" id="scoreNassauStatus"><h2>Nassau Status</h2><div id="scoreNassauStatusContent"></div></div><div class="card"><h2>Match Status</h2><div id="scoreMatchStatusContent"></div></div>
+
+<div class="card"><h2>Scorecard · Reporting Only</h2><p class="sub">System 36 HOD, HOD Net and Stableford Points are display-only. They do not affect Skins or Match Play.</p><div id="scorecard"></div></div><div id="scoreMatchProgress"></div><div class="card"><h2>Player Summary · Gross Counts</h2><div id="scoreSummary"></div></div></section>
+<section class="panel" id="results" data-admin-only>
+  <button class="button" id="shareResultsBtn" style="margin-bottom: 6px; width: 100%;">📤 Share All Results</button>
+  <button class="button" id="shareFilteredResultsBtn" style="margin-bottom: 12px; width: 100%;">📤 Share Filtered Results</button>
+  <div id="resultFilters"></div>
+  <div id="matchProgressSummary"></div>
+  <div id="liveRoundSummary"></div>
+  <div id="matchResults"></div><div id="nassauResults"></div>
+  <div id="skinsResults"></div>
+  <div id="bankProgression"></div>
+</section>
+<section class="panel" id="settlements" data-admin-only>
+  <div id="settlementFilters"></div>
+  <div id="skinsSettlement"></div>
+  <div id="matchSettlement"></div>
+  <div id="nassauSettlement"></div>
+  <div id="combinedSettlement"></div>
+</section>
+<section class="panel active" id="public">
+  <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px">
+    <span id="pubLastUpdated" class="small" style="margin:0">Loading…</span>
+    <button class="button" id="btnPublicRefresh" type="button" style="margin:0">🔄 Refresh</button>
+  </div>
+
+  <!-- NEW: public filter panel (mirrors the Results tab filters) -->
+  <div id="pubFilterPanel"></div>
+
+  <!-- Existing public summary content (header + combined net + skins/match/nassau summaries) -->
+  <div id="pubContent"></div>
+
+  <!-- NEW: mirrored Results cards (each is a live copy of the matching id on the Results tab) -->
+  <div id="pubMatchProgress"></div>
+  <div id="pubLiveRound"></div>
+  <div id="pubMatchResults"></div>
+  <div id="pubNassauResults"></div>
+  <div id="pubSkinsResults"></div>
+  <div id="pubBankProgression"></div>
+</section></section>
+<section class="panel" id="rules" data-admin-only><div class="card"><h2>How to Play</h2><div id="rulesContent"></div></div></section>
+</main><div class="footer">
+  <span id="footerSummary"></span>
+  <button class="button secondary" id="btnAdminUnlock" type="button"
+          style="flex:0 0 auto;margin:0" title="Admin login">🔒 Admin</button>
+  <button class="button" id="saveNow" type="button"
+          style="flex:0 0 auto;margin:0" data-admin-only>Save</button>
+</div>
+
+<!-- ================================================================
+     B1) ADMIN GATE SCRIPT — first script inside body
+     ================================================================ -->
+<script>
+(function(){
+  'use strict';
+  const ADMIN_PASSWORD_HASH = '6fbd00f0e2e876cdb9cd68d1adaf4f6c431b064a2ac978a6faeebfa00398426c';
+  const ADMIN_SESSION_KEY = 'qmgAdminUnlocked';
+
+  async function sha256(text){
+    const buf = await crypto.subtle.digest('SHA-256',
+      new TextEncoder().encode(text));
+    return Array.from(new Uint8Array(buf))
+      .map(b => b.toString(16).padStart(2,'0')).join('');
+  }
+  function isUnlocked(){
+    return document.body.classList.contains('admin-unlocked');
+  }
+  function switchTabSafe(name){
+    if(window.QMGApp && typeof window.QMGApp.switchTab === 'function'){
+      window.QMGApp.switchTab(name); return;
+    }
+    document.querySelectorAll('.panel').forEach(function(p){
+      p.classList.toggle('active', p.id === name); });
+    document.querySelectorAll('.tabs button').forEach(function(b){
+      b.classList.toggle('active', b.getAttribute('data-tab') === name); });
+  }
+  function setUnlocked(on){
+    if(on){
+      document.body.classList.add('admin-unlocked');
+      try { sessionStorage.setItem(ADMIN_SESSION_KEY, '1'); } catch(e){}
+    } else {
+      document.body.classList.remove('admin-unlocked');
+      try { sessionStorage.removeItem(ADMIN_SESSION_KEY); } catch(e){}
+      switchTabSafe('public');
+    }
+    updateButton();
+  }
+  function updateButton(){
+    const btn = document.getElementById('btnAdminUnlock');
+    if(!btn) return;
+    btn.textContent = isUnlocked() ? '🔓 Lock' : '🔒 Admin';
+  }
+  async function onClickAdmin(){
+    if(isUnlocked()){
+      if(confirm('Lock admin view?')) setUnlocked(false);
+      return;
+    }
+    const pwd = prompt('Enter admin password:');
+    if(pwd === null) return;
+    const h = await sha256(pwd);
+    if(h === ADMIN_PASSWORD_HASH){ setUnlocked(true); switchTabSafe('round'); }
+    else alert('Incorrect password.');
+  }
+  function init(){
+    let saved = false;
+    try { saved = sessionStorage.getItem(ADMIN_SESSION_KEY) === '1'; } catch(e){}
+    if(saved) document.body.classList.add('admin-unlocked');
+    else switchTabSafe('public');
+    updateButton();
+    const btn = document.getElementById('btnAdminUnlock');
+    if(btn) btn.addEventListener('click', onClickAdmin);
+    try {
+      if(new URLSearchParams(location.search).get('admin') === '1' && !isUnlocked())
+        onClickAdmin();
+    } catch(e){}
+  }
+  if(document.readyState === 'loading')
+    document.addEventListener('DOMContentLoaded', init, {once:true});
+  else init();
+})();
+</script>
+
+<!-- ================================================================
+     B2) SUPABASE CLOUD SYNC SCRIPT
+     ================================================================ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+(function(){
+  'use strict';
+  const SUPABASE_URL  = 'https://xgqvywifxotrcystseis.supabase.co';
+  const SUPABASE_ANON = 'sb_publishable_uhvMHGg0bi4ExmkQjCyYYg_VbEyByty';
+  const ROW_ID        = 2;   /* 18-hole uses row id=2, coexists with 9-hole (id=1) */
+
+  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
+  let currentUser = null;
+  var cloudSaveTimer = null;
+
+  window.scheduleCloudSave = function(){
+    if(cloudSaveTimer) clearTimeout(cloudSaveTimer);
+    cloudSaveTimer = setTimeout(function(){
+      cloudSaveTimer = null;
+      if(window.QMGCloud) window.QMGCloud.save();
+    }, 1500);
+  };
+
+  window.saveToCloud = async function(){
+    if(!currentUser){ console.warn('[QMG] Not logged in — save blocked.'); return; }
+    const state = window.QMGApp.getState();
+    const { error } = await supabase.from('tournament')
+      .upsert({ id: ROW_ID, data: state, updated_at: new Date().toISOString() });
+    if(error){ console.error('[QMG] Save failed:', error.message);
+               alert('Cloud save failed: ' + error.message); }
+    else console.log('[QMG] Saved to cloud (row ' + ROW_ID + ')');
+  };
+
+  async function loadFromCloud(){
+    const { data, error } = await supabase.from('tournament')
+      .select('data').eq('id', ROW_ID).single();
+    if(error || !data || !data.data) return;
+    if(Object.keys(data.data).length === 0) return;
+    try{
+      /* Mirror loadState(): merge over freshState() then normalize */
+      const merged = Object.assign({}, window.QMGApp.freshState(), data.data);
+      window.QMGApp.setState(merged);
+      window.QMGApp.normalize();
+      window.QMGApp.renderAll();
+      if(typeof renderPublic === 'function') renderPublic();
+      updatePublicTimestamp();
+      console.log('[QMG] Loaded from cloud (row ' + ROW_ID + ')');
+    } catch(e){ console.warn('[QMG] Cloud normalize failed:', e.message); }
+  }
+
+  function subscribeToCloud(){
+    supabase.channel('qmg-live-' + ROW_ID)
+      .on('postgres_changes',
+        { event:'UPDATE', schema:'public', table:'tournament', filter:'id=eq.' + ROW_ID },
+        (payload) => {
+          if(!payload.new || !payload.new.data) return;
+          if(currentUser) return;   /* Admin saves drive cloud; don't clobber local work */
+          try{
+            const merged = Object.assign({}, window.QMGApp.freshState(), payload.new.data);
+            window.QMGApp.setState(merged);
+            window.QMGApp.normalize();
+            window.QMGApp.renderAll();
+            if(typeof renderPublic === 'function') renderPublic();
+            updatePublicTimestamp();
+          } catch(e){ console.warn('[QMG] Realtime parse failed:', e.message); }
+        }).subscribe();
+  }
+
+  function updatePublicTimestamp(){
+    const el = document.getElementById('pubLastUpdated');
+    if(el) el.textContent = '🟢 Updated ' + new Date().toLocaleTimeString();
+  }
+
+  async function checkSession(){
+    const { data } = await supabase.auth.getSession();
+    currentUser = data.session ? data.session.user : null;
+    return currentUser;
+  }
+  async function login(email, password){
+    const { data, error } = await supabase.auth.signInWithPassword({ email, password });
+    if(error) throw error;
+    currentUser = data.user; return currentUser;
+  }
+  async function logout(){ await supabase.auth.signOut(); currentUser = null; }
+
+  document.addEventListener('DOMContentLoaded', async function(){
+    await new Promise(r => setTimeout(r, 100));
+    await checkSession();
+    await loadFromCloud();
+    subscribeToCloud();
+
+    setInterval(async function(){
+      if(currentUser) return;
+      try { await loadFromCloud(); } catch(e){}
+    }, 20000);
+
+    const refreshBtn = document.getElementById('btnPublicRefresh');
+    if(refreshBtn){
+      refreshBtn.addEventListener('click', async function(){
+        refreshBtn.disabled = true;
+        refreshBtn.textContent = 'Refreshing…';
+        try { await loadFromCloud(); } catch(e){}
+        updatePublicTimestamp();
+        refreshBtn.disabled = false;
+        refreshBtn.textContent = '🔄 Refresh';
+      });
+    }
+
+    /* Bind #saveNow to cloud save (local save already happens via saveState hook) */
+    const saveBtn = document.getElementById('saveNow');
+    if(saveBtn){
+      saveBtn.replaceWith(saveBtn.cloneNode(true));
+      document.getElementById('saveNow').addEventListener('click', async function(){
+        if(!currentUser){ alert('Please log in as admin first.'); return; }
+        window.QMGApp.saveState();     /* local save */
+        await window.saveToCloud();    /* cloud save */
+      });
+    }
+
+    /* Admin button in footer — first click logs into Supabase Auth */
+    const adminBtn = document.getElementById('btnAdminUnlock');
+    if(adminBtn){
+      adminBtn.replaceWith(adminBtn.cloneNode(true));
+      const freshBtn = document.getElementById('btnAdminUnlock');
+      freshBtn.addEventListener('click', async function(){
+        if(currentUser){
+          if(confirm('Log out from admin?')){ await logout(); location.reload(); }
+          return;
+        }
+        const email = prompt('Admin email:');
+        if(!email) return;
+        const password = prompt('Admin password:');
+        if(!password) return;
+        try{
+          await login(email.trim(), password);
+          document.body.classList.add('admin-unlocked');
+          try { sessionStorage.setItem('qmgAdminUnlocked','1'); } catch(e){}
+          freshBtn.textContent = '🔓 Logout';
+          if(window.QMGApp) window.QMGApp.switchTab('round');
+          await loadFromCloud();
+        } catch(err){ alert('Login failed: ' + err.message); }
+      });
+    }
+    if(currentUser && adminBtn){
+      document.body.classList.add('admin-unlocked');
+      document.getElementById('btnAdminUnlock').textContent = '🔓 Logout';
+    }
+  });
+
+  window.QMGCloud = {
+    save:   window.saveToCloud,
+    login:  login,
+    logout: logout,
+    getUser: () => currentUser,
+    rowId:  ROW_ID
+  };
+})();
+</script>
+
+<script>
+(()=>{'use strict';
+/* 1. CONSTANTS & HELPERS */
+const STORAGE_KEY='kalkulatorIkanGolf_v12',PREVIOUS_STORAGE_KEY='kalkulatorIkanGolf_v10',THEME_KEY='kalkulatorIkanGolf_theme';
+const DEFAULT_PAR = [4,5,4,3,4,5,4,4,3,4,4,3,5,4,3,4,4,5];
+const DEFAULT_SI  = [15,7,1,17,9,13,5,3,11,10,4,16,6,14,18,8,2,12];
+const SLOTS       = ['A','B','C','D'];
+const MATCHUPS    = ['AB','AC','AD','BC','BD','CD'];
+
+/* ---------- Thailand course presets ---------- */
+const THAI_COURSES = {
+ "ECGC 18 Holes Course (Yellow)": {
+    pars: [4,5,4,3,4,5,4,4,3,4,4,3,5,4,3,4,4,5],
+    si:   [15,7,1,17,9,13,5,3,11,10,4,16,6,14,18,8,2,12]
+  }, 
+  "Siam Old Course (Blue)": {
+    pars: [5,4,4,3,4,4,5,3,4, 5,4,3,4,4,4,3,4,5],
+    si:   [14,18,2,16,10,6,8,12,4, 13,1,15,17,11,7,3,5,9]
+  },
+  "Siam Waterside (Blue)": {
+    pars: [4,3,4,4,4,5,3,5,4, 5,4,3,4,4,4,3,4,5],
+    si:   [10,14,4,12,18,6,16,8,2, 9,13,17,3,11,7,15,1,5]
+  },
+  "Siam Rolling Hills (Blue)": {
+    pars: [4,3,4,5,4,5,3,4,4, 4,5,4,3,4,5,3,4,4],
+    si:   [12,10,8,2,18,6,16,4,14, 11,5,3,9,7,1,15,17,13]
+  },
+  "Siam Bangkok (Blue)": {
+    pars: [5,4,3,4,3,4,4,5,4, 5,4,3,4,4,4,5,4,3],
+    si:   [6,10,14,12,18,4,16,2,8, 7,5,13,11,3,9,1,15,17]
+  },
+  "Chee Chan (White)": {
+    pars: [4,5,3,4,4,3,4,4,5, 4,4,3,4,5,4,5,3,4],
+    si:   [17,7,15,11,3,13,5,1,9, 14,6,18,2,12,16,8,10,4]
+  },
+  "Saint Andrew 2000 (Regular)": {
+    pars: [4,4,3,6,3,4,5,4,4, 3,4,4,6,4,4,4,3,5],
+    si:   [9,7,1,11,13,15,17,3,5, 18,4,12,10,6,8,14,2,16]
+  },
+  "Summit Windmill (White)": {
+    pars: [5,3,4,3,4,4,5,4,4, 4,4,3,4,5,4,4,3,5],
+    si:   [3,17,9,15,7,1,11,13,5, 10,6,18,2,14,8,12,16,4]
+  },
+
+  /* --- Siam Plantation combinations --- */
+  "Plantation · Sugar Cane + Tapioca": {
+    pars: [4,4,3,4,5,3,5,4,4, 4,5,3,5,4,4,3,4,4],
+    si:   [15,13,9,3,11,7,17,5,1, 14,16,10,6,12,2,18,8,4]
+  },
+  "Plantation · Sugar Cane + Pineapple": {
+    pars: [4,4,3,4,5,3,5,4,4, 4,5,3,4,4,5,4,3,4],
+    si:   [15,13,9,3,11,7,17,5,1, 12,16,8,10,18,4,2,14,6]
+  },
+  "Plantation · Tapioca + Sugar Cane": {
+    pars: [4,5,3,5,4,4,3,4,4, 4,4,3,4,5,3,5,4,4],
+    si:   [13,15,9,5,11,1,17,7,3, 16,14,4,10,12,6,18,8,2]
+  },
+  "Plantation · Tapioca + Pineapple": {
+    pars: [4,5,3,5,4,4,3,4,4, 4,5,3,4,4,5,4,3,4],
+    si:   [13,15,9,5,11,1,17,7,3, 12,16,8,10,18,4,2,14,6]
+  },
+  "Plantation · Pineapple + Sugar Cane": {
+    pars: [4,5,3,4,4,5,4,3,4, 4,4,3,4,5,3,5,4,4],
+    si:   [9,15,5,7,17,3,1,13,11, 16,14,4,10,12,6,18,8,2]
+  },
+  "Plantation · Pineapple + Tapioca": {
+    pars: [4,5,3,4,4,5,4,3,4, 4,5,3,5,4,4,3,4,4],
+    si:   [9,15,5,7,17,3,1,13,11, 14,16,10,6,12,2,18,8,4]
+  }
+};
+const $=id=>document.getElementById(id),num=v=>Number.isFinite(Number(v))?Number(v):0,esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
+const money=v=>`QAR ${Math.abs(Math.round(v*100)/100).toFixed(2)}`.replace(/\.00$/,'');
+const fmtSigned=v=>(v>0?'+':v<0?'−':'')+money(v);
+const validateSI=a=>Array.isArray(a)&&a.length===18&&a.every(v=>Number.isInteger(Number(v))&&Number(v)>=1&&Number(v)<=18)&&new Set(a.map(Number)).size===18;
+const activePlayers=()=>SLOTS.slice(0,state.playerCount),playerName=p=>state.names[SLOTS.indexOf(p)]||p,playingSequence=()=>Array.from({length:18},(_,i)=>(state.startHole-1+i)%18+1),key=(p,h)=>`${p}_${h}`;
+function grossScore(p,h){const v=state.scores[key(p,h)];return v===''||v==null?null:Number.isInteger(Number(v))&&Number(v)>=1&&Number(v)<=20?Number(v):null}
+function freshState(){return{gameDate:today(),playerCount:4,startHole:1,formats:{skins:true,matchplay:true},buyIn:50,stake:10,names:['A','B','C','D'],handicaps:[0,0,0,0],pars:[...DEFAULT_PAR],strokeIndexes:[...DEFAULT_SI],scores:{},skinsRules:{scoreBasis:'net',winThreshold:'bogey',carryover:true,doubleBogeyLosesOne:true,tripleBogeyPenalty:'all',lastCarry:'void'},matchplay:{baseStrokes:{},progressiveStrokes:{},progressiveReceivers:{}},nassau:{enabled:true,format:'teams',mode:'strokes',strokeSource:'nassau',pair:['A','B'],teams:{A:['A','B'],B:['C','D']},strokes:{A:{front:0,back:0},B:{front:0,back:0},C:{front:0,back:0},D:{front:0,back:0}},frontStakes:{base:30,insure:10,buy:10},backMultiplier:1,autoSuggestedBackMultiplier:null}}}
+/* 2. STATE + NORMALIZE + PERSISTENCE */
+let state=freshState(),saveTimer=null,mobile={slot:'A',hole:1,buffer:'',view:'table',pendingTimer:null,overwrite:false};
+function normalizeState(){state.playerCount=Math.max(2,Math.min(4,Math.trunc(num(state.playerCount)||4)));state.startHole=Math.max(1,Math.min(18,Math.trunc(num(state.startHole)||1)));state.gameDate=String(state.gameDate||today());state.buyIn=Math.max(0,num(state.buyIn));state.stake=Math.max(0,num(state.stake));state.names=Array.from({length:4},(_,i)=>String(state.names?.[i]||SLOTS[i]).slice(0,40));
+state.filters={
+  matchplay:state.filters?.matchplay!==false,
+  nassau:state.filters?.nassau!==false,
+  skins:state.filters?.skins!==false
+};state.handicaps=Array.from({length:4},(_,i)=>Math.max(0,Math.min(18,Math.trunc(num(state.handicaps?.[i])))));state.pars=Array.from({length:18},(_,i)=>{let n=Number(state.pars?.[i]);return Number.isInteger(n)&&n>=3&&n<=6?n:DEFAULT_PAR[i]});let si=state.strokeIndexes||state.si;state.strokeIndexes=validateSI(si)?si.map(Number):[...DEFAULT_SI];let scores={};if(state.scores&&typeof state.scores==='object')for(const [k,v] of Object.entries(state.scores)){if(/^[ABCD]_(?:[1-9]|1[0-8])$/.test(k)&&(v===''||v==null||(Number.isInteger(Number(v))&&Number(v)>=1&&Number(v)<=20)))scores[k]=v===''?'':Number(v)}state.scores=scores;state.formats={skins:state.formats?.skins!==false,matchplay:state.formats?.matchplay!==false};if(!state.formats.skins&&!state.formats.matchplay)state.formats.skins=true;state.skinsRules={scoreBasis:['net','gross'].includes(state.skinsRules?.scoreBasis)?state.skinsRules.scoreBasis:'net',winThreshold:state.skinsRules?.winThreshold==='par'?'par':'bogey',carryover:state.skinsRules?.carryover!==false,doubleBogeyLosesOne:state.skinsRules?.doubleBogeyLosesOne!==false,tripleBogeyPenalty:['all','two','off'].includes(state.skinsRules?.tripleBogeyPenalty)?state.skinsRules.tripleBogeyPenalty:'all',lastCarry:state.skinsRules?.lastCarry==='split'?'split':'void'};state.matchplay=state.matchplay||{};state.matchplay.baseStrokes=state.matchplay.baseStrokes||state.baseStrokes||{};state.matchplay.progressiveStrokes=state.matchplay.progressiveStrokes||state.progressiveStrokes||{};state.matchplay.progressiveReceivers=state.matchplay.progressiveReceivers||state.progressiveReceivers||{};for(const code of MATCHUPS){state.matchplay.baseStrokes[code]=state.matchplay.baseStrokes[code]||{};for(const half of ['front','back'])state.matchplay.baseStrokes[code][half]=Math.max(-9,Math.min(9,Math.trunc(num(state.matchplay.baseStrokes[code][half]))));if(![...code].includes(state.matchplay.progressiveReceivers[code]))state.matchplay.progressiveReceivers[code]=code[1]}normalizeNassauState(false)}
+function loadState(){try{let raw=localStorage.getItem(STORAGE_KEY);if(!raw){raw=localStorage.getItem(PREVIOUS_STORAGE_KEY);if(raw){const old=JSON.parse(raw);state={...freshState(),...old,nassau:old.nassau||{enabled:false},formats:{...freshState().formats,...old.formats},skinsRules:{...freshState().skinsRules,...old.skinsRules},matchplay:{...freshState().matchplay,...old.matchplay}};normalizeState();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));return}}const s=JSON.parse(raw||'null');if(s&&typeof s==='object')state={...freshState(),...s,nassau:s.nassau||{enabled:false},formats:{...freshState().formats,...s.formats},skinsRules:{...freshState().skinsRules,...s.skinsRules},matchplay:{...freshState().matchplay,...s.matchplay}}}catch(e){console.warn('Load failed',e)}normalizeState()}
+function saveState(){
+  try{
+    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
+    $('saveStatus').textContent='Saved · '+new Date().toLocaleTimeString();
+    const footer=$('footerSummary');
+    if(footer && !footer.innerHTML.includes('✓ Saved')){
+      const original=footer.textContent;
+      footer.innerHTML=original+' <span style="color:var(--green2);font-weight:bold;">✓ Saved</span>';
+      setTimeout(()=>footer.textContent=original,2000);
+    }
+  }catch(e){
+    $('saveStatus').textContent='Save failed · storage unavailable';
+  }
+  updateFooter();
+  if(typeof window.scheduleCloudSave === 'function') window.scheduleCloudSave();
+}
+function persist(){
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(saveState, 40);
+  if(typeof window.scheduleCloudSave === 'function') window.scheduleCloudSave();
+}
+function applyTheme(t){document.documentElement.dataset.theme=t;localStorage.setItem(THEME_KEY,t);$('themeToggle').textContent=t==='dark'?'☀️ Light':'🌙 Dark';document.querySelector('meta[name="theme-color"]').content=t==='dark'?'#0f1512':'#10251d'}
+function switchTab(id){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));window.scrollTo({top:0,behavior:'instant'})}
+/* 3. SKINS ENGINE — reads only state.scores, state.handicaps, state.skinsRules, state.pars, state.strokeIndexes, state.buyIn. */
+function skinsStrokes(p,h){if(state.skinsRules.scoreBasis!=='net')return 0;const hi=state.handicaps[SLOTS.indexOf(p)],si=state.strokeIndexes[h-1];return hi>=si?1:0}
+function skinsNet(p,h){const g=grossScore(p,h);return g===null?null:g-skinsStrokes(p,h)}
+function getPlayerStrokes(p, h) {
+  let maxStk = 0;
+  if (state.formats.skins) {
+    maxStk = Math.max(maxStk, skinsStrokes(p, h));
+  }
+  if (state.formats.matchplay) {
+    MATCHUPS.forEach(code => {
+      if (code.includes(p) && activePlayers().includes(code[0]) && activePlayers().includes(code[1])) {
+        const st = strokeAllocation(code, h);
+        const s = code[0] === p ? st.aStk : st.bStk;
+        maxStk = Math.max(maxStk, s);
+      }
+    });
+  }
+  return maxStk;
+}
+function calculateSkins(){const players=activePlayers(),bank=Object.fromEntries(players.map(p=>[p,0]));let carry=0,holesPlayed=0;const holes=[];let lastPlayed=null;for(const hole of playingSequence()){const par=state.pars[hole-1],nets=players.map(p=>skinsNet(p,hole)),grosses=players.map(p=>grossScore(p,hole)),complete=nets.every(v=>v!==null);if(!complete){holes.push({hole,par,played:false,nets,grosses,bankAfter:{...bank},carryAfter:carry,penalties:{}});continue}holesPlayed++;lastPlayed={hole,nets:[...nets]};const min=Math.min(...nets),leaders=players.filter((p,i)=>nets[i]===min),eligible=min<=par+(state.skinsRules.winThreshold==='bogey'?1:0);let winner=null,award=0;if(leaders.length===1&&eligible){winner=leaders[0];award=(state.skinsRules.carryover?carry:0)+1;bank[winner]+=award;carry=0}else carry=state.skinsRules.carryover?carry+1:0;const penalties={};players.forEach((p,i)=>{const n=nets[i];let lost=0,type='';if(state.skinsRules.tripleBogeyPenalty!=='off'&&n>=par+3){type='triple';lost=state.skinsRules.tripleBogeyPenalty==='all'?bank[p]:Math.min(2,bank[p]);bank[p]-=lost}else if(state.skinsRules.doubleBogeyLosesOne&&n===par+2){type='double';lost=Math.min(1,bank[p]);bank[p]-=lost}penalties[p]={type,lost}});holes.push({hole,par,played:true,nets,grosses,min,leaders,eligible,winner,award,penalties,bankAfter:{...bank},carryAfter:carry})}let split={};if(state.skinsRules.lastCarry==='split'&&carry>0&&lastPlayed){const m=Math.min(...lastPlayed.nets),leaders=players.filter((p,i)=>lastPlayed.nets[i]===m),each=Math.floor(carry/leaders.length);leaders.forEach(p=>{bank[p]+=each;split[p]=each});carry=carry%leaders.length}return{players,holes,bank,carry,holesPlayed,split}}
+function settleSkins(r){const pot=state.buyIn*r.players.length,validSkins=r.players.reduce((s,p)=>s+r.bank[p],0),refunded=validSkins===0,valuePerSkin=refunded?0:pot/validSkins,payouts={},net={};r.players.forEach(p=>{payouts[p]=refunded?state.buyIn:r.bank[p]*valuePerSkin;net[p]=payouts[p]-state.buyIn});return{pot,validSkins,refunded,valuePerSkin,payouts,net,totalPayout:r.players.reduce((s,p)=>s+payouts[p],0),totalNet:r.players.reduce((s,p)=>s+net[p],0)}}
+/* 4. MATCH PLAY ENGINE — reads only state.scores, state.matchplay.baseStrokes, state.matchplay.progressiveStrokes, state.matchplay.progressiveReceivers, state.strokeIndexes, state.stake. */
+function strokeAllocation(code,hole){const [a,b]=code.split(''),half=hole<=9?'front':'back',base=num(state.matchplay.baseStrokes[code]?.[half]),nine=hole<=9?1:10,rank=Array.from({length:9},(_,i)=>nine+i).sort((x,y)=>state.strokeIndexes[x-1]-state.strokeIndexes[y-1]),applies=rank.indexOf(hole)<Math.abs(base),baseA=applies&&base<0?1:0,baseB=applies&&base>0?1:0,receiver=state.matchplay.progressiveReceivers[code]||b,prog=!!state.matchplay.progressiveStrokes[`${code}_${hole}`],progA=prog&&receiver===a?1:0,progB=prog&&receiver===b?1:0;return{baseA,baseB,progA,progB,aStk:Math.min(1,Math.max(baseA,progA)),bStk:Math.min(1,Math.max(baseB,progB))}}
+function calculateMatch(code){const [a,b]=code.split('');let aw=0,bw=0,ties=0,played=0,running=0,biggest=0;const holes=playingSequence().map(h=>{const st=strokeAllocation(code,h),ag=grossScore(a,h),bg=grossScore(b,h);let an=null,bn=null,result='UNPLAYED';if(ag!==null&&bg!==null){played++;an=ag-st.aStk;bn=bg-st.bStk;if(an<bn){aw++;running++;result='FIRST'}else if(bn<an){bw++;running--;result='SECOND'}else{ties++;result='TIE'}biggest=Math.max(biggest,Math.abs(running))}return{hole:h,ag,bg,an,bn,result,running,...st}});return{code,a,b,holes,aw,bw,ties,played,lead:aw-bw,biggest,money:(aw-bw)*state.stake}}
+function allMatches(){return MATCHUPS.filter(c=>activePlayers().includes(c[0])&&activePlayers().includes(c[1])).map(calculateMatch)}
+function matchStatus(m){const rem=18-m.played,l=Math.abs(m.lead),leader=playerName(m.lead>0?m.a:m.b);if(!m.played)return'No holes played';if(!m.lead)return'AS';if(l>rem)return`${l}&${rem}`;if(l===rem)return`DORMIE ${rem}`;return`${l} ${m.lead>0?'UP':'DN'}`}
+function matchProgressPosition(m){
+  if(!m.played || m.lead===0) return 'AS';
+
+  const leader=m.lead>0 ? m.a : m.b;
+  return `${playerName(leader)} ${Math.abs(m.lead)} UP`;
+}
+
+function matchProgressStatus(m){
+  const remaining=18-m.played;
+  const lead=Math.abs(m.lead);
+
+  if(!m.played) return 'Not started';
+  if(remaining===0) return m.lead===0 ? 'Final · Tied' : 'Final';
+
+  if(m.lead===0){
+    return `AS · ${remaining} to play`;
+  }
+
+  const leader=playerName(m.lead>0 ? m.a : m.b);
+
+  if(lead>remaining){
+    return `${leader} wins ${lead}&${remaining}`;
+  }
+
+  if(lead===remaining){
+    return `${leader} Dormie ${remaining}`;
+  }
+
+  return `${leader} ${lead} UP · ${remaining} to play`;
+}
+
+function skinsPenaltyLabel(penalty){
+  if(!penalty || !penalty.type) return '';
+
+  if(penalty.type==='double'){
+    return 'DB-1';
+  }
+
+  if(penalty.type==='triple'){
+    if(state.skinsRules.tripleBogeyPenalty==='all'){
+      return 'TB-all';
+    }
+
+    if(state.skinsRules.tripleBogeyPenalty==='two'){
+      return 'TB-2';
+    }
+
+    return 'TB';
+  }
+
+  return '';
+}
+
+function latestCompletedSkinsHole(result){
+  const played=result.holes.filter(h=>h.played);
+  return played.length ? played[played.length-1] : null;
+}
+
+  function settleMatches(matches){const balances=Object.fromEntries(activePlayers().map(p=>[p,0])),matrix={};matches.forEach(m=>{const payer=m.lead>0?m.b:m.a,payee=m.lead>0?m.a:m.b,amount=Math.abs(m.money);if(m.lead){balances[payer]-=amount;balances[payee]+=amount;matrix[`${payer}${payee}`]=(matrix[`${payer}${payee}`]||0)+amount}});return{balances,matrix,total:Object.values(balances).reduce((a,b)=>a+b,0)}}
+/* 5. SCORECARD CALCULATIONS — pure display only; reads scores, pars, strokeIndexes. Never writes state. */
+function scorecardMetrics(p){const scores=Array.from({length:18},(_,i)=>grossScore(p,i+1)),entered=scores.filter(v=>v!==null).length,points=scores.reduce((sum,g,i)=>{if(g===null)return sum;const d=g-state.pars[i];return sum+(d<=-3?5:d===-2?4:d===-1?3:d===0?2:d===1?1:0)},0),hod=entered===18?Math.max(0,Math.min(36,36-points)):null;let allocated=0,net=null,sf=0;if(hod!==null){allocated=scores.reduce((s,g,i)=>s+(hod>18?1+(state.strokeIndexes[i]<=hod-18?1:0):(state.strokeIndexes[i]<=hod?1:0)),0);net=scores.reduce((s,g)=>s+g,0)-allocated;sf=scores.reduce((s,g,i)=>{const n=g-(hod>18?1+(state.strokeIndexes[i]<=hod-18?1:0):(state.strokeIndexes[i]<=hod?1:0)),d=n-state.pars[i];return s+(d<=-3?5:d===-2?4:d===-1?3:d===0?2:d===1?1:0)},0)}return{scores,entered,hod,net,sf,out:scores.slice(0,9).every(v=>v!==null)?scores.slice(0,9).reduce((a,b)=>a+b,0):null,in:scores.slice(9).every(v=>v!==null)?scores.slice(9).reduce((a,b)=>a+b,0):null,gross:entered===18?scores.reduce((a,b)=>a+b,0):null}}
+function cat(g,p,h){if(g===null)return'';const d=g-state.pars[h-1];return d<=-2?'eagle':d===-1?'birdie':d===0?'par':d===1?'bogey':d===2?'double':'triple'}
+/* 6. RENDER FUNCTIONS */
+function renderControls(){const start=$('startHole');start.innerHTML=Array.from({length:18},(_,i)=>`<option value="${i+1}">Hole ${i+1}</option>`).join('');$('gameDate').value=state.gameDate;$('playerCount').value=state.playerCount;$('startHole').value=state.startHole;$('playFormat').value=state.formats.skins&&state.formats.matchplay?'both':state.formats.skins?'skins':'matchplay';$('buyIn').value=state.buyIn;$('stake').value=state.stake;$('scoreBasis').value=state.skinsRules.scoreBasis;$('winThreshold').value=state.skinsRules.winThreshold;$('carryover').value=String(state.skinsRules.carryover);$('ruleDouble').checked=state.skinsRules.doubleBogeyLosesOne;$('triplePenalty').value=state.skinsRules.tripleBogeyPenalty;$('lastCarry').value=state.skinsRules.lastCarry;$('skinsSetup').classList.toggle('hidden',!state.formats.skins);$('matchSetup').classList.toggle('hidden',!state.formats.matchplay);$('potPreview').textContent=`Pot = ${money(state.buyIn*state.playerCount)} (${money(state.buyIn)} × ${state.playerCount} players)`;$('handicapHelp').textContent=state.skinsRules.scoreBasis==='gross'?'Handicaps disabled because Skins uses Gross scoring.':'Used by Skins only.'}
+function renderPlayerNames(){
+  $('playerNames').innerHTML=SLOTS.map((p,i)=>`<div class="field" style="opacity:${i>=state.playerCount?'.45':'1'}"><label>Slot ${p}${i>=state.playerCount?' · inactive':''}</label><input data-name="${p}" value="${esc(state.names[i])}" maxlength="40"></div>`).join('');
+}
+function renderPlayers(){$('players').innerHTML=SLOTS.map((p,i)=>`<div class="field" style="margin-bottom:6px;opacity:${i>=state.playerCount?'.45':'1'}"><label>${esc(state.names[i])} (Slot ${p})${i>=state.playerCount?' · inactive':''} · Handicap</label><input data-hcp="${p}" type="number" min="0" max="18" step="1" value="${state.handicaps[i]}" ${!state.formats.skins||state.skinsRules.scoreBasis==='gross'||i>=state.playerCount?'disabled':''}></div>`).join('')}
+/* Populate the dropdown once the DOM is ready */
+function populateCoursePresets() {
+  const sel = document.getElementById('coursePreset');
+  if (!sel) return;
+  sel.innerHTML = '<option value="">— Custom / Default —</option>';
+  Object.keys(THAI_COURSES).forEach(name => {
+    const opt = document.createElement('option');
+    opt.value = name;
+    opt.textContent = name;
+    sel.appendChild(opt);
+  });
+}
+
+/* Apply the selected preset to state */
+function applyCoursePreset(name) {
+  if (!name) return;
+  const c = THAI_COURSES[name];
+  if (!c) return;
+  state.pars = [...c.pars];
+  state.strokeIndexes = [...c.si];
+  state.coursePresetName = name;   // optional metadata
+  renderAll(false);
+  persist();
+}
+
+/* Wire the change event */
+document.addEventListener('DOMContentLoaded', () => {
+  populateCoursePresets();
+  const sel = document.getElementById('coursePreset');
+  if (sel) {
+    sel.addEventListener('change', e => {
+      applyCoursePreset(e.target.value);
+    });
+  }
+});
+function renderCourse(){const front=state.pars.slice(0,9).reduce((a,b)=>a+b,0),back=state.pars.slice(9).reduce((a,b)=>a+b,0);$('courseStats').innerHTML=[['Front 9',front],['Back 9',back],['Course Par',front+back]].map(([l,v])=>`<div class="stat"><span class="label">${l}</span><strong>${v}</strong></div>`).join('');$('courseSetup').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Hole</th><th>Par</th><th>Stroke Index</th></tr></thead><tbody>${Array.from({length:18},(_,i)=>`<tr><td>${i+1}</td><td><input class="course-input" type="number" min="3" max="6" data-course="par" data-hole="${i+1}" value="${state.pars[i]}"></td><td><input class="course-input" type="number" min="1" max="18" data-course="si" data-hole="${i+1}" value="${state.strokeIndexes[i]}"></td></tr>`).join('')}</tbody></table></div>`;const valid=validateSI(state.strokeIndexes)&&state.pars.every(v=>Number.isInteger(v)&&v>=3&&v<=6);$('courseValidation').innerHTML=valid?'<span class="positive">✓ Course data valid · SI 1–18 unique · Par 3–6</span>':'<span class="negative">Invalid course data. Check par and unique Stroke Index values.</span>'}
+function renderStrokes(){if(!state.formats.matchplay){$('strokes').innerHTML='<div class="card"><h2>Match Play Strokes</h2><p class="sub">Enable Match play in Round Setup to configure strokes.</p></div>';return}const pairs=MATCHUPS.filter(c=>activePlayers().includes(c[0])&&activePlayers().includes(c[1]));$('baseSettings').innerHTML=pairs.map(code=>{const x=state.matchplay.baseStrokes[code]||{};return`<div class="match-card"><div class="match-header"><strong>${esc(playerName(code[0]))} vs ${esc(playerName(code[1]))}</strong><span class="status">${code}</span></div><div class="grid"><div class="field"><label>Front 9 Strokes</label><div class="stroke-control"><button class="stroke-btn" data-stroke-action="dec" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="front" aria-label="Decrease">−</button><span class="stroke-value">${x.front??0}</span><button class="stroke-btn" data-stroke-action="inc" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="front" aria-label="Increase">+</button></div></div><div class="field"><label>Back 9 Strokes</label><div class="stroke-control"><button class="stroke-btn" data-stroke-action="dec" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="back" aria-label="Decrease">−</button><span class="stroke-value">${x.back??0}</span><button class="stroke-btn" data-stroke-action="inc" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="back" aria-label="Increase">+</button></div></div></div><div class="small">Positive: ${esc(playerName(code[1]))} · Negative: ${esc(playerName(code[0]))}</div></div>`}).join('');$('progressiveStrokes').innerHTML=pairs.map(code=>{const receiver=state.matchplay.progressiveReceivers[code]||code[1];return`<div class="match-card"><div class="match-header"><strong>${esc(playerName(code[0]))} vs ${esc(playerName(code[1]))}</strong><span class="status">Progressive</span></div><div class="field" style="margin-bottom:7px"><label>Receiver</label><select data-receiver="${code}"><option value="${code[0]}" ${receiver===code[0]?'selected':''}>${esc(playerName(code[0]))}</option><option value="${code[1]}" ${receiver===code[1]?'selected':''}>${esc(playerName(code[1]))}</option></select></div><div class="checks">${Array.from({length:18},(_,i)=>{const h=i+1,checked=!!state.matchplay.progressiveStrokes[`${code}_${h}`];return`<label class="check-hole ${checked?'checked':''}">H${h}<input type="checkbox" data-progressive="${code}" data-hole="${h}" ${checked?'checked':''}></label>`}).join('')}</div></div>`}).join('');$('strokeSummaryContent').innerHTML=pairs.map(code=>`<div class="match-card"><strong>${esc(playerName(code[0]))} vs ${esc(playerName(code[1]))}</strong><div class="table-wrap"><table><thead><tr><th>Hole</th><th>SI</th><th>Base</th><th>Prog</th><th>Combined</th><th>Receiver</th></tr></thead><tbody>${Array.from({length:18},(_,i)=>{const h=i+1,s=strokeAllocation(code,h),base=s.baseA||s.baseB,prog=s.progA||s.progB,combined=s.aStk||s.bStk,recv=s.aStk?playerName(code[0]):s.bStk?playerName(code[1]):'–';return`<tr><td>${h}</td><td>${state.strokeIndexes[i]}</td><td>${base}</td><td>${prog}</td><td><strong>${combined}</strong></td><td>${esc(recv)}</td></tr>`}).join('')}</tbody></table></div></div>`).join('')}
+function renderScoreTable(){const seq=playingSequence();$('scoreEntry').innerHTML=`<div class="table-wrap"><table class="score-table"><thead><tr><th class="player-column">Player</th>${seq.map(h=>`<th>H${h}<br><span class="small">P${state.pars[h-1]}</span><br><span class="small">SI ${state.strokeIndexes[h-1]}</span></th>`).join('')}</tr></thead><tbody>${activePlayers().map(p=>`<tr><td class="player-column">${esc(playerName(p))}</td>${seq.map(h=>{const g=grossScore(p,h),s=getPlayerStrokes(p,h);const stkStr=s===1?'*':s>=2?'**':'';return`<td><input class="score-input ${g!==null?'saved':''}" inputmode="numeric" type="text" maxlength="2" autocomplete="off" onfocus="this.select()" data-score-player="${p}" data-hole="${h}" value="${g??''}" aria-label="${esc(playerName(p))} hole ${h}"><div class="net-line" style="${s>0?'color:var(--pen);font-weight:bold':''}">${stkStr}${g!==null&&s>0?` Net ${g-s}`:''}</div></td>`}).join('')}</tr>`).join('')}</tbody></table></div>`}
+function sequencePositions(){const seq=playingSequence();return seq.flatMap(h=>activePlayers().map(p=>({slot:p,hole:h}))) }
+function mobileIndex(){const arr=sequencePositions();let i=arr.findIndex(x=>x.slot===mobile.slot&&x.hole===mobile.hole);return i<0?0:i}
+function setMobileIndex(i,load=false){const arr=sequencePositions();i=(i+arr.length)%arr.length;mobile.slot=arr[i].slot;mobile.hole=arr[i].hole;mobile.buffer=load?String(grossScore(mobile.slot,mobile.hole)??''):'';mobile.overwrite=load&&mobile.buffer!=='';renderMobile()}
+function commitMobile(v){clearTimeout(mobile.pendingTimer);mobile.pendingTimer=null;if(v!==''&&(!Number.isInteger(Number(v))||Number(v)<1||Number(v)>20))return;const k=key(mobile.slot,mobile.hole);if(v==='')delete state.scores[k];else state.scores[k]=Number(v);mobile.buffer='';persist();renderAll(false);setMobileIndex(mobileIndex()+1)}
+function renderMobile() {
+  const h = mobile.hole;
+  const coursePar = state.pars.reduce((a,b)=>a+b, 0);
+
+  const header = `
+  <div class="mobile-hole-header">
+    <div class="mobile-course-title">18 Holes Par ${coursePar}</div>
+    <button class="mobile-nav-btn left" data-mobile-hole-nav="-1">‹</button>
+    <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
+      <h2 class="mobile-hole-number" style="margin:0;">Hole</h2>
+      <select id="mobileHoleSelect" class="mobile-hole-select">
+        ${playingSequence().map(x => `<option value="${x}" ${x===h?'selected':''}>${x}</option>`).join('')}
+      </select>
+    </div>
+    <button class="mobile-nav-btn right" data-mobile-hole-nav="1">›</button>
+    <div class="mobile-hole-sub">Par ${state.pars[h-1]}</div>
+    <div class="mobile-hole-si">Stroke index ${state.strokeIndexes[h-1]}/<span class="highlight">18</span></div>
+  </div>
+`;
+
+const cards = activePlayers().map((p, i) => {
+  const score = grossScore(p, h);
+const displayScore = score === null ? '' : score;
+const par = state.pars[h - 1];
+let colorClass = '';
+if (score !== null) {
+  const diff = score - par;
+  if (diff <= -1) colorClass = 'score-birdie'; // Birdie or better = Gold
+  else if (diff === 1 || diff === 2) colorClass = 'score-bogey'; // Bogey & Double = Light Blue
+  else if (diff >= 3) colorClass = 'score-triple'; // Triple bogey or worse = Red
+  // Par (diff === 0) gets no class and remains White
+}
+  
+  const s = getPlayerStrokes(p, h);
+  const stkStr = s === 1 ? '*' : s >= 2 ? '**' : '';
+  const netText = `${stkStr}${score !== null && s > 0 ? ` Net ${score - s}` : ''}`;
+
+  return `
+    <div class="mobile-player-card">
+      <div class="mobile-player-info">
+        <div class="mobile-player-slot">Slot ${SLOTS[i]}</div>
+        <div class="mobile-player-name">${esc(playerName(p))}</div>
+        <div class="mobile-player-hcp">Handicap ${state.handicaps[i]}</div>
+      </div>
+      <div class="mobile-score-controls">
+        <button class="mobile-score-btn" data-mobile-score-player="${p}" data-hole="${h}" data-delta="-1">−</button>
+        <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:80px;">
+          <input class="mobile-score-input ${colorClass}" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" data-mobile-score-player="${p}" data-hole="${h}" value="${displayScore}">
+          <div class="mobile-net-line ${s>0?'has-stroke':''}" data-net-player="${p}" data-hole="${h}">${netText}</div>
+        </div>
+        <button class="mobile-score-btn" data-mobile-score-player="${p}" data-hole="${h}" data-delta="1">+</button>
+      </div>
+    </div>
+  `;
+}).join('');
+
+  $('mobileEntry').innerHTML = header + cards;
+}  
+function scoreColor(g,h){const d=g-state.pars[h-1];return d<=-2?'c-eagle':d===-1?'c-birdie':d===0?'c-par':d===1?'c-bogey':d===2?'c-double':'c-triple'}
+function renderScorecard(){const ps=activePlayers();$('scorecard').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Player</th>${Array.from({length:9},(_,i)=>`<th>H${i+1}<br><span class="small">P${state.pars[i]}</span><br><span class="small">SI ${state.strokeIndexes[i]}</span></th>`).join('')}<th>Out</th>${Array.from({length:9},(_,i)=>`<th>H${i+10}<br><span class="small">P${state.pars[i+9]}</span><br><span class="small">SI ${state.strokeIndexes[i+9]}</span></th>`).join('')}<th>In</th><th>Total Gross</th><th>HCP<br>(S36)</th><th>Net</th><th>Stableford</th></tr></thead><tbody>${ps.map(p=>{const m=scorecardMetrics(p);return`<tr><td>${esc(playerName(p))}</td>${m.scores.slice(0,9).map((g,i)=>`<td>${g===null?'–':`<span class="chip ${scoreColor(g,i+1)}" data-edit-score="${p}" data-hole="${i+1}" title="Tap to edit">${g}</span>`}</td>`).join('')}<td><strong>${m.out??'–'}</strong></td>${m.scores.slice(9).map((g,i)=>`<td>${g===null?'–':`<span class="chip ${scoreColor(g,i+10)}" data-edit-score="${p}" data-hole="${i+10}" title="Tap to edit">${g}</span>`}</td>`).join('')}<td><strong>${m.in??'–'}</strong></td><td><strong>${m.gross??'–'}</strong></td><td title="${m.hod===null?'pending 18 holes':'System 36 HOD · reporting only'}">${m.hod??'—'}</td><td>${m.net??'—'}</td><td>${m.hod===null?'—':m.sf}</td></tr>`}).join('')}</tbody></table></div><div class="legend"><span class="chip c-eagle">Eagle+</span><span class="chip c-birdie">Birdie</span><span class="chip c-par">Par</span><span class="chip c-bogey">Bogey</span><span class="chip c-double">Double</span><span class="chip c-triple">Triple+</span></div>`}
+function renderScoreSummary(){const rows=activePlayers().map(p=>{const counts={eagle:0,birdie:0,par:0,bogey:0,double:0,triple:0,dp:0};for(let h=1;h<=18;h++){const g=grossScore(p,h);if(g===null)continue;const c=cat(g,p,h);counts[c]++;if(g>=2*state.pars[h-1])counts.dp++}return`<tr><td>${esc(playerName(p))}</td><td><span class="chip c-eagle">${counts.eagle}</span></td><td><span class="chip c-birdie">${counts.birdie}</span></td><td><span class="chip c-par">${counts.par}</span></td><td><span class="chip c-bogey">${counts.bogey}</span></td><td><span class="chip c-double">${counts.double}</span></td><td><span class="chip c-triple">${counts.triple}</span></td><td><span class="chip c-triple">${counts.dp}</span></td></tr>`}).join('');$('scoreSummary').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Player</th><th>Eagle+</th><th>Birdie</th><th>Par</th><th>Bogey</th><th>Double</th><th>Triple+</th><th>Double Par+</th></tr></thead><tbody>${rows}</tbody></table></div>`}
+function renderMatchProgressSummary(){
+  const scoresC = $('scoreMatchProgress');
+  const resultsC = $('matchProgressSummary');
+
+  // Scores tab always shows (it's an entry aid, not a filtered "result")
+  if(!state.formats.matchplay){
+    if(scoresC) scoresC.innerHTML='';
+    if(resultsC) resultsC.innerHTML='';
+    return;
+  }
+  
+
+ const matches = allMatches();
+  const html = `<div class="card">
+    <div class="summary-section-title">
+      <h2>Match Progress Summary</h2>
+      <span class="status">${matches.length} match${matches.length===1?'':'es'}</span>
+    </div>
+    <p class="sub">Won and Lost are shown from the first listed player's perspective.</p>
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th>Matchup</th><th>Played</th><th>Won</th><th>Lost</th>
+            <th>Tied</th><th>Position</th><th>Remaining</th><th>Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          ${matches.map(m=>{
+            const remaining = 18 - m.played;
+            const position  = matchProgressPosition(m);
+            const status    = matchProgressStatus(m);
+            const statusClass =
+              !m.played ? 'match-unplayed'
+              : remaining===0 || Math.abs(m.lead) > remaining
+                ? 'match-complete'
+                : 'match-live';
+            return `
+              <tr>
+                <td>
+                  <strong>${esc(playerName(m.a))}</strong>
+                  <span class="muted-cell">vs</span>
+                  <strong>${esc(playerName(m.b))}</strong>
+                </td>
+                <td>${m.played}</td>
+                <td class="${m.aw>m.bw?'progress-winner':''}">${m.aw}</td>
+                <td class="${m.bw>m.aw?'progress-loser':''}">${m.bw}</td>
+                <td>${m.ties}</td>
+                <td class="match-position ${m.lead===0?'match-position-square':'leading'}">
+                  ${esc(position)}
+                </td>
+                <td>${remaining}</td>
+                <td><span class="status ${statusClass}">${esc(status)}</span></td>
+              </tr>`;
+          }).join('')}
+        </tbody>
+      </table>
+    </div>
+  </div>`;
+
+  if(scoresC)  scoresC.innerHTML  = html;
+  if(resultsC) resultsC.innerHTML = state.filters.matchplay ? html : '';
+}
+function renderLiveRoundSummary(){
+  const container=$('liveRoundSummary');
+  const showSkins = state.formats.skins   && state.filters.skins;
+  const showMatch = state.formats.matchplay && state.filters.matchplay;
+  if(!showSkins && !showMatch){container.innerHTML='';return;}
+ 
+  const skinsResult=calculateSkins();
+  const matches=allMatches();
+  const completedSkinsHole=latestCompletedSkinsHole(skinsResult);
+
+  const holesPlayed=state.formats.skins
+    ? skinsResult.holesPlayed
+    : matches.length
+      ? Math.max(...matches.map(m=>m.played))
+      : 0;
+
+  const skinsHolesWon=Object.fromEntries(
+    activePlayers().map(p=>[
+      p,
+      skinsResult.holes.filter(h=>h.played && h.winner===p).length
+    ])
+  );
+
+  const totalHolesWon=Object.values(skinsHolesWon)
+    .reduce((sum,value)=>sum+value,0);
+
+  const validSkins=Object.values(skinsResult.bank)
+    .reduce((sum,value)=>sum+value,0);
+
+  const currentCarry=state.formats.skins ? skinsResult.carry : 0;
+
+  const lastHoleText=completedSkinsHole
+    ? `Last completed: Hole ${completedSkinsHole.hole}`
+    : 'No completed holes';
+
+  container.innerHTML=`
+    <div class="card">
+      <div class="summary-section-title">
+        <h2>Live Round Summary</h2>
+        <span class="status match-live">${esc(lastHoleText)}</span>
+      </div>
+
+      <div class="live-summary-grid">
+        <div class="live-summary-item">
+          <span class="label">Holes played</span>
+          <strong>${holesPlayed}/18</strong>
+        </div>
+
+        <div class="live-summary-item">
+          <span class="label">Holes won</span>
+          <strong>${state.formats.skins ? totalHolesWon : '—'}</strong>
+        </div>
+
+        <div class="live-summary-item">
+          <span class="label">Current carry</span>
+          <strong>${state.formats.skins ? currentCarry : '—'}</strong>
+        </div>
+
+        <div class="live-summary-item">
+          <span class="label">Valid skins in banks</span>
+          <strong>${state.formats.skins ? validSkins : '—'}</strong>
+        </div>
+
+        <div class="live-summary-item">
+          <span class="label">Players with banked skins</span>
+          <strong>
+            ${
+              state.formats.skins
+                ? skinsResult.players.filter(p=>skinsResult.bank[p]>0).length
+                : '—'
+            }
+          </strong>
+        </div>
+      </div>
+
+      ${
+        state.formats.skins
+          ? `
+            <div class="table-wrap">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Player</th>
+                    <th>Holes won</th>
+                    <th>Skins in bank</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  ${skinsResult.players.map(p=>`
+                    <tr>
+                      <td>${esc(playerName(p))}</td>
+                      <td>${skinsHolesWon[p]}</td>
+                      <td class="bank-total">${skinsResult.bank[p]}</td>
+                    </tr>
+                  `).join('')}
+                </tbody>
+              </table>
+            </div>
+
+            <div class="player-bank-list">
+              ${skinsResult.players.map(p=>`
+                <span class="player-bank-chip">
+                  ${esc(playerName(p))}
+                  <strong>${skinsResult.bank[p]}</strong>
+                </span>
+              `).join('')}
+            </div>
+          `
+          : `
+            <p class="sub">Skins is disabled for this round.</p>
+          `
+      }
+    </div>
+  `;
+}
+
+function renderMatchResults(){
+  if(!state.formats.matchplay || !state.filters.matchplay){$('matchResults').innerHTML='';return;}
+
+  const matches=allMatches();
+
+  $('matchResults').innerHTML=`
+    <div class="card">
+      <h2>Match Play Hole-by-Hole</h2>
+
+      ${matches.map(m=>{
+       const status=matchProgressStatus(m);
+const leaderName= m.lead===0 ? '' : playerName(m.lead>0 ? m.a : m.b);
+const winnerA = m.lead > 0 ? 'style="color:var(--win-ink);font-weight:900;"' : '';
+const winnerB = m.lead < 0 ? 'style="color:var(--win-ink);font-weight:900;"' : '';
+
+return `
+  <details class="match-card" style="cursor:pointer;">
+     <summary class="match-header" style="list-style:none;outline:none;">
+    <strong><span ${winnerA}>${esc(playerName(m.a))}</span> vs <span ${winnerB}>${esc(playerName(m.b))}</span></strong>
+    <span class="status">${esc(status)}</span>
+</summary>
+
+            <div class="match-state ${
+              m.lead>0
+                ? 'positive'
+                : m.lead<0
+                  ? 'negative'
+                  : 'tie'
+            }">
+              ${
+                m.lead===0
+                  ? 'AS'
+                  : `${esc(leaderName)} ${Math.abs(m.lead)} UP`
+              }
+            </div>
+
+            <div class="stat-grid three">
+              <div class="stat">
+                <span class="label">Holes played</span>
+                <strong>${m.played}</strong>
+              </div>
+
+              <div class="stat">
+                <span class="label">Biggest lead</span>
+                <strong>${m.biggest}</strong>
+              </div>
+
+              <div class="stat">
+                <span class="label">Money</span>
+                <strong>${fmtSigned(m.money)}</strong>
+              </div>
+            </div>
+
+            <div class="table-wrap" style="margin-top:7px">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Hole</th>
+                    <th>${esc(playerName(m.a))}<br>Gross / Stk / Net</th>
+                    <th>${esc(playerName(m.b))}<br>Gross / Stk / Net</th>
+                    <th>Result</th>
+                    <th>Progress</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  ${m.holes.map(x=>{
+                    let result='–';
+
+                    if(x.result==='FIRST'){
+                      result=`${playerName(m.a)} wins`;
+                    }else if(x.result==='SECOND'){
+                      result=`${playerName(m.b)} wins`;
+                    }else if(x.result==='TIE'){
+                      result='Tie';
+                    }
+
+                    let progress='AS';
+
+                    if(x.running>0){
+                      progress=`${playerName(m.a)} ${x.running} UP`;
+                    }else if(x.running<0){
+                      progress=`${playerName(m.b)} ${Math.abs(x.running)} UP`;
+                    }
+
+                    return `
+                      <tr>
+                        <td>${x.hole}</td>
+
+                        <td>
+                          ${
+                            x.ag===null
+                              ? '–'
+                              : `${x.ag} / ${x.aStk} / ${x.an}`
+                          }
+                        </td>
+
+                        <td>
+                          ${
+                            x.bg===null
+                              ? '–'
+                              : `${x.bg} / ${x.bStk} / ${x.bn}`
+                          }
+                        </td>
+
+                        <td class="${
+                          x.result==='FIRST' || x.result==='SECOND'
+                            ? 'result-win'
+                            : ''
+                        }">
+                          ${esc(result)}
+                        </td>
+
+                        <td>${esc(progress)}</td>
+                      </tr>
+                    `;
+                  }).join('')}
+                </tbody>
+              </table>
+            </div>
+          </div>
+        `;
+      }).join('')}
+    </div>
+  `;
+}
+
+function renderSkinsResults(){
+  if(!state.formats.skins || !state.filters.skins){$('skinsResults').innerHTML='';return;}
+
+
+  const r=calculateSkins();
+  const validSkins=Object.values(r.bank)
+    .reduce((sum,value)=>sum+value,0);
+
+  $('skinsResults').innerHTML=`
+    <div class="card">
+      <h2>Skins Results · Hole-by-Hole</h2>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <span class="label">Holes completed</span>
+          <strong>${r.holesPlayed}/18</strong>
+        </div>
+
+        <div class="stat">
+          <span class="label">Current carry</span>
+          <strong>${r.carry}</strong>
+        </div>
+
+        <div class="stat">
+          <span class="label">Valid skins</span>
+          <strong>${validSkins}</strong>
+        </div>
+
+        <div class="stat">
+          <span class="label">Pot</span>
+          <strong>${money(state.buyIn*r.players.length)}</strong>
+        </div>
+      </div>
+
+      <h3>Hole-by-hole · Playing sequence</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hole</th>
+              <th>Par</th>
+              ${r.players.map(p=>`
+                <th>${esc(playerName(p))}</th>
+              `).join('')}
+              <th>Winner</th>
+              <th>Award</th>
+              <th>Carry</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${r.holes.map(x=>`
+              <tr>
+                <td>${x.hole}</td>
+                <td>${x.par}</td>
+
+                ${r.players.map((p,i)=>{
+                  if(x.nets[i]===null){
+                    return '<td>–</td>';
+                  }
+
+                  const penalty=x.penalties[p];
+                  const penaltyLabel=skinsPenaltyLabel(penalty);
+                  const isWinner=x.winner===p;
+
+                  if(penaltyLabel){
+                    return `
+                      <td class="result-penalty">
+                        ${x.nets[i]}
+                        (${esc(penaltyLabel)})
+                      </td>
+                    `;
+                  }
+
+                  if(isWinner){
+                    return `
+                      <td class="result-win">
+                        ${x.nets[i]} win
+                      </td>
+                    `;
+                  }
+
+                  return `<td>${x.nets[i]}</td>`;
+                }).join('')}
+
+                <td class="${x.winner?'result-win':x.played?'result-carry':''}">
+                  ${
+                    x.winner
+                      ? esc(playerName(x.winner))
+                      : x.played
+                        ? 'Carry'
+                        : '–'
+                  }
+                </td>
+
+                <td class="${x.award?'result-win':''}">
+                  ${x.award || '–'}
+                </td>
+
+                <td class="${x.carryAfter?'result-carry':''}">
+                  ${x.carryAfter}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Current Final Bank</h3>
+
+      <div class="player-bank-list">
+        ${r.players.map(p=>`
+          <span class="player-bank-chip">
+            ${esc(playerName(p))}
+            <strong>${r.bank[p]}</strong>
+          </span>
+        `).join('')}
+      </div>
+    </div>
+  `;
+}
+function renderBankProgression(){
+  const container=$('bankProgression');
+  if(!state.formats.skins || !state.filters.skins){container.innerHTML='';return;}
+ 
+
+  const r=calculateSkins();
+
+  container.innerHTML=`
+    <div class="card">
+      <div class="summary-section-title">
+        <h2>Skins Bank Progression</h2>
+        <span class="status">
+          After each completed hole
+        </span>
+      </div>
+
+      <p class="sub">
+        Shows every player's skins bank after awards and penalties have
+        been applied for each hole.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Hole</th>
+              <th>Winner / Result</th>
+              <th>Award</th>
+              <th>Carry</th>
+              ${r.players.map(p=>`
+                <th>${esc(playerName(p))}</th>
+              `).join('')}
+              <th>Total Valid</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${r.holes.map(x=>{
+              const totalValid=r.players.reduce(
+                (sum,p)=>sum+num(x.bankAfter[p]),
+                0
+              );
+
+              const resultText=!x.played
+                ? 'Not played'
+                : x.winner
+                  ? `${playerName(x.winner)} wins`
+                  : 'Carry';
+
+              return `
+                <tr>
+                  <td>${x.hole}</td>
+
+                  <td class="${
+                    x.winner
+                      ? 'result-win'
+                      : x.played
+                        ? 'result-carry'
+                        : 'muted-cell'
+                  }">
+                    ${esc(resultText)}
+                  </td>
+
+                  <td>${x.award || '–'}</td>
+
+                  <td class="${x.carryAfter?'result-carry':''}">
+                    ${x.carryAfter}
+                  </td>
+
+                  ${r.players.map(p=>{
+                    const penalty=x.penalties[p];
+                    const penaltyLabel=skinsPenaltyLabel(penalty);
+
+                    return `
+                      <td class="bank-cell ${
+                        penaltyLabel ? 'result-penalty' : ''
+                      }">
+                        ${x.bankAfter[p]}
+                        ${
+                          penaltyLabel
+                            ? `<small>(${esc(penaltyLabel)})</small>`
+                            : ''
+                        }
+                      </td>
+                    `;
+                  }).join('')}
+
+                  <td class="bank-total">${totalValid}</td>
+                </tr>
+              `;
+            }).join('')}
+
+            <tr>
+              <td><strong>Final</strong></td>
+              <td><strong>Current bank</strong></td>
+              <td>–</td>
+              <td class="result-carry">
+                <strong>${r.carry}</strong>
+              </td>
+
+              ${r.players.map(p=>`
+                <td class="bank-total">
+                  ${r.bank[p]}
+                </td>
+              `).join('')}
+
+              <td class="bank-total">
+                ${r.players.reduce((sum,p)=>sum+r.bank[p],0)}
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  `;
+}
+
+function renderMatchStatus() {
+  const container = $('scoreMatchStatusContent');
+  if (!container) return;
+
+  let html = '';
+
+  if (state.formats.matchplay) {
+    const matches = allMatches();
+    html += `<h3>Match Play Status</h3><div class="table-wrap"><table><thead><tr><th>Matchup</th><th>Status</th></tr></thead><tbody>`;
+    matches.forEach(m => {
+      html += `<tr><td>${esc(playerName(m.a))} vs ${esc(playerName(m.b))}</td><td class="${m.lead > 0 ? 'positive' : m.lead < 0 ? 'negative' : ''}" style="font-weight:bold;">${esc(matchProgressStatus(m))}</td></tr>`;
+    });
+    html += `</tbody></table></div>`;
+  }
+
+  if (state.formats.skins) {
+    const r = calculateSkins();
+    const holesWon = {};
+    r.players.forEach(p => holesWon[p] = r.holes.filter(h => h.played && h.winner === p).length);
+
+    html += `<h3>Skins Status</h3><div class="table-wrap"><table><thead><tr><th>Player</th><th>Holes Won</th><th>Skins in Bank</th></tr></thead><tbody>`;
+    r.players.forEach(p => {
+      html += `<tr><td>${esc(playerName(p))}</td><td>${holesWon[p]}</td><td class="bank-total">${r.bank[p]}</td></tr>`;
+    });
+    html += `</tbody></table></div>`;
+  }
+
+  container.innerHTML = html;
+}
+  
+function renderSettlements(){
+  const r=calculateSkins();
+  const s=settleSkins(r);
+  const matches=allMatches();
+  const ms=settleMatches(matches);
+  
+   renderFilterPanel('settlementFilters');
+
+  $('skinsSettlement').innerHTML=(state.formats.skins && state.filters.skins) ? `
+    <div class="card">
+      <h2>Skins Settlement</h2>
+
+      <div class="stat-grid">
+        <div class="stat">
+          <span class="label">Pot</span>
+          <strong>${money(s.pot)}</strong>
+        </div>
+
+        <div class="stat">
+          <span class="label">Valid skins</span>
+          <strong>${s.validSkins}</strong>
+        </div>
+
+        <div class="stat">
+          <span class="label">Value / skin</span>
+          <strong>${money(s.valuePerSkin)}</strong>
+        </div>
+
+        <div class="stat">
+          <span class="label">Refunded</span>
+          <strong>${s.refunded ? 'Yes' : 'No'}</strong>
+        </div>
+      </div>
+
+      ${
+        s.refunded
+          ? '<div class="note">No valid skins: buy-in refunded to every player.</div>'
+          : ''
+      }
+
+      <div class="table-wrap" style="margin-top:8px">
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Skins</th>
+              <th>Payout</th>
+              <th>Buy-in</th>
+              <th>Net</th>
+            </tr>
+          </thead>
+          <tbody>
+            ${r.players.map(p=>`
+              <tr>
+                <td>${esc(playerName(p))}</td>
+                <td>${r.bank[p]}</td>
+                <td>${money(s.payouts[p])}</td>
+                <td>${money(state.buyIn)}</td>
+                <td class="${s.net[p]>=0?'positive':'negative'}">
+                  ${fmtSigned(s.net[p])}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Reconciliation: payouts ${money(s.totalPayout)}
+        − pot ${money(s.pot)}
+        = ${money(s.totalPayout-s.pot)}
+        ${s.refunded?'· refunded = true':''}
+      </p>
+
+      <span class="${
+        Math.abs(s.totalPayout-s.pot)<.011
+          ? 'balance-pass'
+          : 'balance-error'
+      }">
+        ${
+          Math.abs(s.totalPayout-s.pot)<.011
+            ? 'Balanced'
+            : 'Check settlement'
+        }
+      </span>
+    </div>
+  ` : '';
+
+  $('matchSettlement').innerHTML=(state.formats.matchplay && state.filters.matchplay) ? `
+    <div class="card">
+      <h2>Match Play Settlement</h2>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Player</th>
+              <th>Balance</th>
+            </tr>
+          </thead>
+
+          <tbody>
+            ${activePlayers().map(p=>`
+              <tr>
+                <td>${esc(playerName(p))}</td>
+                <td class="${
+                  ms.balances[p]>=0 ? 'positive' : 'negative'
+                }">
+                  ${fmtSigned(ms.balances[p])}
+                </td>
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Pairwise Settlement Matrix</h3>
+
+      <p class="sub">
+        Each row is the payer. Each column is the payee.
+      </p>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Payer / Payee</th>
+              ${activePlayers().map(p=>`
+                <th>${esc(playerName(p))}</th>
+              `).join('')}
+            </tr>
+          </thead>
+
+          <tbody>
+            ${activePlayers().map(a=>`
+              <tr>
+                <td><strong>${esc(playerName(a))}</strong></td>
+
+                ${activePlayers().map(b=>`
+                  <td>
+                    ${
+                      a===b
+                        ? '–'
+                        : money(ms.matrix[`${a}${b}`] || 0)
+                    }
+                  </td>
+                `).join('')}
+              </tr>
+            `).join('')}
+          </tbody>
+        </table>
+      </div>
+
+      <p>
+        Reconciliation: total balances = ${money(ms.total)}
+      </p>
+
+      <span class="${
+        Math.abs(ms.total)<.011
+          ? 'balance-pass'
+          : 'balance-error'
+      }">
+        ${
+          Math.abs(ms.total)<.011
+            ? 'Balanced'
+            : 'Check settlement'
+        }
+      </span>
+    </div>
+  ` : '';
+ 
+  $('combinedSettlement').innerHTML=(()=>{
+  const showSkins   = !!state.formats.skins    && state.filters.skins;
+    const showMatch   = !!state.formats.matchplay && state.filters.matchplay;
+    const showNassau  = !!state.nassau?.enabled   && state.filters.nassau;
+
+  if(!showSkins && !showMatch && !showNassau) return '';
+
+  const nr = showNassau ? calculateNassau() : null;
+  const nassauValid = !!(nr && nr.valid);
+  const nassauHas = p => nassauValid && nr.playerNet && (p in nr.playerNet);
+
+  const cls = v => v>0?'positive':v<0?'negative':'tie';
+
+  // Per-player rows — null means "game not included"; 0 means "included, net zero".
+  const rows = activePlayers().map(p=>{
+    const skins  = showSkins  ? Number(s.net[p])        : null;
+    const match  = showMatch  ? Number(ms.balances[p])  : null;
+    const nassau = nassauHas(p) ? Number(nr.playerNet[p]) : null;
+    const total  = (skins ?? 0) + (match ?? 0) + (nassau ?? 0);
+    const cell = (v)=>v===null
+      ? '<span class="muted-cell">—</span>'
+      : `<span class="${cls(v)}">${fmtSigned(v)}</span>`;
+    return `<tr>
+      <td><strong>${esc(playerName(p))}</strong></td>
+      <td>${cell(skins)}</td>
+      <td>${cell(match)}</td>
+      <td>${cell(nassau)}</td>
+      <td class="${cls(total)}" style="font-weight:900;font-size:13px">${fmtSigned(total)}</td>
+    </tr>`;
+  }).join('');
+
+  // Column totals — only for games that are enabled.
+  const skinsTotal  = showSkins  ? activePlayers().reduce((a,p)=>a+Number(s.net[p]),0)       : null;
+  const matchTotal  = showMatch  ? activePlayers().reduce((a,p)=>a+Number(ms.balances[p]),0) : null;
+  const nassauTotal = nassauValid? activePlayers().reduce((a,p)=>a+(nassauHas(p)?Number(nr.playerNet[p]):0),0) : null;
+  const grandTotal  = (skinsTotal ?? 0) + (matchTotal ?? 0) + (nassauTotal ?? 0);
+  const balanced    = Math.abs(grandTotal) < .011;
+
+  const totalCell = v => v===null
+    ? '<span class="muted-cell">—</span>'
+    : money(v);
+
+  return `<div class="card">
+    <h2>Combined Net by Player</h2>
+    <p class="sub">Each game column should sum to zero. Players not participating in a game show —.</p>
+
+    <div class="table-wrap">
+      <table>
+        <thead><tr>
+          <th>Player</th>
+          <th>Skins net</th>
+          <th>Match Play net</th>
+          <th>Nassau net</th>
+          <th>Combined net</th>
+        </tr></thead>
+        <tbody>${rows}</tbody>
+        <tfoot>
+          <tr class="combined-total-row">
+            <td><strong>Total</strong></td>
+            <td>${totalCell(skinsTotal)}</td>
+            <td>${totalCell(matchTotal)}</td>
+            <td>${totalCell(nassauTotal)}</td>
+            <td>${money(grandTotal)}</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div style="margin-top:8px;text-align:right">
+      <span class="${balanced?'balance-pass':'balance-error'}">${balanced?'Balanced':'Check settlement'}</span>
+    </div>
+  </div>`;
+})();
+}
+
+function renderRules(){const r=state.skinsRules,thr=r.winThreshold==='par'?'par or better':'bogey or better',tr=r.tripleBogeyPenalty==='all'?'lose all skins':r.tripleBogeyPenalty==='two'?'lose up to 2 skins':'off';$('rulesContent').innerHTML=`<h3>Skins</h3><ul class="rules-list"><li>Active score basis: <strong>${r.scoreBasis.toUpperCase()}</strong>. ${r.scoreBasis==='net'?'User-entered handicaps allocate up to one stroke on SI holes.':'Gross scores are compared without handicap strokes.'}</li><li>Winning threshold: <strong>${thr}</strong>.</li><li>Carryover: <strong>${r.carryover?'ON':'OFF'}</strong>. ${r.carryover?'Unwon holes accumulate skins for the next outright eligible winner.':'Each eligible outright win earns exactly one skin; ties do not carry.'}</li><li>Double bogey penalty: <strong>${r.doubleBogeyLosesOne?'lose 1 skin':'OFF'}</strong>.</li><li>Triple bogey penalty: <strong>${tr}</strong>.</li><li>Final-hole carryover: <strong>${r.lastCarry==='void'?'VOID':'SPLIT among tied lowest-net leaders'}</strong>. Split uses whole skins; any remainder is void.</li><li>Penalties apply to the player's current bank after any hole award. Banks cannot go below zero. Lost skins are forfeited, not added to carry.</li></ul><h3>Match Play</h3><ul class="rules-list"><li>Each active player pair has a separate match. Match play uses gross scores minus the configured base and progressive match strokes only.</li><li>Positive base strokes give the second player strokes; negative gives the first player. Strokes go to the lowest-SI holes of each nine.</li><li>Progressive strokes are assigned to the selected receiver on checked holes. Combined strokes are MAX(base, progressive), capped at one per player per hole.</li><li>Lower match net wins the hole; equal nets tie; a hole is unplayed if either score is missing. Match money is lead × stake per hole.</li></ul><h3>Scorecard · Reporting only</h3><ul class="rules-list"><li>System 36 HOD is derived from gross scores after all 18 holes. The scorecard Net allocates that HOD by Stroke Index.</li><li>Stableford Points use the HOD-allocated scorecard net. These three values are display-only and do <strong>not</strong> affect Skins or Match Play calculations.</li></ul><h3>Modified Nassau 30/10/10</h3><ul class="rules-list"><li>Supports a two-player match, two teams of two using four-ball better ball, or three or four individual players playing every head-to-head pairing (3 players = 3 matches, 4 players = 6).</li><li>In team mode, each side's lowest net score is used on each hole; each player's Nassau strokes are applied before selecting the team's best ball.</li><li>In individual mode, every player pairing has its own Front 9, Back 9, Base, Insure and Buy press sequence. Each player's overall balance is the sum of their matches.</li><li>Default front stakes are Base 30, Insure 10 and Buy 10; each is independently editable, including zero.</li><li>Back stakes are derived from the corresponding front stakes using multiplier ×1 or ×2; no separate back stakes are stored.</li><li>Base covers the nine-hole block. Insure is created only at exact dormie with holes remaining. Buy is created only when Base is decided with holes remaining.</li><li>At most one Insure and one Buy may be created per nine. Presses start on the next hole. A jump past dormie does not create Insure.</li><li>Level matches push for zero. Front and back are independent; the back starts level with its own stakes.</li><li>Nassau strokes are allocated by lowest Stroke Index within each nine and wrap for more than nine strokes. Lower net wins; equal net halves.</li><li>Stake changes affect monetary amounts only, not hole winners, leads, dormie detection or press triggers.</li><li>Stroke source <strong>Match Play</strong> reuses each matchup's base + progressive allocation, so you configure strokes once. Teams mode always uses Nassau's own per-player inputs (no single Match Play code applies to a team matchup).</li></ul><h3>Worked example</h3><p class="sub">4 players · QAR 50 each · pot QAR 200. Suppose final banks are A:1, B:2, C:2, D:3.</p><ul class="rules-list"><li>Total valid skins = 8.</li><li>Value per skin = QAR 200 ÷ 8 = QAR 25.</li><li>Payouts: A QAR 25 · B QAR 50 · C QAR 50 · D QAR 75. Total QAR 200.</li><li>The example is illustrative; live thresholds, carryover and penalties above follow the currently selected controls.</li></ul>`}
+function renderFilterPanel(targetId) {
+  const tgt = $(targetId);
+  if (!tgt) return;
+  const activeCount = ['matchplay','nassau','skins'].filter(k => state.filters[k]).length;
+  tgt.innerHTML = `
+    <div class="card">
+      <div class="summary-section-title">
+        <h2>Display Filters</h2>
+        <span class="status">${activeCount}/3 active</span>
+      </div>
+      <p class="sub">Filters apply to Results, Settlements, Public view, and the filtered WhatsApp share.</p>
+      <div class="filter-panel">
+        <label class="filter-chip ${state.filters.matchplay?'active':''}">
+          <input type="checkbox" data-filter="matchplay" ${state.filters.matchplay?'checked':''}> Match Play
+        </label>
+        <label class="filter-chip ${state.filters.nassau?'active':''}">
+          <input type="checkbox" data-filter="nassau" ${state.filters.nassau?'checked':''}> Nassau
+        </label>
+        <label class="filter-chip ${state.filters.skins?'active':''}">
+          <input type="checkbox" data-filter="skins" ${state.filters.skins?'checked':''}> Skins
+        </label>
+      </div>
+    </div>`;
+}
+function updateFooter(){const bits=[`${state.playerCount} players`,state.formats.skins?`Skins pot ${money(state.buyIn*state.playerCount)}`:'',state.formats.matchplay?`Match ${money(state.stake)}/hole`:'' ,state.nassau?.enabled?`Nassau ${money(state.nassau.frontStakes.base)}/${money(state.nassau.frontStakes.insure)}/${money(state.nassau.frontStakes.buy)} · Back ×${state.nassau.backMultiplier}`:''];$('footerSummary').textContent=bits.filter(Boolean).join(' · ')}
+/* 6A. MODIFIED NASSAU — independent pure scoring and settlement engine */
+const NASSAU_DEFAULTS={enabled:false,mode:'strokes',pair:['A','B'],strokes:{A:{front:0,back:0},B:{front:0,back:0}},frontStakes:{base:30,insure:10,buy:10},backMultiplier:1,autoSuggestedBackMultiplier:null};
+function normalizeNassauState(newRound=false){
+  const old=state.nassau;
+  // Missing Nassau in an older saved/imported round stays disabled; freshState() is enabled.
+  const n=old&&typeof old==='object'?old:{...NASSAU_DEFAULTS};
+  n.enabled=old&&typeof old==='object'?old.enabled===true:false;
+  n.format=['pair','teams','individual'].includes(n.format)?n.format:(state.playerCount>=4&&old?.enabled===undefined?'pair':'pair');
+  if(n.format==='teams'&&state.playerCount<4)n.format='pair';
+if(n.format==='individual'&&state.playerCount<3)n.format='pair';
+  n.teams=n.teams&&typeof n.teams==='object'?n.teams:{A:['A','B'],B:['C','D']};
+  let ta=Array.isArray(n.teams.A)?n.teams.A.filter(x=>activePlayers().includes(x)):['A','B'].filter(x=>activePlayers().includes(x));
+  if(ta.length!==2||ta[0]===ta[1])ta=activePlayers().slice(0,2);
+  let tb=activePlayers().filter(x=>!ta.includes(x)).slice(0,2);
+  n.teams={A:ta,B:tb};
+  n.mode=n.mode==='scratch'?'scratch':'strokes';
+n.strokeSource=['nassau','matchplay'].includes(n.strokeSource)?n.strokeSource:'nassau';
+// Match Play source requires Match Play enabled and no team ambiguity (see §"Why teams fails")
+if(n.strokeSource==='matchplay'&&(!state.formats.matchplay||n.format==='teams'))n.strokeSource='nassau';
+  const active=activePlayers();
+  let pair=Array.isArray(n.pair)?n.pair.filter((x,i,a)=>active.includes(x)&&a.indexOf(x)===i):[];
+  if(pair.length<2)pair=active.slice(0,2);
+  n.pair=[pair[0],pair[1]];
+  n.strokes=n.strokes&&typeof n.strokes==='object'?n.strokes:{};
+  for(const slot of SLOTS){n.strokes[slot]=n.strokes[slot]||{};for(const half of ['front','back'])n.strokes[slot][half]=Math.max(0,Math.min(18,Math.trunc(Number(n.strokes[slot][half])||0)));}
+  n.frontStakes=n.frontStakes&&typeof n.frontStakes==='object'?n.frontStakes:{};
+  for(const [k,d] of Object.entries({base:30,insure:10,buy:10})){const v=n.frontStakes[k];n.frontStakes[k]=v!==''&&v!==null&&v!==undefined&&String(v).trim()!==''&&Number.isFinite(Number(v))&&Number(v)>=0?Number(v):d;}
+  n.backMultiplier=Number(n.backMultiplier)===2?2:1;
+  n.autoSuggestedBackMultiplier=n.autoSuggestedBackMultiplier===2?2:null;
+  state.nassau=n;
+}
+function nassauStrokes(slot,hole,mode=state.nassau?.mode,strokes=state.nassau?.strokes,strokeIndexes=state.strokeIndexes){
+  if(mode==='scratch')return 0;
+  const half=hole<=9?'front':'back',count=Math.max(0,Math.min(18,Math.trunc(Number(strokes?.[slot]?.[half])||0)));
+  const holes=Array.from({length:9},(_,i)=>i+(half==='front'?1:10)).sort((a,b)=>Number(strokeIndexes[a-1])-Number(strokeIndexes[b-1]));
+  let allocation=0;for(let k=0;k<count;k++)if(holes[k%9]===hole)allocation++;
+  return allocation;
+}
+  // Derive per-hole strokes for a Nassau pair from Match Play's base+progressive allocation.
+// Returns the same shape as nassauStrokeMap(): { A: int[18], B: int[18] } where A=first player, B=second.
+function nassauPairStrokeMapFromMatchPlay(pairSlots, strokeIndexes) {
+  const [a, b] = pairSlots;
+  const code = a + b;
+  const mapA = [], mapB = [];
+  for (let h = 1; h <= 18; h++) {
+    const alloc = strokeAllocation(code, h);
+    mapA.push(alloc.aStk);
+    mapB.push(alloc.bStk);
+  }
+  return { A: mapA, B: mapB };
+}
+function nassauStrokeMap(pair,mode,strokes,strokeIndexes){
+  const out={};for(const slot of pair){out[slot]=Array.from({length:18},(_,i)=>nassauStrokes(slot,i+1,mode,strokes,strokeIndexes));}return out;
+}
+function nassauHoleResult(grossA,grossB,strokesA,strokesB){
+  const valid=x=>Number.isInteger(Number(x))&&Number(x)>=1&&Number(x)<=20;
+  if(!valid(grossA)||!valid(grossB))return{complete:false,grossA:valid(grossA)?Number(grossA):null,grossB:valid(grossB)?Number(grossB):null,netA:null,netB:null,winner:null,grossWinner:null};
+  const netA=Number(grossA)-strokesA,netB=Number(grossB)-strokesB;
+  return{complete:true,grossA:Number(grossA),grossB:Number(grossB),netA,netB,winner:netA<netB?'A':netB<netA?'B':'H',grossWinner:Number(grossA)<Number(grossB)?'A':Number(grossB)<Number(grossA)?'B':'H'};
+}
+function nassauBlockMatches(block,rows,stakes,names){
+  const label=w=>names?.[w]||w;
+  const make=(startHole,remaining,stake)=>({exists:true,startHole,stake,lead:0,holesPlayed:0,remaining,decided:false,winner:null,result:null,amount:0,statusText:'In progress'});
+  const base=make(block[0],block.length,stakes.base);let insure=null,buy=null,insureCreated=false,buyCreated=false;
+  const rowByHole=new Map(rows.map(x=>[x.hole,x]));
+  const apply=(m,delta)=>{m.lead+=delta;m.holesPlayed++;};
+  const finish=(m,push=false)=>{m.decided=true;if(push){m.result='PUSH';m.winner=null;m.amount=0;m.statusText='Push';}else{m.winner=m.lead>0?'A':'B';m.result=m.winner;m.amount=m.winner==='A'?m.stake:-m.stake;const diff=Math.abs(m.lead),r=m.remaining;m.statusText=r===0?`${label(m.winner)} wins ${diff} UP`:`${label(m.winner)} wins ${diff}&${r}`;}};
+  const updateStatus=m=>{if(!m)return;if(m.decided)return;if(m.holesPlayed===0){m.statusText='Not started';return;}m.statusText=`${m.lead===0?'AS':`${label(m.lead>0?'A':'B')} ${Math.abs(m.lead)} UP`} · ${m.remaining} to play`;if(m.remaining>0&&m.lead!==0&&Math.abs(m.lead)===m.remaining)m.statusText=`${label(m.lead>0?'A':'B')} Dormie ${m.remaining}`;};
+  for(let i=0;i<block.length;i++){
+    const hole=block[i],row=rowByHole.get(hole),r=block.length-(i+1); // Remaining counts later positions in this block's playing order, even across missing holes.
+    if(!row?.complete){updateStatus(base);updateStatus(insure);updateStatus(buy);if(row){row.baseStatus=base.statusText;row.insureStatus=insure?.statusText||'Not started';row.buyStatus=buy?.statusText||'Not started';row.baseLeadAfter=base.lead;row.insureLeadAfter=insure?.lead??0;row.buyLeadAfter=buy?.lead??0;}continue;}
+    if(insure&&!insure.decided&&i>=block.indexOf(insure.startHole))insure.remaining=r;if(buy&&!buy.decided&&i>=block.indexOf(buy.startHole))buy.remaining=r;
+    const delta=row.winner==='A'?1:row.winner==='B'?-1:0; // Net comparison decides a hole; halves consume a hole position without changing lead.
+    if(!base.decided)apply(base,delta);
+    if(insure&&!insure.decided)apply(insure,delta);
+    if(buy&&!buy.decided)apply(buy,delta);
+    base.remaining=r;
+    // Trigger order: update existing matches first, then decide Base, then create its new presses.
+    if(!base.decided){
+      if(Math.abs(base.lead)>r){finish(base);if(r>0&&!buyCreated){buy=make(block[i+1],r,stakes.buy);buyCreated=true;}}
+      else if(Math.abs(base.lead)===r&&r>0&&!insureCreated){insure=make(block[i+1],r,stakes.insure);insureCreated=true;}
+    }
+    // A jump beyond dormie settles Base immediately; Insure is never back-filled unless exact dormie was reached on an earlier completed hole.
+    for(const m of [insure,buy])if(m&&!m.decided){if(Math.abs(m.lead)>m.remaining)finish(m);else if(m.remaining===0)finish(m,true);}
+    updateStatus(base);updateStatus(insure);updateStatus(buy);
+    row.baseStatus=base.statusText;row.insureStatus=insure?.statusText||'Not started';row.buyStatus=buy?.statusText||'Not started';row.baseLeadAfter=base.lead;row.insureLeadAfter=insure?.lead??0;row.buyLeadAfter=buy?.lead??0;
+  }
+  for(const m of [base,insure,buy])if(m){if(!m.decided&&m.remaining===0){if(m.lead===0)finish(m,true);else finish(m);}else updateStatus(m);}
+  // Base may finish level only after all nine positions; incomplete holes never cause a decision.
+  const complete=block.every(h=>rowByHole.get(h)?.complete);
+  if(complete&&!base.decided&&base.lead===0)finish(base,true);
+  const netA=[base,insure,buy].filter(Boolean).reduce((sum,m)=>sum+m.amount,0);
+  return{base,insure,buy,net:{A:netA,B:-netA},complete};
+}
+function calculateNassauPair(inputState=state){
+  const st=inputState,n=st.nassau||NASSAU_DEFAULTS,active=SLOTS.slice(0,st.playerCount||0),pair=Array.isArray(n.pair)?n.pair:[];
+  const result={enabled:n.enabled===true,valid:false,invalidReason:null,pair:[pair[0]||null,pair[1]||null],names:{A:'',B:''},mode:n.mode==='scratch'?'scratch':'strokes',strokesByHole:{A:Array(18).fill(0),B:Array(18).fill(0)},blocks:{front:null,back:null},holes:[],complete:false,net:{A:0,B:0},settlement:{amount:0,payer:null,payee:null}};
+  if(!result.enabled){result.invalidReason='Nassau is disabled.';return result;}
+  if(active.length<2){result.invalidReason='Nassau requires at least two active players.';return result;}
+  if(pair.length!==2||!active.includes(pair[0])||!active.includes(pair[1])||pair[0]===pair[1]){result.invalidReason='Select two distinct active Nassau players.';return result;}
+  const [a,b]=pair;result.names={A:String(st.names[SLOTS.indexOf(a)]||a),B:String(st.names[SLOTS.indexOf(b)]||b)};
+  if(result.mode==='scratch'){
+  // Scratch always wins, regardless of stroke source.
+  result.strokesByHole={A:Array(18).fill(0),B:Array(18).fill(0)};
+}else if(n.strokeSource==='matchplay'){
+  result.strokesByHole=nassauPairStrokeMapFromMatchPlay([a,b],st.strokeIndexes||DEFAULT_SI);
+}else{
+  result.strokesByHole=nassauStrokeMap(['A','B'],'strokes',{A:n.strokes?.[a]||{},B:n.strokes?.[b]||{}},st.strokeIndexes||DEFAULT_SI);
+}
+  const sequence=Array.from({length:18},(_,i)=>(Number(st.startHole||1)-1+i)%18+1);
+  result.holes=sequence.map((h,i)=>{const rawA=st.scores?.[`${a}_${h}`],rawB=st.scores?.[`${b}_${h}`],hr=nassauHoleResult(rawA,rawB,result.strokesByHole.A[h-1],result.strokesByHole.B[h-1]);return{hole:h,block:i<9?'front':'back',grossA:hr.grossA,grossB:hr.grossB,strokesA:result.strokesByHole.A[h-1],strokesB:result.strokesByHole.B[h-1],netA:hr.netA,netB:hr.netB,winner:hr.winner,grossWinner:hr.grossWinner,complete:hr.complete,baseStatus:'In progress',insureStatus:'Not started',buyStatus:'Not started',baseLeadAfter:0,insureLeadAfter:0,buyLeadAfter:0};});
+  const mult=n.backMultiplier===2?2:1,fs=n.frontStakes||{base:30,insure:10,buy:10};
+// Front block = first 9 holes in playing order; back block = second 9.
+// startHole 1–9: front=1–9, back=10–18. startHole 10–18: front=10–18, back=1–9.
+const frontRows=result.holes.slice(0,9),backRows=result.holes.slice(9,18);
+const frontHoles=frontRows.map(x=>x.hole),backHoles=backRows.map(x=>x.hole);
+const displayNames={A:result.names.A,B:result.names.B};
+result.blocks.front=nassauBlockMatches(frontHoles,frontRows,{base:Number(fs.base)||0,insure:Number(fs.insure)||0,buy:Number(fs.buy)||0},displayNames);
+result.blocks.back=nassauBlockMatches(backHoles,backRows,{base:(Number(fs.base)||0)*mult,insure:(Number(fs.insure)||0)*mult,buy:(Number(fs.buy)||0)*mult},displayNames);
+const rangeLabel=holes=>{const f=holes[0],l=holes[holes.length-1];return f<=l?`H${f}–${l}`:`H${f}–18 & H1–${l}`;};
+result.frontHoleRange=rangeLabel(frontHoles);result.backHoleRange=rangeLabel(backHoles);
+  result.valid=true;result.complete=result.holes.every(x=>x.complete);result.net.A=result.blocks.front.net.A+result.blocks.back.net.A;result.net.B=-result.net.A;
+  result.settlement=settleNassau(result);
+  result.suggestedBackMultiplier=result.blocks.front.base.decided&&result.blocks.front.base.winner?2:null;
+  return result;
+}
+function settleNassau(result){
+  const lines=[];for(const [blockName,block] of [['Front',result.blocks?.front],['Back',result.blocks?.back]])if(block){const range=blockName==='Front'?result.frontHoleRange:result.backHoleRange;const tag=range?`${blockName} (${range})`:blockName;for(const [kind,label] of [['base','Base'],['insure','Insure'],['buy','Buy']]){const m=block[kind];if(m)lines.push({match:`${tag} ${label}`,stake:m.stake,result:m.statusText,amount:m.amount});}}
+  const netA=Number(result.net?.A)||0,amount=Math.abs(netA),payer=netA>0?result.names?.B:netA<0?result.names?.A:null,payee=netA>0?result.names?.A:netA<0?result.names?.B:null;
+  return{net:{A:netA,B:-netA},payer,payee,amount,label:amount?`${payer} pays ${payee} ${money(amount)}`:'No payment · level',lines};
+}
+function calculateNassau(inputState=state){
+  const st=inputState,n=st.nassau||{},format=n.format||'pair',active=SLOTS.slice(0,st.playerCount||0);
+  const empty={enabled:n.enabled===true,valid:false,invalidReason:null,format,playerNet:Object.fromEntries(active.map(p=>[p,0])),matches:[],pair:n.pair||[],blocks:{front:null,back:null},holes:[],net:{A:0,B:0},settlement:{label:'No payment · level',lines:[]}};
+  if(!n.enabled)return {...empty,invalidReason:'Nassau is disabled.'};
+  if(format==='individual'){
+  if(active.length<3)return {...empty,invalidReason:'Individual Modified Nassau requires at least three active players.'};
+    const matches=[];
+    for(let i=0;i<active.length;i++)for(let j=i+1;j<active.length;j++){
+      const pair=[active[i],active[j]],r=calculateNassauPair({...st,nassau:{...n,pair}});
+      if(!r.valid)return {...empty,invalidReason:r.invalidReason};
+      matches.push({pair,names:r.names,result:r});
+      empty.playerNet[pair[0]]+=r.net.A;empty.playerNet[pair[1]]+=r.net.B;
+    }
+    empty.valid=true;empty.matches=matches;empty.net={...empty.playerNet};
+    empty.settlement={label:active.map(p=>`${st.names[SLOTS.indexOf(p)]}: ${fmtSigned(empty.playerNet[p])}`).join(' · '),lines:matches.flatMap(m=>m.result.settlement.lines.map(x=>({...x,match:`${m.names.A} vs ${m.names.B} · ${x.match}`})))};
+    return empty;
+  }
+  if(format==='teams'){
+    if(active.length!==4)return {...empty,invalidReason:'Two-team Modified Nassau requires four active players.'};
+    const ta=n.teams?.A||['A','B'],tb=n.teams?.B||['C','D'];
+    if(ta.length!==2||tb.length!==2||new Set([...ta,...tb]).size!==4||[...ta,...tb].some(x=>!active.includes(x)))return {...empty,invalidReason:'Assign four different active players to the two teams.'};
+    const mode=n.mode==='scratch'?'scratch':'strokes',strokeMap=nassauStrokeMap(active,mode,n.strokes||{},st.strokeIndexes||DEFAULT_SI),synthetic={...st,playerCount:2,names:[`Team A (${ta.map(x=>st.names[SLOTS.indexOf(x)]).join(' + ')})`,`Team B (${tb.map(x=>st.names[SLOTS.indexOf(x)]).join(' + ')})`],scores:{},nassau:{...n,format:'pair',pair:['A','B'],mode:'scratch',strokes:{A:{front:0,back:0},B:{front:0,back:0}}}};
+    for(let h=1;h<=18;h++){
+      const best=team=>team.map(p=>{const raw=st.scores?.[`${p}_${h}`],gross=raw===''||raw==null?null:Number(raw);return Number.isInteger(gross)&&gross>=1&&gross<=20?gross-strokeMap[p][h-1]:null;}).filter(v=>v!==null).sort((a,b)=>a-b)[0]??'';
+      synthetic.scores[`A_${h}`]=best(ta);synthetic.scores[`B_${h}`]=best(tb);
+    }
+    const r=calculateNassauPair(synthetic);if(!r.valid)return {...empty,invalidReason:r.invalidReason};
+    const half=r.net.A/2;for(const p of ta)empty.playerNet[p]=half;for(const p of tb)empty.playerNet[p]=-half;
+    return {...r,format,teamA:ta,teamB:tb,playerNet:empty.playerNet,teamNames:{A:synthetic.names[0],B:synthetic.names[1]},settlement:{...r.settlement,label:`${synthetic.names[0]}: ${fmtSigned(r.net.A)} · ${synthetic.names[1]}: ${fmtSigned(r.net.B)}`}};
+  }
+  const r=calculateNassauPair(st);return {...r,format:'pair',playerNet:{[r.pair?.[0]]:r.net.A,[r.pair?.[1]]:r.net.B}};
+}
+function renderNassauSetup(){
+ const box=$('nassauSetup');if(!box)return;const n=state.nassau,opts=activePlayers().map(p=>`<option value="${p}">${esc(playerName(p))}</option>`).join(''),fs=n.frontStakes,m=n.backMultiplier,back={base:fs.base*m,insure:fs.insure*m,buy:fs.buy*m},r=calculateNassau(),fmt=n.format||'pair';
+ const team=n.teams||{A:['A','B'],B:['C','D']};
+ let assignment='';
+ if(fmt==='pair')assignment=`<div class="grid"><div class="field"><label>Player A</label><select id="nassauPairA">${opts}</select></div><div class="field"><label>Player B</label><select id="nassauPairB">${opts}</select></div></div>`;
+ if(fmt==='teams'&&state.playerCount===4)assignment=`<h4>Team A</h4><div class="grid"><div class="field"><label>Player 1</label><select id="nassauTeamA1">${opts}</select></div><div class="field"><label>Player 2</label><select id="nassauTeamA2">${opts}</select></div></div><p class="small">Team B automatically uses the other two players.</p>`;
+ const fRange=r.frontHoleRange||'';
+const suggestion=fmt==='pair'&&r.valid&&r.suggestedBackMultiplier===2?`<div class="note">Front 9 <span class="muted-cell">(${fRange})</span> had a winner — double back stakes suggested.</div>`:'';
+ box.innerHTML=`<h3>Modified Nassau</h3><label class="checkbox-row"><input type="checkbox" id="nassauEnabled" ${n.enabled?'checked':''}><span>Enable Modified Nassau</span></label><div class="field"><label>Match format</label><select id="nassauFormat"><option value="pair" ${fmt==='pair'?'selected':''}>Two-player match (legacy)</option><option value="teams" ${fmt==='teams'?'selected':''} ${state.playerCount!==4?'disabled':''}>Two teams of two · Four-ball better ball</option><option value="individual" ${fmt==='individual'?'selected':''} ${state.playerCount<3?'disabled':''}>${state.playerCount===3?'Three individual players · three head-to-head matches':state.playerCount===4?'Four individual players · six head-to-head matches':'Individual players · head-to-head matches'}</option></select></div><div class="field"><label>Stroke source</label><select id="nassauStrokeSource" ${fmt==='teams'||!state.formats.matchplay?'disabled':''}><option value="nassau" ${n.strokeSource==='nassau'?'selected':''}>Nassau strokes (own inputs)</option><option value="matchplay" ${n.strokeSource==='matchplay'?'selected':''}>Match Play base + progressive</option></select>${fmt==='teams'?'<div class="small">Not available for teams mode.</div>':!state.formats.matchplay?'<div class="small">Enable Match Play to use this.</div>':''}</div>${assignment}<div class="grid"><div class="field"><label>Front Base stake</label><input type="number" min="0" step="0.01" data-nassau-stake="base" value="${fs.base}"></div><div class="field"><label>Front Insure stake</label><input type="number" min="0" step="0.01" data-nassau-stake="insure" value="${fs.insure}"></div><div class="field"><label>Front Buy stake</label><input type="number" min="0" step="0.01" data-nassau-stake="buy" value="${fs.buy}"></div><div class="field"><label>Back 9 stake multiplier</label><select id="nassauMultiplier"><option value="1" ${m===1?'selected':''}>Same as front (×1)</option><option value="2" ${m===2?'selected':''}>Double front (×2)</option></select></div></div><p class="small">Back stakes: Base ${money(back.base)} · Insure ${money(back.insure)} · Buy ${money(back.buy)}</p>${suggestion}<div class="note">Base, Insure and Buy presses are tracked independently for each nine and each match. In individual mode, every player pairing is settled separately (3 players = 3 matches, 4 players = 6). In team mode, each side uses its lowest net score on every hole. <strong>Stroke source = Match Play</strong> means each Nassau matchup reuses that matchup's Match Play base + progressive allocation; the Strokes tab becomes read-only. <strong>Front 9</strong> in Nassau is the first 9 holes played: start hole 1 → front = holes 1–9; start hole 10 → front = holes 10–18.</div>`;
+ if($('nassauPairA'))$('nassauPairA').value=n.pair[0];if($('nassauPairB'))$('nassauPairB').value=n.pair[1];if($('nassauTeamA1'))$('nassauTeamA1').value=team.A[0];if($('nassauTeamA2'))$('nassauTeamA2').value=team.A[1];
+}
+function renderNassauStrokes(){
+  const box=$('nassauStrokes');if(!box)return;
+  const n=state.nassau;if(!n.enabled){box.innerHTML='';return;}
+
+  const modeSelect=`<div class="field"><label>Mode</label><select id="nassauMode">
+    <option value="strokes" ${n.mode==='strokes'?'selected':''}>Strokes</option>
+    <option value="scratch" ${n.mode==='scratch'?'selected':''}>Scratch</option>
+  </select></div>`;
+
+  /* ---------- Read-only paths (sync or scratch) ---------- */
+  if(n.strokeSource==='matchplay'||n.mode==='scratch'){
+    let inner='';
+    if(n.mode==='scratch'){
+      inner=`<p class="sub">Scratch mode — no strokes allocated on any hole.</p>`;
+    }else{
+      // Pair mode: single matchup. Individual mode: one table per matchup.
+      const pairs = n.format==='pair'
+        ? [n.pair]
+        : n.format==='individual'
+          ? activePlayers().flatMap((p,i)=>activePlayers().slice(i+1).map(q=>[p,q]))
+          : [];
+      inner = `<div class="note">Strokes are derived from Match Play base + progressive strokes (per matchup). Edit them on the Strokes tab.</div>`;
+      inner += pairs.map(pair=>{
+        const map=nassauPairStrokeMapFromMatchPlay(pair,state.strokeIndexes);
+        return `<div class="match-card">
+          <strong>${esc(playerName(pair[0]))} vs ${esc(playerName(pair[1]))}</strong>
+          <div class="table-wrap"><table>
+            <thead><tr><th>Hole</th><th>SI</th><th>${esc(playerName(pair[0]))}</th><th>${esc(playerName(pair[1]))}</th></tr></thead>
+            <tbody>${Array.from({length:18},(_,i)=>`<tr>
+              <td>${i+1}</td><td>${state.strokeIndexes[i]}</td>
+              <td>${map.A[i]}</td><td>${map.B[i]}</td>
+            </tr>`).join('')}</tbody>
+          </table></div>
+        </div>`;
+      }).join('');
+    }
+    box.innerHTML=`<div class="card"><h2>Nassau Strokes</h2>${modeSelect}${inner}</div>`;
+    return;
+  }
+
+  /* ---------- Existing editable UI (Nassau inputs, strokes mode) ---------- */
+  const slots=(n.format==='pair'?n.pair:activePlayers());
+  box.innerHTML=`<div class="card"><h2>Nassau Strokes</h2>${modeSelect}
+    ${slots.map(slot=>{
+      const v=n.strokes[slot]||{front:0,back:0};
+      const map=nassauStrokeMap([slot],n.mode,{[slot]:v},state.strokeIndexes)[slot];
+      return `<div class="match-card"><strong>${esc(playerName(slot))}</strong>
+        <div class="grid">
+          <div class="field"><label>Front Nassau Strokes</label><div class="stroke-control"><button class="stroke-btn" data-stroke-action="dec" data-stroke-type="nassau" data-stroke-slot="${slot}" data-stroke-half="front" aria-label="Decrease">−</button><span class="stroke-value">${v.front}</span><button class="stroke-btn" data-stroke-action="inc" data-stroke-type="nassau" data-stroke-slot="${slot}" data-stroke-half="front" aria-label="Increase">+</button></div></div>
+      <div class="field"><label>Back Nassau Strokes</label><div class="stroke-control"><button class="stroke-btn" data-stroke-action="dec" data-stroke-type="nassau" data-stroke-slot="${slot}" data-stroke-half="back" aria-label="Decrease">−</button><span class="stroke-value">${v.back}</span><button class="stroke-btn" data-stroke-action="inc" data-stroke-type="nassau" data-stroke-slot="${slot}" data-stroke-half="back" aria-label="Increase">+</button></div></div>
+        </div>
+        <div class="table-wrap"><table>
+          <thead><tr><th>Hole</th><th>SI</th><th>Strokes received</th></tr></thead>
+          <tbody>${map.map((x,j)=>`<tr><td>${j+1}</td><td>${state.strokeIndexes[j]}</td><td>${x}</td></tr>`).join('')}</tbody>
+        </table></div>
+      </div>`;
+    }).join('')}
+    <p class="note">To model the first player giving strokes to the second, set the second player's received strokes; leave the first player at 0.</p>
+  </div>`;
+}
+function renderNassauStatus(){const card=$('scoreNassauStatus'),box=$('scoreNassauStatusContent');if(!card||!box)return;if(!state.nassau.enabled){card.classList.add('hidden');return;}card.classList.remove('hidden');const r=calculateNassau();if(!r.valid){box.innerHTML=`<p class="note">${esc(r.invalidReason||'Nassau configuration is invalid.')}</p>`;return;}if(r.format==='individual'){
+  const cls=v=>v>0?'positive':v<0?'negative':'tie';
+  const pressCell=(x)=>{
+    if(!x)return '<td class="muted-cell">—</td>';
+    const pill=x.decided?(x.result==='PUSH'?'match-unplayed':'match-complete'):'match-live';
+    return `<td><span class="status ${pill}">${esc(x.statusText)}</span><br><small class="${x.decided?cls(x.amount):'muted-cell'}">${x.decided?fmtSigned(x.amount):'—'}</small></td>`;
+  };
+  const rows=r.matches.map(m=>{
+  const f=m.result.blocks.front,b=m.result.blocks.back;
+  const fR=m.result.frontHoleRange||'',bR=m.result.backHoleRange||'';
+  return `<tr>
+    <td rowspan="2"><strong>${esc(m.names.A)}</strong><br><span class="muted-cell">vs</span><br><strong>${esc(m.names.B)}</strong></td>
+    <td>Front <span class="muted-cell">(${fR})</span></td>
+    ${pressCell(f.base)}${pressCell(f.insure)}${pressCell(f.buy)}
+    <td class="${cls(f.net.A)}"><strong>${fmtSigned(f.net.A)}</strong></td>
+  </tr>
+  <tr>
+    <td>Back <span class="muted-cell">(${bR})</span></td>
+    ${pressCell(b.base)}${pressCell(b.insure)}${pressCell(b.buy)}
+    <td class="${cls(b.net.A)}"><strong>${fmtSigned(b.net.A)}</strong></td>
+  </tr>`;
+}).join('');
+  const standings=activePlayers().map(p=>`<tr><td>${esc(playerName(p))}</td><td class="${cls(r.playerNet[p])}">${fmtSigned(r.playerNet[p])}</td></tr>`).join('');
+  box.innerHTML=`
+    <div class="table-wrap"><table>
+      <thead><tr>
+        <th>Matchup</th><th>Nine</th>
+        <th>Base</th><th>Insure</th><th>Buy</th>
+        <th>Nine net</th>
+      </tr></thead>
+      <tbody>${rows}</tbody>
+    </table></div>
+    <h3>Player totals</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Player</th><th>Net</th></tr></thead>
+      <tbody>${standings}</tbody>
+    </table></div>`;
+  return;
+}box.innerHTML=`<div class="table-wrap"><table><thead><tr><th>Block</th><th>Base</th><th>Insure</th><th>Buy</th><th>Block net</th></tr></thead><tbody>${['front','back'].map(k=>{const b=r.blocks[k];const range=k==='front'?r.frontHoleRange:r.backHoleRange;return`<tr><td>${k==='front'?'Front 9':'Back 9'} <span class="muted-cell">(${range})</span></td>${['base','insure','buy'].map(t=>`<td><span class="status">${esc(b[t]?.statusText||'Not started')}</span><br>${fmtSigned(b[t]?.amount||0)}</td>`).join('')}<td>${fmtSigned(b.net.A)}</td></tr>`}).join('')}</tbody></table></div>`;}
+function renderNassauResults(){
+  const box=$('nassauResults');
+  if(!box)return;
+  if(!state.nassau.enabled || !state.filters.nassau){box.innerHTML='';return;}
+  const r=calculateNassau();
+  if(!r.valid){box.innerHTML=`<div class="card"><h2>Modified Nassau Results</h2><p class="note">${esc(r.invalidReason)}</p></div>`;return;}
+if(r.format==='individual'){
+  const cls=v=>v>0?'positive':v<0?'negative':'tie';
+
+  // One detail table row per existing press (base/insure/buy), plus a subtotal.
+  const detailRow=(blockName,block)=>{
+    if(!block)return '';
+    const pressRows=['base','insure','buy'].filter(k=>block[k]).map(k=>{
+      const x=block[k];
+      return `<tr>
+        <td>${blockName} · ${k[0].toUpperCase()+k.slice(1)}</td>
+        <td>${money(x.stake)}</td>
+        <td>${esc(x.statusText)}</td>
+        <td class="${x.decided?cls(x.amount):'muted-cell'}">${x.decided?fmtSigned(x.amount):'—'}</td>
+      </tr>`;
+    }).join('');
+    return pressRows+`<tr class="nassau-subtotal">
+      <td colspan="3"><strong>${blockName} 9 subtotal</strong></td>
+      <td class="${cls(block.net.A)}"><strong>${fmtSigned(block.net.A)}</strong></td>
+    </tr>`;
+  };
+
+  const matchCards=r.matches.map(m=>{
+    const net=m.result.net.A,blk=m.result.blocks;
+    const holeRows=m.result.holes.map(x=>{
+      const winnerLabel=x.winner==='A'?m.names.A:x.winner==='B'?m.names.B:x.winner==='H'?'Halved':'—';
+      return `<tr>
+        <td>${x.hole}</td>
+        <td>${state.pars[x.hole-1]}</td>
+        <td>${x.grossA??'—'}</td>
+        <td>${x.strokesA}</td>
+        <td>${x.netA??'—'}</td>
+        <td>${x.grossB??'—'}</td>
+        <td>${x.strokesB}</td>
+        <td>${x.netB??'—'}</td>
+        <td class="${x.winner==='A'||x.winner==='B'?'result-win':''}">${esc(winnerLabel)}</td>
+        <td>${esc(x.baseStatus)}</td>
+        <td>${esc(x.insureStatus)}</td>
+        <td>${esc(x.buyStatus)}</td>
+      </tr>`;
+    }).join('');
+
+    return `<details class="match-card" style="cursor:pointer;">
+      <summary class="match-header" style="list-style:none;outline:none;">
+        <strong>${esc(m.names.A)} vs ${esc(m.names.B)}</strong>
+        <span class="${cls(net)}" style="font-weight:900">${fmtSigned(net)}</span>
+      </summary>
+      <div class="table-wrap" style="margin-top:7px">
+        <table>
+          <thead><tr><th>Match</th><th>Stake</th><th>Result</th><th>Amount</th></tr></thead>
+          <tbody>
+            ${detailRow('Front',blk.front)}
+            ${detailRow('Back',blk.back)}
+          </tbody>
+          <tfoot><tr class="nassau-grand">
+            <td colspan="3"><strong>Match total (${esc(m.names.A)}'s view)</strong></td>
+            <td class="${cls(net)}"><strong>${fmtSigned(net)}</strong></td>
+          </tr></tfoot>
+        </table>
+      </div>
+      <p style="margin:7px 0 0"><strong>Settlement:</strong> ${esc(m.result.settlement.label)}</p>
+      <h4 style="margin:10px 0 4px">Hole-by-hole</h4>
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Hole</th><th>Par</th>
+            <th>${esc(m.names.A)} gross</th><th>Stk</th><th>Net</th>
+            <th>${esc(m.names.B)} gross</th><th>Stk</th><th>Net</th>
+            <th>Winner</th>
+            <th>Base</th><th>Insure</th><th>Buy</th>
+          </tr></thead>
+          <tbody>${holeRows}</tbody>
+        </table>
+      </div>
+    </details>`;
+  }).join('');
+
+  const standings=activePlayers().map(p=>`<tr><td>${esc(playerName(p))}</td><td class="${cls(r.playerNet[p])}">${fmtSigned(r.playerNet[p])}</td></tr>`).join('');
+  const total=activePlayers().reduce((a,p)=>a+r.playerNet[p],0);
+  const balanced=Math.abs(total)<.011;
+
+  box.innerHTML=`<div class="card">
+    <h2>Modified Nassau · Individual</h2>
+    <p class="sub">${r.matches.length} independent head-to-head matches. Tap a match to expand Base / Insure / Buy and hole-by-hole detail.</p>
+    ${matchCards}
+    <h3>Player standings</h3>
+    <div class="table-wrap"><table>
+      <thead><tr><th>Player</th><th>Nassau net</th></tr></thead>
+      <tbody>${standings}</tbody>
+      <tfoot><tr class="combined-total-row">
+        <td><strong>Total</strong></td>
+        <td>${money(total)}</td>
+      </tr></tfoot>
+    </table></div>
+    <div style="margin-top:8px;text-align:right">
+      <span class="${balanced?'balance-pass':'balance-error'}">${balanced?'Balanced':'Check settlement'}</span>
+    </div>
+  </div>`;
+  return;
+}const title=r.format==='teams'?'Modified Nassau · Two Teams':'Modified Nassau Results',names=r.format==='teams'?r.teamNames:r.names;box.innerHTML=`<div class="card"><h2>${title}</h2><p class="sub">${esc(names.A)} vs ${esc(names.B)}</p><div class="table-wrap"><table><thead><tr><th>Block / Match</th><th>Stake</th><th>Result</th><th>Signed amount</th></tr></thead><tbody>${['front','back'].flatMap(k=>['base','insure','buy'].map(t=>{const x=r.blocks[k][t];return x?`<tr><td>${k==='front'?'Front 9':'Back 9'} ${t[0].toUpperCase()+t.slice(1)}</td><td>${money(x.stake)}</td><td>${esc(x.statusText)}</td><td>${fmtSigned(x.amount)}</td></tr>`:''})).join('')}</tbody></table></div><p>Front 9 net: ${fmtSigned(r.blocks.front.net.A)} · Back 9 net: ${fmtSigned(r.blocks.back.net.A)} · <strong>Grand total: ${fmtSigned(r.net.A)}</strong></p><p>${esc(r.settlement.label)}</p><h3>Hole-by-hole · Playing order</h3><div class="table-wrap"><table><thead><tr><th>Hole</th><th>Par</th><th>${esc(names.A)} net</th><th>${esc(names.B)} net</th><th>Winner</th><th>Base after</th><th>Insure</th><th>Buy</th></tr></thead><tbody>${r.holes.map(x=>`<tr><td>${x.hole}</td><td>${state.pars[x.hole-1]}</td><td>${x.netA??'–'}</td><td>${x.netB??'–'}</td><td>${x.winner==='H'?'Halved':x.winner==='A'?esc(names.A):x.winner==='B'?esc(names.B):'In progress'}</td><td>${x.baseLeadAfter>0?esc(names.A)+' ':x.baseLeadAfter<0?esc(names.B)+' ':''}${Math.abs(x.baseLeadAfter)}</td><td>${esc(x.insureStatus)}</td><td>${esc(x.buyStatus)}</td></tr>`).join('')}</tbody></table></div><p class="sub">Front stakes Base ${money(state.nassau.frontStakes.base)} · Insure ${money(state.nassau.frontStakes.insure)} · Buy ${money(state.nassau.frontStakes.buy)} · Back multiplier ×${state.nassau.backMultiplier}</p></div>`;}
+function renderNassauSettlement(){
+  const box=$('nassauSettlement');
+  if(!box)return;
+  if(!state.nassau.enabled || !state.filters.nassau){box.innerHTML='';return;}
+  const r=calculateNassau();
+  if(!r.valid){box.innerHTML=`<div class="card"><h2>Nassau Settlement</h2><p class="note">${esc(r.invalidReason)}</p></div>`;return;}
+
+  const cls=v=>v>0?'positive':v<0?'negative':'tie';
+  const amt=(v,decided=true)=>decided?fmtSigned(v):'—';
+
+  /* ---- Individual mode: 4 players, 6 pairwise matches ---- */
+  if(r.format==='individual'){
+    const total=activePlayers().reduce((a,p)=>a+r.playerNet[p],0);
+    const balanced=Math.abs(total)<.011;
+
+    const matchRows=r.matches.map(m=>{
+      const netA=m.result.net.A;
+      const label=m.result.settlement.label||'No payment · level';
+      return `<tr>
+        <td>${esc(m.names.A)} vs ${esc(m.names.B)}</td>
+        <td class="${cls(m.result.blocks.front.net.A)}">${fmtSigned(m.result.blocks.front.net.A)}</td>
+        <td class="${cls(m.result.blocks.back.net.A)}">${fmtSigned(m.result.blocks.back.net.A)}</td>
+        <td class="${cls(netA)}" style="font-weight:900">${fmtSigned(netA)}</td>
+        <td>${esc(label)}</td>
+      </tr>`;
+    }).join('');
+
+    box.innerHTML=`<div class="card">
+      <h2>Nassau Settlement · Individual</h2>
+      <p class="sub">Each of the ${r.matches.length} matchups settles independently. A player's net is the sum of their matches.</p>
+
+      <div class="table-wrap">
+        <table>
+          <thead><tr>
+            <th>Matchup</th>
+            <th>Front 9</th>
+            <th>Back 9</th>
+            <th>Match total</th>
+            <th>Settlement</th>
+          </tr></thead>
+          <tbody>${matchRows}</tbody>
+        </table>
+      </div>
+
+      <h3>Player totals</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Player</th><th>Nassau net</th></tr></thead>
+          <tbody>
+            ${activePlayers().map(p=>`<tr>
+              <td>${esc(playerName(p))}</td>
+              <td class="${cls(r.playerNet[p])}">${fmtSigned(r.playerNet[p])}</td>
+            </tr>`).join('')}
+          </tbody>
+          <tfoot><tr class="combined-total-row">
+            <td><strong>Total</strong></td>
+            <td>${money(total)}</td>
+          </tr></tfoot>
+        </table>
+      </div>
+
+      <div style="margin-top:8px;text-align:right">
+        <span class="${balanced?'balance-pass':'balance-error'}">${balanced?'Balanced':'Check settlement'}</span>
+      </div>
+    </div>`;
+    return;
+  }
+
+  /* ---- Pair / Teams mode ---- */
+  const balanced=Math.abs(r.net.A+r.net.B)<.011;
+  const na=r.teamNames?.A||r.names.A;
+  const nb=r.teamNames?.B||r.names.B;
+
+  // Rows for a single nine: one row per press + a subtotal row.
+  const blockRows=(blockName,block,range)=>{
+  if(!block)return '';
+  const rangeLabel=range||'';
+  const pressRows=['base','insure','buy'].filter(k=>block[k]).map(k=>{
+    const m=block[k];
+    const label=k[0].toUpperCase()+k.slice(1);
+    const decided=m.decided;
+    return `<tr>
+      <td>${blockName} <span class="muted-cell">(${rangeLabel})</span> · ${label}</td>
+      <td>${money(m.stake)}</td>
+      <td>${esc(m.statusText)}</td>
+      <td class="${decided?cls(m.amount):'muted-cell'}">${amt(m.amount,decided)}</td>
+    </tr>`;
+  }).join('');
+  const sub=block.net.A;
+  return pressRows+`<tr class="nassau-subtotal">
+    <td colspan="3"><strong>${blockName} 9 subtotal <span class="muted-cell">(${rangeLabel})</span></strong></td>
+    <td class="${cls(sub)}"><strong>${fmtSigned(sub)}</strong></td>
+  </tr>`;
+};
+
+  // Payer → payee derived from A's net.
+  const dir=r.net.A>0?'A':r.net.A<0?'B':'none';
+  const payer=dir==='A'?nb:dir==='B'?na:null;
+  const payee=dir==='A'?na:dir==='B'?nb:null;
+  const amount=Math.abs(r.net.A);
+
+  box.innerHTML=`<div class="card">
+    <h2>Nassau Settlement</h2>
+    <p class="sub">${esc(na)} vs ${esc(nb)}</p>
+
+    <div class="stat-grid">
+      <div class="stat">
+        <span class="label">${esc(na)}</span>
+        <strong class="${cls(r.net.A)}">${fmtSigned(r.net.A)}</strong>
+      </div>
+      <div class="stat">
+        <span class="label">${esc(nb)}</span>
+        <strong class="${cls(r.net.B)}">${fmtSigned(r.net.B)}</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Front 9 net</span>
+        <strong class="${cls(r.blocks.front.net.A)}">${fmtSigned(r.blocks.front.net.A)}</strong>
+      </div>
+      <div class="stat">
+        <span class="label">Back 9 net</span>
+        <strong class="${cls(r.blocks.back.net.A)}">${fmtSigned(r.blocks.back.net.A)}</strong>
+      </div>
+    </div>
+
+    <div class="table-wrap" style="margin-top:8px">
+      <table>
+        <thead><tr>
+          <th>Match</th>
+          <th>Stake</th>
+          <th>Result</th>
+          <th>Amount</th>
+        </tr></thead>
+        <tbody>
+          ${blockRows('Front',r.blocks.front,r.frontHoleRange)}
+${blockRows('Back',r.blocks.back,r.backHoleRange)}
+        </tbody>
+        <tfoot>
+          <tr class="nassau-grand">
+            <td colspan="3"><strong>Grand total (from ${esc(na)}'s perspective)</strong></td>
+            <td class="${cls(r.net.A)}"><strong>${fmtSigned(r.net.A)}</strong></td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="settlement-payline ${dir==='none'?'settlement-level':''}">
+      ${dir==='none'
+        ? 'No payment — all Nassau matches level'
+        : `${esc(payer)} pays ${esc(payee)} ${money(amount)}`}
+    </div>
+
+    <div style="margin-top:8px;text-align:right">
+      <span class="${balanced?'balance-pass':'balance-error'}">${balanced?'Balanced':'Check settlement'}</span>
+    </div>
+  </div>`;
+}
+function runNassauSelfTest(){
+  const assert=(ok,msg)=>{console.assert(ok,'Nassau self-test:',msg);return !!ok;},fails=[];const check=(ok,msg)=>{if(!assert(ok,msg))fails.push(msg);};
+  const baseState={playerCount:2,names:['A','B'],startHole:1,pars:[...DEFAULT_PAR],strokeIndexes:[...DEFAULT_SI],scores:{},nassau:{enabled:true,mode:'scratch',pair:['A','B'],strokes:{A:{front:0,back:0},B:{front:0,back:0}},frontStakes:{base:30,insure:10,buy:10},backMultiplier:1}};
+  const run=seq=>{const x=JSON.parse(JSON.stringify(baseState));seq.forEach((w,i)=>{if(w==='A')x.scores[`A_${i+1}`]=4,x.scores[`B_${i+1}`]=5;else if(w==='B')x.scores[`A_${i+1}`]=5,x.scores[`B_${i+1}`]=4;else x.scores[`A_${i+1}`]=x.scores[`B_${i+1}`]=4;});return calculateNassauPair(x);};
+  const prefix=['A','A','A','H','H','H','A'];const mid=run(prefix);check(mid.blocks.front.base.decided&&mid.blocks.front.base.winner==='A'&&mid.blocks.front.base.amount===30,'Base wins +30 after H7');check(!!mid.blocks.front.insure&&!mid.blocks.front.insure.decided,'Insure live after H7');check(!!mid.blocks.front.buy&&mid.blocks.front.buy.startHole===8,'Buy starts H8');
+  // Full nine-hole continuations are checked directly against the specified outcomes.
+  const full=seq=>{const x=JSON.parse(JSON.stringify(baseState));seq.forEach((w,i)=>{x.scores[`A_${i+1}`]=w==='B'?5:4;x.scores[`B_${i+1}`]=w==='A'?5:4;});return calculateNassau(x).blocks.front.net.A;};
+  check(full(['A','A','A','H','H','H','A','A','A'])===50,'A wins H8/H9 => +50');check(full(['A','A','A','H','H','H','A','B','B'])===10,'B wins H8/H9 => +10');check(full(['A','A','A','H','H','H','A','A','B'])===40,'A H8, B H9 => +40');check(full(['A','A','A','H','H','H','A','H','B'])===20,'H8 halves, B wins H9 => +20');check(full(['A','A','A','H','H','H','A','H','H'])===40,'H8/H9 halve => +40');
+  const custom=JSON.parse(JSON.stringify(baseState));custom.nassau.frontStakes={base:40,insure:15,buy:5};custom.nassau.backMultiplier=2;['A','A','A','H','H','H','A'].forEach((w,i)=>{custom.scores[`A_${i+10}`]=w==='B'?5:4;custom.scores[`B_${i+10}`]=w==='A'?5:4;});const cr=calculateNassauPair(custom);const defaultBack=JSON.parse(JSON.stringify(custom));defaultBack.nassau.frontStakes={base:30,insure:10,buy:10};const dr=calculateNassauPair(defaultBack);check(custom.nassau.frontStakes.base===40&&custom.nassau.frontStakes.insure===15&&custom.nassau.frontStakes.buy===5,'Custom front stakes remain 40/15/5');check(cr.blocks.back.base.stake===80&&cr.blocks.back.insure?.stake===30&&cr.blocks.back.buy?.stake===10,'Custom ×2 derived back stakes');check(cr.blocks.back.base.lead===dr.blocks.back.base.lead&&cr.blocks.back.base.decided===dr.blocks.back.base.decided&&cr.blocks.back.insure?.lead===dr.blocks.back.insure?.lead&&cr.blocks.back.buy?.lead===dr.blocks.back.buy?.lead,'Stake changes do not alter match logic');check(Math.abs(cr.net.A+cr.net.B)<.011,'Zero-sum custom net');
+  const strokes=JSON.parse(JSON.stringify(baseState));strokes.nassau.mode='strokes';strokes.nassau.strokes.B.front=2;strokes.scores.A_3=4;strokes.scores.B_3=4;const sm=calculateNassauPair(strokes);const hardest=[1,2,3,4,5,6,7,8,9].sort((a,b)=>DEFAULT_SI[a-1]-DEFAULT_SI[b-1]).slice(0,2);check(hardest.every(h=>sm.strokesByHole.B[h-1]===1),'Two received strokes allocated to lowest-SI front holes');check(sm.holes.find(h=>h.hole===hardest[0]).winner==='B','Nassau strokes flip eligible gross result to net winner');
+  console.log(`Nassau self-test: ${fails.length?'FAIL':'PASS'} (${fails.length} failures)`,fails);return{passed:fails.length===0,failures:fails};
+}
+window.runNassauSelfTest=runNassauSelfTest;
+function syncPublicCards() {
+  const pairs = [
+    ['matchProgressSummary', 'pubMatchProgress'],
+    ['liveRoundSummary',     'pubLiveRound'],
+    ['matchResults',         'pubMatchResults'],
+    ['nassauResults',        'pubNassauResults'],
+    ['skinsResults',         'pubSkinsResults'],
+    ['bankProgression',      'pubBankProgression']
+  ];
+  pairs.forEach(([src, dst]) => {
+    const s = $(src);
+    const d = $(dst);
+    if (s && d) d.innerHTML = s.innerHTML;
+  });
+}
+/* ---------- B4) PUBLIC VIEW RENDER ---------- */
+function renderPublic(){
+  const wrap = document.getElementById('pubContent');
+  if(!wrap) return;
+
+  const r   = calculateSkins();
+  const s   = settleSkins(r);
+  const matches = allMatches();
+  const ms  = settleMatches(matches);
+  const nr  = state.nassau?.enabled ? calculateNassau() : null;
+  const nassauValid = !!(nr && nr.valid);
+  const cls = v => v > 0 ? 'positive' : v < 0 ? 'negative' : 'tie';
+
+  let h = '';
+
+  /* --- Round header --- */
+  h += `<div class="card">
+    <h2>${esc(state.coursePresetName || 'Course')}</h2>
+    <p class="sub">📅 ${esc(state.gameDate)} · ${state.playerCount} players · ${state.formats.skins && state.formats.matchplay ? 'Skins + Match Play' : state.formats.skins ? 'Skins' : 'Match Play'}${state.nassau?.enabled ? ' + Nassau' : ''}</p>
+  </div>`;
+
+  /* --- Combined net settlement (headline) --- */
+  h += `<div class="card"><h2>💰 Combined Net Settlement</h2>`;
+  h += `<div class="table-wrap"><table><thead><tr>
+    <th>Player</th><th>Skins</th><th>Match Play</th><th>Nassau</th><th>Net</th>
+  </tr></thead><tbody>`;
+  activePlayers().forEach(p => {
+    const skins  = state.formats.skins    ? Number(s.net[p]) : null;
+    const match  = state.formats.matchplay ? Number(ms.balances[p]) : null;
+    const nassau = nassauValid ? Number(nr.playerNet?.[p] || 0) : null;
+    const total  = (skins ?? 0) + (match ?? 0) + (nassau ?? 0);
+    const cell = v => v === null ? '—' : `<span class="${cls(v)}">${fmtSigned(v)}</span>`;
+    h += `<tr>
+      <td>${esc(playerName(p))}</td>
+      <td>${cell(skins)}</td>
+      <td>${cell(match)}</td>
+      <td>${cell(nassau)}</td>
+      <td class="${cls(total)}" style="font-weight:900">${fmtSigned(total)}</td>
+    </tr>`;
+  });
+  h += `</tbody></table></div></div>`;
+
+  /* --- Skins --- */
+  if(state.formats.skins){
+    h += `<div class="card"><h2>🎯 Skins</h2>
+      <p class="sub">Pot: ${money(s.pot)} · ${r.holesPlayed}/18 holes · Carry: ${r.carry}</p>
+      <div class="table-wrap"><table><thead><tr>
+        <th>Player</th><th>Holes Won</th><th>Bank</th><th>Net</th>
+      </tr></thead><tbody>`;
+    r.players.forEach(p => {
+      const holesWon = r.holes.filter(x => x.played && x.winner === p).length;
+      h += `<tr>
+        <td>${esc(playerName(p))}</td>
+        <td>${holesWon}</td>
+        <td>${r.bank[p]}</td>
+        <td class="${cls(s.net[p])}">${fmtSigned(s.net[p])}</td>
+      </tr>`;
+    });
+    h += `</tbody></table></div></div>`;
+  }
+
+  /* --- Match Play --- */
+  if(state.formats.matchplay){
+    h += `<div class="card"><h2>🏆 Match Play</h2>
+      <div class="table-wrap"><table><thead><tr>
+        <th>Match</th><th>Status</th><th>Money</th>
+      </tr></thead><tbody>`;
+    matches.forEach(m => {
+      h += `<tr>
+        <td>${esc(playerName(m.a))} vs ${esc(playerName(m.b))}</td>
+        <td>${esc(matchProgressStatus(m))}</td>
+        <td class="${cls(m.money)}">${fmtSigned(m.money)}</td>
+      </tr>`;
+    });
+    h += `</tbody></table></div></div>`;
+  }
+
+  /* --- Nassau --- */
+  if(nassauValid){
+    h += `<div class="card"><h2>🎲 Nassau</h2>
+      <div class="table-wrap"><table><thead><tr>
+        <th>Player</th><th>Nassau Net</th>
+      </tr></thead><tbody>`;
+    activePlayers().forEach(p => {
+      const v = Number(nr.playerNet?.[p] || 0);
+      h += `<tr>
+        <td>${esc(playerName(p))}</td>
+        <td class="${cls(v)}">${fmtSigned(v)}</td>
+      </tr>`;
+    });
+    h += `</tbody></table></div></div>`;
+  }
+
+  wrap.innerHTML = h;
+ /* NEW: draw the public filter panel and mirror all Results cards */
+  renderFilterPanel('pubFilterPanel');
+  syncPublicCards();
+}
+
+function renderAll(save=true){
+  renderControls();
+  renderPlayerNames();
+  renderNassauSetup();
+  renderPlayers();
+  renderCourse();
+  renderStrokes();
+  renderNassauStrokes();
+  renderScoreTable();
+  renderMobile();
+  renderScorecard();
+  renderScoreSummary();
+  renderFilterPanel('resultFilters');
+  renderMatchProgressSummary();
+  renderLiveRoundSummary();
+  renderMatchResults();
+  renderSkinsResults();
+  renderNassauResults();
+  renderBankProgression();
+  renderSettlements();
+  renderNassauSettlement();
+  renderPublic();                 /* ← NEW: keep public view in sync */
+  renderRules();
+  updateFooter();
+
+  if(save) persist();
+}
+/* 7. EVENT HANDLERS — delegated input/change/click and keyboard/mobile keypad. */
+document.addEventListener('click',e=>{
+  const tab=e.target.closest('[data-tab]');
+  if(tab){switchTab(tab.dataset.tab);return}
+  
+  const view=e.target.closest('[data-view]');
+  if(view){
+    mobile.view=view.dataset.view;
+    document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b===view));
+    $('scoreEntry').classList.toggle('hidden',mobile.view!=='table');
+    $('mobileEntry').classList.toggle('active',mobile.view==='mobile');
+    renderMobile();
+    return;
+  }
+  
+  const chip=e.target.closest('[data-edit-score]');
+  if(chip){
+    mobile.hole=Number(chip.dataset.hole);
+    mobile.view='mobile';
+    document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view==='mobile'));
+    $('scoreEntry').classList.add('hidden');
+    $('mobileEntry').classList.add('active');
+    renderMobile();
+    return;
+  }
+  
+  // New Mobile Hole Navigation
+  const navBtn=e.target.closest('[data-mobile-hole-nav]');
+  if(navBtn){
+    const dir=Number(navBtn.dataset.mobileHoleNav);
+    const seq=playingSequence();
+    let idx=seq.indexOf(mobile.hole);
+    if(idx>=0){
+      idx=(idx+dir+seq.length)%seq.length;
+      mobile.hole=seq[idx];
+      renderMobile();
+    }
+    return;
+  }
+  
+});
+// --- Mobile Score + / - with Haptics & Long Press ---
+let pressTimer = null;
+let pressInterval = null;
+
+function applyScoreDelta(scoreBtn) {
+  if (navigator.vibrate) navigator.vibrate(10);
+  
+  const p = scoreBtn.dataset.mobileScorePlayer;
+  const h = Number(scoreBtn.dataset.hole);
+  const delta = Number(scoreBtn.dataset.delta);
+  
+  let current = grossScore(p, h) ?? 0;
+  let next = Math.max(0, current + delta);
+  if (next > 20) next = 20;
+
+  const k = key(p, h);
+  if (next === 0) delete state.scores[k];
+  else state.scores[k] = next;
+
+  persist();
+
+  const inputEl = scoreBtn.parentElement.querySelector('.mobile-score-input');
+  if (inputEl) {
+    inputEl.value = next === 0 ? '' : next;
+    let colorClass = '';
+    if (next > 0) {
+      const diff = next - state.pars[h - 1];
+      if (diff <= -1) colorClass = 'score-birdie';
+      else if (diff === 1 || diff === 2) colorClass = 'score-bogey';
+      else if (diff >= 3) colorClass = 'score-triple';
+    }
+    inputEl.className = `mobile-score-input ${colorClass}`;
+  }
+
+  const netEl = scoreBtn.parentElement.querySelector('.mobile-net-line');
+  if (netEl) {
+    const s = getPlayerStrokes(p, h);
+    const stkStr = s === 1 ? '*' : s >= 2 ? '**' : '';
+    netEl.textContent = `${stkStr}${next > 0 && s > 0 ? ` Net ${next - s}` : ''}`;
+    netEl.className = `mobile-net-line ${s > 0 ? 'has-stroke' : ''}`;
+  }
+
+  refreshAfterTableScore();
+}
+
+document.addEventListener('pointerdown', e => {
+  const scoreBtn = e.target.closest('button[data-mobile-score-player]');
+  if (!scoreBtn) return;
+  
+  e.preventDefault(); 
+  applyScoreDelta(scoreBtn);
+
+  pressTimer = setTimeout(() => {
+    pressInterval = setInterval(() => {
+      applyScoreDelta(scoreBtn);
+    }, 150);
+  }, 500);
+});
+
+document.addEventListener('pointerup', e => {
+  clearTimeout(pressTimer);
+  clearInterval(pressInterval);
+});
+
+document.addEventListener('pointercancel', e => {
+  clearTimeout(pressTimer);
+  clearInterval(pressInterval);
+});
+
+// --- Mobile Direct Input Handling ---
+let mobileInputTimer = null;
+
+function commitMobileDirect(p, h, val, advance) {
+  clearTimeout(mobileInputTimer);
+  const k = key(p, h);
+  if (val === 0) delete state.scores[k];
+  else state.scores[k] = val;
+
+  persist();
+
+  const el = document.querySelector(`.mobile-score-input[data-mobile-score-player="${p}"][data-hole="${h}"]`);
+  if (el) el.value = val === 0 ? '' : val;
+
+  const netEl = document.querySelector(`.mobile-net-line[data-net-player="${p}"][data-hole="${h}"]`);
+  if (netEl) {
+    const s = getPlayerStrokes(p, h);
+    const stkStr = s === 1 ? '*' : s >= 2 ? '**' : '';
+    netEl.textContent = `${stkStr}${val > 0 && s > 0 ? ` Net ${val - s}` : ''}`;
+    netEl.className = `mobile-net-line ${s > 0 ? 'has-stroke' : ''}`;
+  }
+
+  refreshAfterTableScore();
+
+  if (advance) {
+    const ps = activePlayers();
+    const idx = ps.indexOf(p);
+    const nextP = ps[(idx + 1) % ps.length];
+    const nextEl = document.querySelector(`.mobile-score-input[data-mobile-score-player="${nextP}"][data-hole="${h}"]`);
+    if (nextEl) {
+      nextEl.focus();
+      nextEl.select();
+    }
+  }
+}
+
+document.addEventListener('input', e => {
+  if (!e.target.matches('.mobile-score-input')) return;
+  const el = e.target;
+  const p = el.dataset.mobileScorePlayer;
+  const h = Number(el.dataset.hole);
+  const raw = el.value.replace(/\D/g, '').slice(0, 2);
+  el.value = raw;
+
+  if (raw === '') return;
+
+  clearTimeout(mobileInputTimer);
+
+  if (raw.length === 1) {
+    if (raw === '1' || raw === '2') {
+      mobileInputTimer = setTimeout(() => {
+        if (el.value === raw) commitMobileDirect(p, h, Number(raw), true);
+      }, 1500);
+    } else if (raw >= '3' && raw <= '9') {
+      commitMobileDirect(p, h, Number(raw), true);
+    }
+  } else if (raw.length === 2) {
+    const n = Number(raw);
+    if (n >= 10 && n <= 20) commitMobileDirect(p, h, n, true);
+  }
+});
+
+document.addEventListener('keydown', e => {
+  if (e.target.matches('.mobile-score-input') && e.key === 'Enter') {
+    e.preventDefault();
+    const el = e.target;
+    commitMobileDirect(el.dataset.mobileScorePlayer, Number(el.dataset.hole), el.value === '' ? 0 : Number(el.value), true);
+  }
+});
+document.addEventListener('change', e => {
+  const f = e.target.dataset.filter;
+  if (!f || !['matchplay','nassau','skins'].includes(f)) return;
+  state.filters[f] = e.target.checked;
+  persist();
+  renderAll(false);
+});
+document.addEventListener('change', e => {
+  if (e.target.matches('.mobile-score-input')) {
+    const el = e.target;
+    commitMobileDirect(el.dataset.mobileScorePlayer, Number(el.dataset.hole), el.value === '' ? 0 : Number(el.value), false);
+  }
+  // Add this to handle the Hole Dropdown
+  if (e.target.id === 'mobileHoleSelect') {
+    mobile.hole = Number(e.target.value);
+    renderMobile();
+  }
+});
+// --- Swipe Navigation ---
+let touchStartX = 0;
+let touchEndX = 0;
+document.addEventListener('touchstart', e => {
+  if (e.target.closest('#mobileEntry')) touchStartX = e.changedTouches[0].screenX;
+}, { passive: true });
+document.addEventListener('touchend', e => {
+  if (e.target.closest('#mobileEntry')) {
+    touchEndX = e.changedTouches[0].screenX;
+    if (touchEndX < touchStartX - 50) document.querySelector('[data-mobile-hole-nav="1"]')?.click();
+    if (touchEndX > touchStartX + 50) document.querySelector('[data-mobile-hole-nav="-1"]')?.click();
+  }
+}, { passive: true });
+document.addEventListener('change',e=>{const el=e.target;if(el.matches('[data-score-player]')){commitTableScore(el,false);return}if(el.id==='gameDate')state.gameDate=el.value;else if(el.id==='playerCount'){state.playerCount=Number(el.value);renderAll();return}else if(el.id==='startHole'){state.startHole=Number(el.value);renderAll();return}else if(el.id==='playFormat'){state.formats={skins:el.value!=='matchplay',matchplay:el.value!=='skins'};renderAll();return}else if(el.id==='buyIn')state.buyIn=Math.max(0,num(el.value));else if(el.id==='stake')state.stake=Math.max(0,num(el.value));else if(el.id==='scoreBasis')state.skinsRules.scoreBasis=el.value;else if(el.id==='winThreshold')state.skinsRules.winThreshold=el.value;else if(el.id==='carryover')state.skinsRules.carryover=el.value==='true';else if(el.id==='ruleDouble')state.skinsRules.doubleBogeyLosesOne=el.checked;else if(el.id==='triplePenalty')state.skinsRules.tripleBogeyPenalty=el.value;else if(el.id==='lastCarry')state.skinsRules.lastCarry=el.value;else if(el.dataset.name){const i=SLOTS.indexOf(el.dataset.name);state.names[i]=el.value.slice(0,40)}else if(el.dataset.hcp){const i=SLOTS.indexOf(el.dataset.hcp),v=Number(el.value);if(!Number.isInteger(v)||v<0||v>18){alert('Handicap must be an integer from 0 to 18.');el.value=state.handicaps[i];return}state.handicaps[i]=v}else if(el.dataset.course){const i=Number(el.dataset.hole)-1,v=Number(el.value);if(el.dataset.course==='par'){if(!Number.isInteger(v)||v<3||v>6){alert('Par must be an integer from 3 to 6.');el.value=state.pars[i];return}state.pars[i]=v}else{if(!Number.isInteger(v)||v<1||v>18){alert('Stroke Index must be 1 to 18.');el.value=state.strokeIndexes[i];return}if(state.strokeIndexes.some((x,j)=>j!==i&&x===v)){alert(`Stroke Index ${v} is already used.`);el.value=state.strokeIndexes[i];return}state.strokeIndexes[i]=v}}else if(el.dataset.base){const v=Number(el.value);if(!Number.isInteger(v)||v< -9||v>9){alert('Base strokes must be an integer from -9 to 9.');renderStrokes();return}state.matchplay.baseStrokes[el.dataset.base][el.dataset.half]=v}else if(el.dataset.receiver){state.matchplay.progressiveReceivers[el.dataset.receiver]=el.value}else if(el.dataset.progressive){const k=`${el.dataset.progressive}_${el.dataset.hole}`;state.matchplay.progressiveStrokes[k]=el.checked}renderAll()});
+document.addEventListener('keydown',e=>{const el=e.target;if(!el.matches('[data-score-player]'))return;if(e.key==='Enter'){e.preventDefault();if(tablePendingCell===el)clearTablePending();commitTableValue(el,el.value,true);return}if(e.key==='ArrowRight'||e.key==='ArrowLeft'){e.preventDefault();if(tablePendingCell===el)clearTablePending();focusScore(el,e.key==='ArrowRight'?1:-1);return}if(e.key==='Backspace'||e.key==='Delete'){e.preventDefault();if(tablePendingCell===el)clearTablePending();el.value='';commitTableValue(el,'',false);return}if(/^[0-9]$/.test(e.key)){e.preventDefault();tableDigit(el,e.key);return}});
+document.addEventListener('input',e=>{const el=e.target;if(!el.matches('[data-score-player]'))return;if(tablePendingCell===el)return;const raw=el.value.replace(/\D/g,'').slice(0,2);if(raw!==el.value)el.value=raw;if(raw==='')return;if(raw.length===1){if(raw==='1'||raw==='2'){tablePendingCell=el;tablePendingValue=raw;const wait=raw==='1'?1500:500;tablePendingTimer=setTimeout(()=>{if(tablePendingCell===el&&el.isConnected){const v=tablePendingValue;clearTablePending();commitTableValue(el,v,true)}},wait)}else if(raw>='3'&&raw<='9'){commitTableValue(el,raw,true)}else{el.value=''}}else{const n=Number(raw);if(n>=10&&n<=20){el.value=String(n);commitTableValue(el,String(n),true)}else{el.value=raw[0];commitTableValue(el,raw[0],true)}}});
+let tablePendingCell=null,tablePendingValue='',tablePendingTimer=null;
+
+function clearTablePending(){
+  if(tablePendingTimer){clearTimeout(tablePendingTimer);tablePendingTimer=null}
+  tablePendingCell=null;
+  tablePendingValue='';
+}
+
+function tableNextPosition(p,h){
+  const arr=playingSequence().flatMap(hole=>activePlayers().map(slot=>({slot,hole})));
+  const idx=arr.findIndex(x=>x.slot===p&&x.hole===h);
+  return arr[(idx+1)%arr.length];
+}
+
+function tableTarget(slot,hole){
+  return $('scoreEntry').querySelector(`[data-score-player="${slot}"][data-hole="${hole}"]`);
+}
+
+function commitTableValue(el,value,advance){
+  const p=el.dataset.scorePlayer,h=Number(el.dataset.hole),k=key(p,h);
+  const v=String(value==null?'':value).trim();
+
+  if(v===''){
+    delete state.scores[k];
+  }else{
+    const n=Number(v);
+    if(!/^\d+$/.test(v)||n<1||n>20){el.value=grossScore(p,h)??'';return}
+    state.scores[k]=n;
+  }
+
+  const g=grossScore(p,h),s=state.formats.skins?skinsStrokes(p,h):0;
+  el.classList.toggle('saved',g!==null);
+
+  const netLine=el.parentElement.querySelector('.net-line');
+  if(netLine)netLine.textContent=g!==null&&s?`Net ${g-s}`:'';
+
+  persist();
+  refreshAfterTableScore();
+
+  if(advance){
+    const next=tableNextPosition(p,h);
+    tableTarget(next.slot,next.hole)?.focus();
+  }
+}
+
+function refreshAfterTableScore(){
+  renderScorecard();
+  renderScoreSummary();
+  renderMatchStatus();
+  renderMatchProgressSummary();
+  renderLiveRoundSummary();
+  renderMatchResults();
+  renderSkinsResults();
+  renderBankProgression();
+  renderSettlements();
+  renderNassauSetup();
+  renderNassauStatus();
+  renderNassauResults();
+  renderNassauSettlement();
+  renderPublic();                 /* keep public view in sync */
+  updateFooter();
+  if(mobile.view==='mobile')renderMobile();
+}
+  function tableDigit(el, digit) {
+  if (!el.isConnected) return;
+
+  if (tablePendingCell === el && tablePendingValue) {
+    const first = tablePendingValue;
+    clearTablePending();
+
+    if (first === '1' && digit >= '0' && digit <= '9') {
+      el.value = first + digit;
+      commitTableValue(el, el.value, true);
+      return;
+    }
+
+    if (first === '2' && digit === '0') {
+      el.value = '20';
+      commitTableValue(el, '20', true);
+      return;
+    }
+
+    if (first === '2' && digit >= '1' && digit <= '9') {
+      commitTableValue(el, '2', true);
+
+      const next = tableNextPosition(
+        el.dataset.scorePlayer,
+        Number(el.dataset.hole)
+      );
+
+      const target = next && tableTarget(next.slot, next.hole);
+
+      if (target) {
+        target.focus();
+        target.value = digit;
+
+        if (digit === '1' || digit === '2') {
+          tableDigit(target, digit);
+        } else if (digit >= '3' && digit <= '9') {
+          commitTableValue(target, digit, true);
+        }
+      }
+      return;
+    }
+  }
+
+  if (digit === '1' || digit === '2') {
+    tablePendingValue = digit;
+    tablePendingCell = el;
+    el.value = digit;
+
+    const wait = digit === '1' ? 1500 : 500;
+
+    tablePendingTimer = setTimeout(() => {
+      if (tablePendingCell === el && el.isConnected) {
+        const value = tablePendingValue;
+        clearTablePending();
+        commitTableValue(el, value, true);
+      }
+    }, wait);
+
+    return;
+  }
+
+  if (digit >= '3' && digit <= '9') {
+    clearTablePending();
+    el.value = digit;
+    commitTableValue(el, digit, true);
+  }
+}
+function commitTableScore(el,advance){if(tablePendingCell===el)clearTablePending();commitTableValue(el,el.value,advance)}
+function focusScore(el,dir){const arr=Array.from(document.querySelectorAll('[data-score-player]')),i=arr.indexOf(el);arr[i+dir]?.focus()}
+$('themeToggle').addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));$('saveNow').addEventListener('click',saveState);$('printPage').addEventListener('click',()=>window.print());$('resetCourse').addEventListener('click', () => {
+  if (!confirm('Restore default par and Stroke Index values?')) return;
+  state.pars = [...DEFAULT_PAR];
+  state.strokeIndexes = [...DEFAULT_SI];
+  delete state.coursePresetName;
+  const sel = document.getElementById('coursePreset');
+  if (sel) sel.value = ''; // reset dropdown to “Custom / Default”
+  renderAll();
+});$('newRound').addEventListener('click',()=>{if(!confirm('Clear scores and reset all round settings?'))return;state=freshState();normalizeState();renderAll();switchTab('round')});$('exportData').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`kalkulator-ikan-${state.gameDate}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),500)});$('importFile').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x||typeof x!=='object'||!Array.isArray(x.names)||x.names.length<2)throw Error('Backup must contain a names array.');const si=x.strokeIndexes||x.si;if(si&&!validateSI(si))throw Error('Backup Stroke Index values must be unique 1–18.');if(!confirm('Replace the current round with this backup?'))return;state={...freshState(),...x,nassau:x.nassau||{enabled:false},formats:{...freshState().formats,...x.formats},skinsRules:{...freshState().skinsRules,...x.skinsRules},matchplay:{...freshState().matchplay,...x.matchplay}};normalizeState();renderAll();alert('Backup imported successfully.')}catch(err){alert('Import failed: '+err.message)}finally{e.target.value=''}});
+
+
+// Nassau controls use delegated events; existing Skins/Match Play handlers remain untouched.
+document.addEventListener('change',e=>{const el=e.target;let changed=false;if(['playerCount','startHole','playFormat'].includes(el.id)||el.dataset.course){normalizeNassauState();renderAll(false);return;}if(el.id==='nassauEnabled'){state.nassau.enabled=el.checked;changed=true;}else if(el.id==='nassauPairA'||el.id==='nassauPairB'){const idx=el.id==='nassauPairA'?0:1,other=1-idx,v=el.value;if(v===state.nassau.pair[other]){alert('Nassau players must be different.');el.value=state.nassau.pair[idx];return;}state.nassau.pair[idx]=v;changed=true;}else if(el.id==='nassauMultiplier'){state.nassau.backMultiplier=Number(el.value)===2?2:1;changed=true;}else if(el.id==='nassauMode'){state.nassau.mode=el.value==='scratch'?'scratch':'strokes';changed=true;}else if(el.id==='nassauFormat'){state.nassau.format=['pair','teams','individual'].includes(el.value)?el.value:'pair';changed=true;}else if(el.id==='nassauStrokeSource'){state.nassau.strokeSource=el.value==='matchplay'?'matchplay':'nassau';changed=true;}else if(el.id==='nassauTeamA1'||el.id==='nassauTeamA2'){const a=el.id==='nassauTeamA1'?el.value:state.nassau.teams.A[0],b=el.id==='nassauTeamA2'?el.value:state.nassau.teams.A[1];if(a===b){alert('Team A must contain two different players.');renderNassauSetup();return;}state.nassau.teams={A:[a,b],B:activePlayers().filter(x=>x!==a&&x!==b).slice(0,2)};changed=true;}else if(el.dataset.nassauStake){const k=el.dataset.nassauStake,raw=el.value,v=Number(raw);if(raw.trim()===''||!Number.isFinite(v)||v<0){alert('Nassau stakes must be a valid non-negative monetary value.');el.value=state.nassau.frontStakes[k];return;}state.nassau.frontStakes[k]=v;changed=true;}else if(el.dataset.nassauStrokes){const raw=el.value,v=Number(raw),slot=el.dataset.nassauStrokes,half=el.dataset.half;if(raw.trim()===''||!Number.isInteger(v)||v<0||v>18){alert('Nassau strokes must be an integer from 0 to 18.');el.value=state.nassau.strokes[slot][half];return;}state.nassau.strokes[slot][half]=v;changed=true;}if(changed){normalizeNassauState();persist();renderAll(false);}});
+
+/* 8. BOOT */
+loadState();
+applyTheme(localStorage.getItem(THEME_KEY)||'light');
+mobile.slot=activePlayers()[0];
+mobile.hole=state.startHole;
+renderAll(false);
+if(new URLSearchParams(location.search).get('selftest')==='1')runNassauSelfTest();
+document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view==='table'));
+  /* --- Share Filtered Results (respects state.filters) --- */
+function buildFilteredShareMessage() {
+  const f = state.filters;
+  const showMatch  = state.formats.matchplay && f.matchplay;
+  const showNassau = state.nassau?.enabled  && f.nassau;
+  const showSkins  = state.formats.skins    && f.skins;
+
+  const matches = allMatches();
+  const ms      = settleMatches(matches);
+  const r       = calculateSkins();
+  const s       = settleSkins(r);
+  const nr      = calculateNassau();
+  const nrValid = !!(nr && nr.valid);
+
+  let text = `🏌️ *GOLF ROUND RESULTS*\n`;
+  text += `📅 Date: ${state.gameDate}\n`;
+  if (state.coursePresetName) text += `📍 Course: ${state.coursePresetName}\n`;
+  text += `\n`;
+
+  // ---------- RESULTS SUMMARY ----------
+  text += `--------------------------------------\n`;
+  text += `*RESULTS SUMMARY*\n`;
+  text += `--------------------------------------\n\n`;
+
+  if (showMatch) {
+    text += `*MATCH PLAY*\n`;
+    activePlayers().forEach(p => {
+      text += `• ${playerName(p)}: ${fmtSigned(ms.balances[p])}\n`;
+    });
+    text += `\n`;
+  }
+  if (showNassau) {
+    text += `*NASSAU*\n`;
+    if (nrValid) {
+      activePlayers().forEach(p => {
+        const v = Number(nr.playerNet?.[p]) || 0;
+        text += `• ${playerName(p)}: ${fmtSigned(v)}\n`;
+      });
+    } else {
+      text += `• Not available (${nr?.invalidReason || 'no data'})\n`;
+    }
+    text += `\n`;
+  }
+  if (showSkins) {
+    text += `*SKINS*\n`;
+    r.players.forEach(p => {
+      text += `• ${playerName(p)}: ${r.bank[p]} skin${r.bank[p] === 1 ? '' : 's'}\n`;
+    });
+    text += `\n`;
+  }
+
+  // ---------- SETTLEMENT DETAILS ----------
+  text += `--------------------------------------\n`;
+  text += `*SETTLEMENT DETAILS*\n`;
+  text += `--------------------------------------\n\n`;
+
+  if (showMatch) {
+    text += `*MATCH PLAY SETTLEMENTS*\n`;
+    matches.forEach(m => {
+      if (!m.played) {
+        text += `• ${playerName(m.a)} vs ${playerName(m.b)}: Not played\n`;
+      } else if (m.lead === 0) {
+        text += `• ${playerName(m.a)} vs ${playerName(m.b)}: Tied AS\n`;
+      } else {
+        const winner    = playerName(m.lead > 0 ? m.a : m.b);
+        const diff      = Math.abs(m.lead);
+        const remaining = 18 - m.played;
+        const scoreStr  = diff > remaining ? `${diff}&${remaining}`
+                        : remaining === 0  ? `${diff} UP`
+                        : `${diff} UP`;
+        text += `• ${playerName(m.a)} vs ${playerName(m.b)}: ${winner} won ${scoreStr} (${fmtSigned(m.money)})\n`;
+      }
+    });
+    text += `\n`;
+  }
+
+  if (showNassau) {
+    text += `*NASSAU SETTLEMENTS*\n`;
+    if (nrValid) {
+      if (nr.format === 'individual') {
+        nr.matches.forEach(m => {
+          text += `• ${m.names.A} vs ${m.names.B}: ${fmtSigned(m.result.net.A)}\n`;
+        });
+      } else {
+        text += `• Front 9: ${fmtSigned(nr.blocks.front.net.A)}\n`;
+        text += `• Back 9: ${fmtSigned(nr.blocks.back.net.A)}\n`;
+        text += `• ${nr.settlement.label}\n`;
+      }
+    } else {
+      text += `• Not available\n`;
+    }
+    text += `\n`;
+  }
+
+  if (showSkins) {
+    text += `*SKINS SETTLEMENTS*\n`;
+    r.players.forEach(p => {
+      text += `• ${playerName(p)}: ${r.bank[p]} skins → ${fmtSigned(s.net[p])}\n`;
+    });
+    text += `\n`;
+  }
+
+  // ---------- NET SETTLEMENT SUMMARY ----------
+  text += `--------------------------------------\n`;
+  text += `*NET SETTLEMENT SUMMARY*\n`;
+  text += `--------------------------------------\n\n`;
+
+  activePlayers().forEach(p => {
+    let total = 0;
+    if (showMatch)  total += ms.balances[p] || 0;
+    if (showNassau && nrValid) total += Number(nr.playerNet?.[p]) || 0;
+    if (showSkins)  total += s.net[p] || 0;
+    text += `• ${playerName(p)}: ${fmtSigned(total)}\n`;
+  });
+
+  return text;
+}
+
+$('shareFilteredResultsBtn').addEventListener('click', async () => {
+  const text = buildFilteredShareMessage();
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Golf Results', text }); }
+    catch (err) { console.log('Share cancelled'); }
+  } else {
+    navigator.clipboard.writeText(text);
+    alert('Filtered results copied to clipboard!');
+  }
+});
+
+// --- Share Results Logic ---
+$('shareResultsBtn').addEventListener('click', async () => {
+  const r = calculateSkins();
+  const s = settleSkins(r);
+  const matches = allMatches();
+  const ms = settleMatches(matches);
+  
+  let text = `🏌️‍♂️ *GOLF ROUND RESULTS*\n📅 ${state.gameDate}\n\n`;
+  
+  if (state.formats.skins) {
+    text += `💰 *SKINS* (Pot: ${money(s.pot)})\n`;
+    r.players.forEach(p => {
+      text += `• ${playerName(p)}: ${r.bank[p]} skins (${fmtSigned(s.net[p])})\n`;
+    });
+    text += `\n`;
+  }
+  
+  if (state.formats.matchplay) {
+    text += `🏆 *MATCH PLAY* (Stake: ${money(state.stake)}/hole)\n`;
+    matches.forEach(m => {
+      if (!m.played) {
+        text += `• ${playerName(m.a)} vs ${playerName(m.b)}: Not played\n`;
+      } else if (m.lead === 0) {
+        text += `• ${playerName(m.a)} vs ${playerName(m.b)}: Tied AS (QAR 0)\n`;
+      } else {
+        const winner = playerName(m.lead > 0 ? m.a : m.b);
+        const diff = Math.abs(m.lead);
+        const remaining = 18 - m.played;
+        let scoreStr = diff > remaining ? `${diff}&${remaining}` : remaining === 0 ? `${diff} UP` : `${diff} UP (${remaining} to play)`;
+        text += `• ${playerName(m.a)} vs ${playerName(m.b)}: ${winner} won ${scoreStr} (${fmtSigned(m.money)})\n`;
+      }
+    });
+    text += `\n⚖️ *MATCH PLAY SETTLEMENT*\n`;
+    activePlayers().forEach(p => {
+      text += `• ${playerName(p)}: ${fmtSigned(ms.balances[p])}\n`;
+    });
+    text += `\n`;
+  }
+  
+  if(state.nassau?.enabled){const nr=calculateNassau();if(nr.valid){const f=state.nassau.frontStakes,m=state.nassau.backMultiplier;text+=`\n🏌️ *MODIFIED NASSAU · ${String(nr.format).toUpperCase()}*\nFront stakes: Base ${money(f.base)} · Insure ${money(f.insure)} · Buy ${money(f.buy)}\nBack multiplier: ×${m}\n`;if(nr.format==='individual')nr.matches.forEach(x=>text+=`${x.names.A} vs ${x.names.B}: ${fmtSigned(x.result.net.A)}\n`);else text+=`Front net: ${fmtSigned(nr.blocks.front.net.A)} · Back net: ${fmtSigned(nr.blocks.back.net.A)} · Grand total: ${fmtSigned(nr.net.A)}\n`;text+=`${nr.settlement.label}\n`;}}
+  
+  if (state.formats.skins || state.formats.matchplay || state.nassau?.enabled) {
+    text += `💵 *COMBINED NET*\n`;
+    const nr=state.nassau?.enabled?calculateNassau():null;
+    activePlayers().forEach(p => {
+      const nn=nr?.valid?(Number(nr.playerNet?.[p])||0):0;
+      const total = (state.formats.skins?s.net[p]:0) + (state.formats.matchplay?ms.balances[p]:0) + nn;
+      text += `• ${playerName(p)}: ${fmtSigned(total)}\n`;
+    });
+  }
+
+  if (navigator.share) {
+    try { await navigator.share({ title: 'Golf Results', text: text }); } catch (err) { console.log('Share canceled'); }
+  } else {
+    navigator.clipboard.writeText(text);
+    alert("Results copied to clipboard!");
+  }
+});
+
+// --- Copy Matrix Logic ---
+document.addEventListener('click', e => {
+  if (e.target.id === 'copyMatrixBtn') {
+    const matches = allMatches();
+    const ms = settleMatches(matches);
+    let text = "Settlements:\n";
+    activePlayers().forEach(p => {
+      text += `${playerName(p)}: ${fmtSigned(ms.balances[p])}\n`;
+    });
+    navigator.clipboard.writeText(text);
+    alert("Settlements copied!");
+  }
+});
+/* --- +/- stroke controls (Base + Nassau) --- */
+document.addEventListener('click', e => {
+  const btn = e.target.closest('[data-stroke-action]');
+  if (!btn) return;
+  e.preventDefault();
+  const action = btn.dataset.strokeAction;          // 'inc' | 'dec'
+  const delta  = action === 'inc' ? 1 : -1;
+  const type   = btn.dataset.strokeType;            // 'base' | 'nassau'
+  const half   = btn.dataset.strokeHalf;            // 'front' | 'back'
+
+  if (type === 'base') {
+    const code = btn.dataset.strokeCode;
+    const cur  = num(state.matchplay.baseStrokes[code]?.[half]);
+    state.matchplay.baseStrokes[code][half] =
+      Math.max(-9, Math.min(9, cur + delta));
+  } else if (type === 'nassau') {
+    const slot = btn.dataset.strokeSlot;
+    const cur  = num(state.nassau.strokes[slot]?.[half]);
+    state.nassau.strokes[slot][half] =
+      Math.max(0, Math.min(18, cur + delta));
+  }
+
+  persist();
+  renderAll(false);
+});
+// --- Undo Logic ---
+let historyStack = [];
+function pushHistory() {
+  historyStack.push(JSON.stringify(state.scores));
+  if (historyStack.length > 20) historyStack.shift();
+  const uBtn = $('undoBtn'); if(uBtn) uBtn.classList.remove('hidden');
+}
+
+document.addEventListener('click', e => {
+  if (e.target.id === 'undoBtn') {
+    if (historyStack.length > 0) {
+      state.scores = JSON.parse(historyStack.pop());
+      if (historyStack.length === 0) $('undoBtn').classList.add('hidden');
+      persist(); renderAll(false);
+    }
+  }
+});
+
+/* --- Cloud sync bridge (used by the Supabase script) --- */
+window.QMGApp = {
+  getState:        () => state,
+  setState:        (s) => { state = s; },
+  freshState:      () => freshState(),
+  normalize:       () => { normalizeState(); },
+  renderAll:       () => { renderAll(false); },
+  saveState:       () => { saveState(); },
+  switchTab:       (id) => { switchTab(id); }
+};
+})();
+</script></body></html>
