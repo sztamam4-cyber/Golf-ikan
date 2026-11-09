@@ -7,9 +7,336 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
 <style>
-:root{--bg:#eef2ef;--card:#fff;--ink:#17251f;--muted:#68766f;--green:#123b2b;--green2:#1f6749;--soft:#edf3ef;--line:#d5dfd8;--input:#fff;--red:#a73535;--shadow:0 3px 12px #183b2b0b;--gold:#8a6d1c;--gold-bg:#fdf6e3;--gold-line:#eadba8;--pen:#b74700;--pen-bg:#fff1e6;--win-bg:#e4f5e9;--win-ink:#155b34;--carry-bg:#f7f1dc;--carry-ink:#725b17;--eagle:#17643a;--birdie:#d8f0df;--par:#dcecff;--bogey:#fff0c9;--double:#ffe0bd;--triple:#f8d5d5;--eagle-ink:#fff;--birdie-ink:#155b34;--par-ink:#164b83;--bogey-ink:#765000;--double-ink:#8a3b00;--triple-ink:#8c2020}
-html[data-theme=dark]{--bg:#0f1512;--card:#17201b;--ink:#edf5f0;--muted:#9dafa4;--green:#2d7657;--green2:#55a57c;--soft:#202c25;--line:#35453b;--input:#111914;--red:#ff8d88;--shadow:0 5px 18px #0005;--gold:#e8d8a4;--gold-bg:#302b1b;--gold-line:#554a28;--pen:#ffb083;--pen-bg:#3a2417;--win-bg:#1d3a29;--win-ink:#8fd4ab;--carry-bg:#3a321a;--carry-ink:#e8d8a4;--eagle:#267c4c;--birdie:#1c5031;--par:#1b3e60;--bogey:#594719;--double:#633819;--triple:#5a2528;--eagle-ink:#f4fff7;--birdie-ink:#c8f2d5;--par-ink:#cce5ff;--bogey-ink:#ffebae;--double-ink:#ffd1a8;--triple-ink:#ffd0d0;color-scheme:dark}
-*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}header{background:linear-gradient(135deg,#10251d,#1c4b36);color:#fff;padding:calc(11px + env(safe-area-inset-top,0px)) 12px 10px;box-shadow:0 3px 12px #0003}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}h1{margin:0;font-size:18px}header p{margin:3px 0 0;color:#d4e4da;font-size:11px}.header-actions{display:flex;align-items:center;gap:7px}.pill{border:1px solid #ffffff55;border-radius:999px;padding:4px 7px;font-size:10px}.theme-button{border:1px solid #ffffff66;background:#ffffff16;color:#fff;border-radius:9px;padding:6px 9px;cursor:pointer;font-weight:700}.tabs{display:flex;gap:4px;overflow:auto;padding:7px 8px;background:var(--card);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50;scrollbar-width:thin}.tab{border:0;background:var(--soft);color:var(--ink);border-radius:999px;padding:8px 11px;font-weight:700;white-space:nowrap;font-size:12px;cursor:pointer}.tab.active{background:var(--green);color:#fff}main{max-width:1100px;margin:auto;padding:9px 8px 82px}.panel{display:none}.panel.active{display:block}.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:11px;margin-bottom:8px;box-shadow:var(--shadow)}h2{margin:0 0 8px;font-size:15px}h3{margin:12px 0 6px;font-size:13px}.sub{margin:-3px 0 8px;color:var(--muted);font-size:11px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.field label{display:block;margin-bottom:3px;color:var(--muted);font-size:11px;font-weight:700}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--input);color:var(--ink);font:inherit}.field input:focus,.field select:focus,.score-input:focus{outline:2px solid var(--green2);border-color:var(--green2)}.button-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}.button{border:0;border-radius:999px;padding:9px 13px;background:var(--green);color:#fff;font-size:12px;font-weight:750;cursor:pointer}.button.secondary{background:var(--soft);color:var(--ink)}.button.warning{background:#fff0ee;color:#8e2929}html[data-theme=dark] .button.warning{background:#3a1f1f;color:#ffb0ad}.note{margin-top:7px;padding:7px 9px;background:var(--gold-bg);border:1px solid var(--gold-line);border-radius:8px;color:var(--gold);font-size:11px}.table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px;scrollbar-width:thin;overscroll-behavior-inline:contain}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:11px}th,td{padding:6px 7px;border-bottom:1px solid var(--line);text-align:center}th{position:sticky;top:0;z-index:1;background:var(--soft);color:var(--ink);font-weight:800}th:first-child,td:first-child{text-align:left}.score-table{min-width:920px}.score-table th,.score-table td{padding:5px 4px}.score-table .player-column{position:sticky;left:0;z-index:3;min-width:92px;background:var(--card);box-shadow:2px 0 4px #0001;font-weight:750}.score-table th.player-column{z-index:4;background:var(--soft)}.score-input{width:43px;height:36px;padding:4px 2px;border:1px solid var(--line);border-radius:6px;text-align:center;background:var(--input);color:var(--ink);font:inherit;font-variant-numeric:tabular-nums}.score-input.saved{border-color:#62a27d;background:#edf8f1}html[data-theme=dark] .score-input.saved{background:#183225}.net-line{font-size:9px;color:var(--muted);margin-top:1px;min-height:11px}.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.stat-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.stat{min-width:0;padding:7px;background:var(--soft);border-radius:8px}.stat .label,.small{color:var(--muted);font-size:10px}.stat strong{display:block;margin-top:2px;font-size:16px;font-variant-numeric:tabular-nums}.positive{color:#18804a}.negative{color:var(--red)}.tie{color:var(--muted)}.match-card{margin-top:7px;padding:9px;border:1px solid var(--line);border-radius:10px}.match-header{display:flex;justify-content:space-between;align-items:center;gap:7px;margin-bottom:7px}.status{padding:3px 7px;background:var(--soft);border-radius:999px;font-size:10px;font-weight:800}.status.win{background:var(--win-bg);color:var(--win-ink)}.status.loss{background:#fbe7e5;color:#8d2929}.match-state{margin:6px 0 9px;text-align:center;font-size:23px;font-weight:900}.checks{display:grid;grid-template-columns:repeat(9,minmax(31px,1fr));gap:4px}.check-hole{padding:3px 1px;border:1px solid var(--line);border-radius:6px;text-align:center;font-size:10px}.check-hole.checked{background:var(--win-bg);color:var(--win-ink);font-weight:800}.check-hole input{display:block;width:16px;height:16px;margin:2px auto 0;accent-color:var(--green2)}.course-input{width:54px;padding:6px;border:1px solid var(--line);border-radius:6px;text-align:center;background:var(--input);color:var(--ink)}.checkbox-row{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--soft);border-radius:8px;margin-bottom:6px;font-size:12px}.checkbox-row input{width:18px;height:18px;accent-color:var(--green2)}.footer{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 9px calc(6px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);color:var(--muted);font-size:10px}.legend{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;font-size:10px;color:var(--muted)}.chip{display:inline-block;border-radius:6px;padding:3px 6px;font-weight:800;min-width:24px}.c-eagle{background:var(--eagle);color:var(--eagle-ink)}.c-birdie{background:var(--birdie);color:var(--birdie-ink)}.c-par{background:var(--par);color:var(--par-ink)}.c-bogey{background:var(--bogey);color:var(--bogey-ink)}.c-double{background:var(--double);color:var(--double-ink)}.c-triple{background:var(--triple);color:var(--triple-ink)}.score-cell{font-weight:800;border-radius:5px}.mobile-entry{display:none}.mobile-entry.active{display:block}.mobile-entry .score-display{font-size:48px;font-weight:900;text-align:center;padding:12px;background:var(--soft);border-radius:12px;margin:8px 0}.avatar{width:42px;height:42px;border-radius:50%;background:var(--green);color:white;display:inline-grid;place-items:center;font-weight:900;font-size:18px;margin-right:8px}.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.keypad button{padding:15px 5px;border:1px solid var(--line);border-radius:10px;background:var(--soft);color:var(--ink);font-size:20px;font-weight:800}.keypad button.confirm{background:var(--green);color:white}.mobile-nav{display:flex;justify-content:space-between;gap:8px;margin-top:8px}.mobile-nav button{flex:1}.segmented{display:flex;gap:5px;margin-bottom:8px}.segmented button{flex:1}.segmented button.active{background:var(--green);color:white}.hidden{display:none!important}.muted-cell{color:var(--muted)}.money{font-variant-numeric:tabular-nums;font-weight:800}.rules-list{margin:0;padding-left:18px;font-size:12px;line-height:1.65}.rules-list li{margin-bottom:4px}.balance-pass{display:inline-block;padding:4px 7px;border-radius:7px;background:#e2f4e8;color:#155b34;font-weight:800}.balance-error{display:inline-block;padding:4px 7px;border-radius:7px;background:#fdeceb;color:#8d2929;font-weight:800}
+:root{
+  --bg:#0a0e0d;
+  --card:#141a18;
+  --ink:#f0f5f2;
+  --muted:#8a9a92;
+
+  --green:#00b85a;
+  --green2:#00d66b;
+
+  --soft:#1e2523;
+  --line:#303a35;
+  --input:#111715;
+
+  --red:#ff7777;
+  --win-bg:#123d29;
+  --win-ink:#00e879;
+
+  --shadow:
+    0 1px 2px rgba(0,0,0,.18),
+    0 8px 24px rgba(0,0,0,.16);
+
+  /* NEW — pay-app tokens (dark fallback) */
+  --accent:#00d66b;
+  --accent-2:#00ff82;
+  --accent-grad:linear-gradient(135deg,#00ff82,#00c95f);
+  --danger:#ff5a5a;
+  --pending:#ff8c42;
+  --pending-outline:#ff8c42;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.5);
+  --radius-card:16px;
+  --radius-input:12px;
+  --radius-pill:999px;
+}
+html[data-theme=dark]{
+  color-scheme:dark;
+}
+html[data-theme=light]{
+  --bg:#f4f7f5;
+  --card:#ffffff;
+  --ink:#15221b;
+  --muted:#708078;
+  --green:#087d46;
+  --green2:#079b57;
+  --soft:#edf3ef;
+  --line:#e1e9e3;
+  --input:#ffffff;
+  --red:#c63c43;
+  --win-bg:#e1f5e8;
+  --win-ink:#087d46;
+  --shadow:0 1px 2px rgba(0,0,0,.025), 0 8px 24px rgba(0,0,0,.045);
+
+  /* NEW — pay-app tokens (light) */
+  --accent:#00b85a;
+  --accent-2:#00d66b;
+  --accent-grad:linear-gradient(135deg,#00d66b,#00b85a);
+  --danger:#e34a4a;
+  --pending:#e08a1c;
+  --pending-outline:#e08a1c;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 1px 2px rgba(0,0,0,.04), 0 8px 24px rgba(0,0,0,.06);
+}
+html[data-theme=dark]{
+  --bg:#0a0e0d;
+  --card:#141a18;
+  --soft:#1a2120;
+  --line:#232d29;
+  --input:#0f1412;
+  --ink:#f0f5f2;
+  --muted:#8a9a92;
+  --accent:#00d66b;
+  --accent-2:#00ff82;
+  --accent-grad:linear-gradient(135deg,#00ff82,#00c95f);
+  --danger:#ff5a5a;
+  --pending:#ff8c42;
+  --shadow-sm:0 1px 2px rgba(0,0,0,.3);
+  --shadow-md:0 1px 2px rgba(0,0,0,.3), 0 8px 24px rgba(0,0,0,.5);
+  --pending-outline:#ff8c42;
+  color-scheme:dark;
+}
+body{background:var(--bg);color:var(--ink);transition:background .2s,color .2s}
+  html[data-theme=dark]{--bg:#0f1512;--card:#17201b;--ink:#edf5f0;--muted:#9dafa4;--green:#2d7657;--green2:#55a57c;--soft:#202c25;--line:#35453b;--input:#111914;--red:#ff8d88;--shadow:0 5px 18px #0005;--gold:#e8d8a4;--gold-bg:#302b1b;--gold-line:#554a28;--pen:#ffb083;--pen-bg:#3a2417;--win-bg:#1d3a29;--win-ink:#8fd4ab;--carry-bg:#3a321a;--carry-ink:#e8d8a4;--eagle:#267c4c;--birdie:#1c5031;--par:#1b3e60;--bogey:#594719;--double:#633819;--triple:#5a2528;--eagle-ink:#f4fff7;--birdie-ink:#c8f2d5;--par-ink:#cce5ff;--bogey-ink:#ffebae;--double-ink:#ffd1a8;--triple-ink:#ffd0d0;color-scheme:dark}
+*{box-sizing:border-box}html{-webkit-text-size-adjust:100%}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.35 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif}header{background:linear-gradient(135deg,#10251d,#1c4b36);color:#fff;padding:calc(11px + env(safe-area-inset-top,0px)) 12px 10px;box-shadow:0 3px 12px #0003}.top{display:flex;align-items:center;justify-content:space-between;gap:8px}h1{margin:0;font-size:18px}header p{margin:3px 0 0;color:#d4e4da;font-size:11px}.header-actions{display:flex;align-items:center;gap:7px}.pill{border:1px solid #ffffff55;border-radius:999px;padding:4px 7px;font-size:10px}.theme-button{border:1px solid #ffffff66;background:#ffffff16;color:#fff;border-radius:9px;padding:6px 9px;cursor:pointer;font-weight:700}
+  .tabs{
+  display:flex;
+  gap:7px;
+  overflow-x:auto;
+  padding:10px 12px;
+  background:var(--bg);
+  border:0;
+  position:sticky;
+  top:0;
+  z-index:50;
+  scrollbar-width:none;
+}
+
+.tabs::-webkit-scrollbar{
+  display:none;
+}
+
+.tab{
+  flex:0 0 auto;
+  border:1px solid transparent;
+  border-radius:999px;
+  padding:10px 16px;
+  background:var(--soft);
+  color:var(--muted);
+  font-size:12px;
+  font-weight:800;
+}
+
+.tab.active{
+  background:var(--green2);
+  color:#071b10;
+  box-shadow:0 3px 12px rgba(0,214,107,.16);
+}
+
+.panel.active{
+  animation:panelFade .15s ease-out;
+}
+
+@keyframes panelFade{
+  from{opacity:.65}
+  to{opacity:1}
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  border-radius:var(--radius-pill);
+  padding:8px 14px;
+  font-weight:700;
+  white-space:nowrap;
+  font-size:13px;
+  cursor:pointer;
+  transition:background .15s ease, color .15s ease;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab:hover{color:var(--ink)}
+.tab.active{background:var(--accent);color:#fff;box-shadow:0 2px 6px rgba(0,214,107,.3)}
+html[data-theme=light] .tab.active{background:var(--accent);color:#fff}main{max-width:1100px;margin:auto;padding:9px 8px 82px}.panel{display:none}.panel.active{display:block}
+.card{
+  background:var(--card);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:20px 18px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+
+  animation:cardEnter .2s ease-out;
+}
+
+@keyframes cardEnter{
+  from{
+    opacity:0;
+    transform:translateY(4px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+h2{
+  font-size:17px;
+  font-weight:800;
+  letter-spacing:-.02em;
+}
+
+h3{
+  font-size:13px;
+  font-weight:750;
+  margin:14px 0 8px;
+}
+html[data-theme=light] .card{border-color:rgba(0,0,0,0.06)}
+html[data-theme=dark] .card{border-color:rgba(255,255,255,0.04)}
+.card:hover{box-shadow:var(--shadow-md), 0 12px 32px rgba(0,0,0,0.08)}
+@media(max-width:650px){.card{padding:16px 14px;border-radius:14px;margin-bottom:10px}}h2{margin:0 0 8px;font-size:15px}h3{margin:12px 0 6px;font-size:13px}.sub{margin:-3px 0 8px;color:var(--muted);font-size:11px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px}.field label{display:block;margin-bottom:3px;color:var(--muted);font-size:11px;font-weight:700}.field input,.field select,.field textarea{width:100%;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--input);color:var(--ink);font:inherit}.field input:focus,.field select:focus,.score-input:focus{outline:2px solid var(--green2);border-color:var(--green2)}.button-row{display:flex;flex-wrap:wrap;gap:6px;margin-top:8px}
+ .button{
+  min-height:44px;
+  border:0;
+  border-radius:999px;
+  padding:11px 18px;
+
+  background:linear-gradient(
+    135deg,
+    var(--green2),
+    var(--green)
+  );
+
+  color:#fff;
+  font-size:13px;
+  font-weight:800;
+
+  transition:transform .1s ease;
+}
+
+.button:active{
+  transform:scale(.98);
+}
+
+.button.secondary{
+  background:var(--soft);
+  color:var(--ink);
+  border:1px solid var(--line);
+}
+
+.button.warning{
+  background:transparent;
+  border:1px solid var(--red);
+  color:var(--red);
+}
+
+.field input,
+.field select,
+.field textarea{
+  min-height:48px;
+  border-radius:12px;
+  padding:12px;
+  background:var(--input);
+  color:var(--ink);
+  border:1px solid var(--line);
+  font-size:16px;
+}
+
+.field input:focus,
+.field select:focus,
+.score-input:focus{
+  outline:2px solid var(--green2);
+  outline-offset:2px;
+}
+.button:active{transform:scale(0.97);box-shadow:0 1px 2px rgba(0,0,0,.1)}
+.button:focus-visible{outline:2px solid var(--accent-2);outline-offset:2px}
+.button.secondary{
+  background:transparent;
+  color:var(--ink);
+  border:1px solid var(--line);
+  box-shadow:none;
+}
+.button.warning{background:transparent;color:var(--danger);border:1px solid color-mix(in srgb, var(--danger) 40%, transparent)}
+@media(max-width:650px){.button{height:48px;font-size:14px;width:100%}}.button.warning{background:#fff0ee;color:#8e2929}html[data-theme=dark] .button.warning{background:#3a1f1f;color:#ffb0ad}.note{margin-top:7px;padding:7px 9px;background:var(--gold-bg);border:1px solid var(--gold-line);border-radius:8px;color:var(--gold);font-size:11px}
+  .table-wrap{overflow:auto;border:1px solid var(--line);border-radius:9px;scrollbar-width:thin;overscroll-behavior-inline:contain}table{width:100%;border-collapse:collapse;white-space:nowrap;font-size:11px}
+  th,td{
+  padding:11px 9px;
+  border-bottom:1px solid var(--line);
+  border-left:0;
+  border-right:0;
+  text-align:center;
+}
+
+th{
+  background:var(--soft);
+  font-size:10px;
+  text-transform:uppercase;
+  letter-spacing:.05em;
+}
+
+td{
+  font-size:12px;
+}
+
+tbody tr:hover{
+  background:var(--soft);
+}
+
+td.money,
+td:last-child{
+  text-align:right;
+  font-variant-numeric:tabular-nums;
+}
+
+.score-table .player-column{
+  position:sticky;
+  left:0;
+  z-index:3;
+  background:var(--card);
+}
+  th{position:sticky;top:0;z-index:1;background:var(--soft);color:var(--ink);font-weight:800}th:first-child,td:first-child{text-align:left}.score-table{min-width:920px}.score-table th,.score-table td{padding:5px 4px}.score-table .player-column{position:sticky;left:0;z-index:3;min-width:92px;background:var(--card);box-shadow:2px 0 4px #0001;font-weight:750}.score-table th.player-column{z-index:4;background:var(--soft)}.score-input{width:43px;height:36px;padding:4px 2px;border:1px solid var(--line);border-radius:6px;text-align:center;background:var(--input);color:var(--ink);font:inherit;font-variant-numeric:tabular-nums}.score-input.saved{border-color:#62a27d;background:#edf8f1}html[data-theme=dark] .score-input.saved{background:#183225}.net-line{font-size:9px;color:var(--muted);margin-top:1px;min-height:11px}.stat-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px}.stat-grid.three{grid-template-columns:repeat(3,minmax(0,1fr))}.stat{min-width:0;padding:7px;background:var(--soft);border-radius:8px}
+  body{
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "SF Pro Display",
+    Inter,
+    "Segoe UI",
+    sans-serif;
+}
+
+.money,
+.stat strong,
+.match-state,
+.stroke-value{
+  font-variant-numeric:tabular-nums;
+  font-feature-settings:"tnum";
+}
+
+.stat .label,
+.small{
+  color:var(--muted);
+  font-size:11px;
+  font-weight:700;
+  letter-spacing:.04em;
+}
+
+.stat strong{
+  display:block;
+  margin-top:5px;
+  font-size:21px;
+  font-weight:850;
+  letter-spacing:-.025em;
+}
+
+.positive{
+  color:var(--win-ink);
+  font-weight:800;
+}
+
+.negative{
+  color:var(--red);
+  font-weight:800;
+}
+
+.hero-money{
+  font-size:36px;
+  font-weight:900;
+  letter-spacing:-.04em;
+  font-variant-numeric:tabular-nums;
+}
+  .tie{color:var(--muted)}.match-card{margin-top:7px;padding:9px;border:1px solid var(--line);border-radius:10px}.match-header{display:flex;justify-content:space-between;align-items:center;gap:7px;margin-bottom:7px}.status{padding:3px 7px;background:var(--soft);border-radius:999px;font-size:10px;font-weight:800}.status.win{background:var(--win-bg);color:var(--win-ink)}.status.loss{background:#fbe7e5;color:#8d2929}.match-state{margin:6px 0 9px;text-align:center;font-size:23px;font-weight:900}.checks{display:grid;grid-template-columns:repeat(9,minmax(31px,1fr));gap:4px}.check-hole{padding:3px 1px;border:1px solid var(--line);border-radius:6px;text-align:center;font-size:10px}.check-hole.checked{background:var(--win-bg);color:var(--win-ink);font-weight:800}.check-hole input{display:block;width:16px;height:16px;margin:2px auto 0;accent-color:var(--green2)}.course-input{width:54px;padding:6px;border:1px solid var(--line);border-radius:6px;text-align:center;background:var(--input);color:var(--ink)}.checkbox-row{display:flex;align-items:center;gap:7px;padding:7px 9px;background:var(--soft);border-radius:8px;margin-bottom:6px;font-size:12px}.checkbox-row input{width:18px;height:18px;accent-color:var(--green2)}.footer{position:fixed;bottom:0;left:0;right:0;z-index:60;display:flex;justify-content:space-between;align-items:center;gap:8px;padding:6px 9px calc(6px + env(safe-area-inset-bottom));background:var(--card);border-top:1px solid var(--line);color:var(--muted);font-size:10px}.legend{display:flex;flex-wrap:wrap;gap:6px;margin:6px 0;font-size:10px;color:var(--muted)}.chip{display:inline-block;border-radius:6px;padding:3px 6px;font-weight:800;min-width:24px}.c-eagle{background:var(--eagle);color:var(--eagle-ink)}.c-birdie{background:var(--birdie);color:var(--birdie-ink)}.c-par{background:var(--par);color:var(--par-ink)}.c-bogey{background:var(--bogey);color:var(--bogey-ink)}.c-double{background:var(--double);color:var(--double-ink)}.c-triple{background:var(--triple);color:var(--triple-ink)}.score-cell{font-weight:800;border-radius:5px}.mobile-entry{display:none}.mobile-entry.active{display:block}.mobile-entry .score-display{font-size:48px;font-weight:900;text-align:center;padding:12px;background:var(--soft);border-radius:12px;margin:8px 0}.avatar{width:42px;height:42px;border-radius:50%;background:var(--green);color:white;display:inline-grid;place-items:center;font-weight:900;font-size:18px;margin-right:8px}.keypad{display:grid;grid-template-columns:repeat(3,1fr);gap:7px}.keypad button{padding:15px 5px;border:1px solid var(--line);border-radius:10px;background:var(--soft);color:var(--ink);font-size:20px;font-weight:800}.keypad button.confirm{background:var(--green);color:white}.mobile-nav{display:flex;justify-content:space-between;gap:8px;margin-top:8px}.mobile-nav button{flex:1}.segmented{display:flex;gap:5px;margin-bottom:8px}.segmented button{flex:1}.segmented button.active{background:var(--green);color:white}.hidden{display:none!important}.muted-cell{color:var(--muted)}.money{font-variant-numeric:tabular-nums;font-weight:800}.rules-list{margin:0;padding-left:18px;font-size:12px;line-height:1.65}.rules-list li{margin-bottom:4px}.balance-pass{display:inline-block;padding:4px 7px;border-radius:7px;background:#e2f4e8;color:#155b34;font-weight:800}.balance-error{display:inline-block;padding:4px 7px;border-radius:7px;background:#fdeceb;color:#8d2929;font-weight:800}
 .mobile-entry .current-hole{background:var(--win-bg);color:var(--win-ink);font-weight:800}
 .mobile-entry .current-hole-peer{background:var(--soft)}
 .mobile-player-line .mobile-hole-meta{color:var(--muted);font-size:11px;font-weight:700}
@@ -24,24 +351,73 @@ html[data-theme=dark]{--bg:#0f1512;--card:#17201b;--ink:#edf5f0;--muted:#9dafa4;
 .mobile-nav-btn:active{background:rgba(0,0,0,0.3)}
 .mobile-nav-btn.left{left:12px}
 .mobile-nav-btn.right{right:12px}
-.mobile-player-card{background:#2d5a27;color:#fff;border-radius:12px;padding:12px 15px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;box-shadow:var(--shadow)}
+.mobile-player-card{
+  background:var(--card);
+  color:var(--ink);
+  border:1px solid var(--line);
+  border-radius:16px;
+  padding:15px;
+  margin-bottom:12px;
+
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+
+  min-height:82px;
+  box-shadow:var(--shadow);
+}
+
+.mobile-player-name{
+  font-size:16px;
+  font-weight:850;
+}
+
+.mobile-score-controls{
+  display:flex;
+  align-items:center;
+  gap:10px;
+}
+
+.mobile-score-btn{
+  width:48px;
+  height:48px;
+  border-radius:50%;
+  background:var(--soft);
+  border:1px solid var(--line);
+  color:var(--ink);
+  font-size:25px;
+  font-weight:900;
+}
+
+.mobile-score-input{
+  width:65px;
+  font-size:38px;
+  font-weight:900;
+  color:var(--ink)!important;
+}
 .mobile-player-info{display:flex;flex-direction:column;gap:2px}
 .mobile-player-slot{font-size:11px;font-weight:700;opacity:0.8}
 .mobile-player-name{font-size:18px;font-weight:800}
 .mobile-player-hcp{font-size:12px;opacity:0.8}
 .mobile-score-controls{display:flex;align-items:center;gap:15px}
-.mobile-score-btn{width:40px;height:40px;border-radius:50%;background:rgba(0,0,0,0.25);border:0;color:#fff;font-size:24px;font-weight:700;display:grid;place-items:center;cursor:pointer}
-.mobile-score-btn:active{background:rgba(0,0,0,0.4)}
+.mobile-score-btn{width:40px;height:40px;border-radius:50%;background:var(--soft);border:1px solid var(--line);color:var(--ink);font-size:24px;font-weight:700;display:grid;place-items:center;cursor:pointer}
+.mobile-score-btn:active{background:var(--green);color:#fff;border-color:var(--green)}
 .mobile-score-val{font-size:32px;font-weight:900;min-width:30px;text-align:center}
-.mobile-score-input{font-size:42px;font-weight:900;width:65px;text-align:center;background:transparent!important;border:2px solid transparent!important;color:#fff!important;padding:0;margin:0;font-variant-numeric:tabular-nums;border-radius:8px;outline:none!important;-webkit-appearance:none;appearance:none;box-shadow:none!important}
-.mobile-score-input:focus{border-color:rgba(255,255,255,0.4)!important}
-.mobile-net-line{font-size:13px;color:rgba(255,255,255,0.8);font-weight:700;margin-top:2px;height:16px;letter-spacing:0.5px}
-.mobile-net-line.has-stroke{color:#ffeb3b}
+.mobile-score-input{font-size:42px;font-weight:900;width:65px;text-align:center;background:transparent!important;border:2px solid transparent!important;color:var(--ink)!important;padding:0;margin:0;font-variant-numeric:tabular-nums;border-radius:8px;outline:none!important;-webkit-appearance:none;appearance:none;box-shadow:none!important}
+.mobile-score-input:focus{border-color:var(--green2)!important}
+.mobile-net-line{font-size:13px;color:var(--muted);font-weight:700;margin-top:2px;height:16px;letter-spacing:0.5px}
+.mobile-net-line.has-stroke{color:var(--pending)}
 .mobile-hole-select{font-size:28px;font-weight:900;background:transparent;border:none;color:#fff;outline:none;-webkit-appearance:none;appearance:none;text-align:center;cursor:pointer;padding-right:5px}
 .mobile-hole-select option{color:#000;font-size:16px;font-weight:normal}
-.mobile-score-input.score-birdie, .mobile-score-input.score-eagle { color: #ffd740 !important; } /* Gold */
-.mobile-score-input.score-bogey, .mobile-score-input.score-double { color: #90caf9 !important; } /* Light Blue */
+.mobile-score-input.score-birdie, .mobile-score-input.score-eagle { color: #ffd740 !important; } /* Gold (dark) */
+.mobile-score-input.score-bogey, .mobile-score-input.score-double { color: #90caf9 !important; } /* Light Blue (dark) */
 .mobile-score-input.score-triple { color: #ff5252 !important; } /* Red */
+
+html[data-theme=light] .mobile-score-input.score-birdie,
+html[data-theme=light] .mobile-score-input.score-eagle { color: #b8860b !important; } /* Dark gold */
+html[data-theme=light] .mobile-score-input.score-bogey,
+html[data-theme=light] .mobile-score-input.score-double { color: #1565c0 !important; } /* Deep blue */
+html[data-theme=light] .mobile-score-input.score-triple { color: #c62828 !important; } /* Deep red */
  .mobile-score-input.score-triple { color: #ff5252 !important; } /* Red */
   /* Results dashboard additions */
 .summary-section-title{
@@ -182,7 +558,42 @@ html[data-theme=dark]{--bg:#0f1512;--card:#17201b;--ink:#edf5f0;--muted:#9dafa4;
     grid-column:1 / -1;
   }
 }
+@media(max-width:650px){
 
+  .tabs{
+    position:fixed;
+    top:auto;
+    bottom:0;
+    left:0;
+    right:0;
+    z-index:70;
+
+    display:flex;
+    justify-content:space-around;
+
+    padding:8px 4px
+      calc(8px + env(safe-area-inset-bottom));
+
+    background:var(--card);
+    border-top:1px solid var(--line);
+    border-bottom:0;
+  }
+
+  .tab{
+    min-width:0;
+    flex:1;
+    padding:9px 3px;
+    font-size:10px;
+  }
+
+  main{
+    padding-bottom:150px;
+  }
+
+  .footer{
+    bottom:64px;
+  }
+}
 @media(min-width:650px){.grid{grid-template-columns:repeat(4,minmax(0,1fr))}.tabs{justify-content:center}.checks{grid-template-columns:repeat(18,minmax(30px,1fr))}}@media(max-width:650px){.field input,.field select,.score-input,.course-input{font-size:16px}.score-input{width:48px;height:40px}.stat-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 /* Settlement layout improvements */
 .nassau-subtotal td{background:var(--soft);border-top:2px solid var(--line);}
@@ -203,12 +614,139 @@ html[data-theme=dark]{--bg:#0f1512;--card:#17201b;--ink:#edf5f0;--muted:#9dafa4;
 .filter-chip.active{background:var(--green);color:#fff;border-color:var(--green)}
 /* input stays visually hidden via zero size + opacity, but remains click-delegatable */
 .filter-chip input{position:absolute;opacity:0;width:0;height:0;margin:0;padding:0}
-@media print{#nassauResults .table-wrap,#nassauSettlement .table-wrap{overflow:visible}#nassauResults .card,#nassauSettlement .card{break-inside:avoid}#nassauResults table{font-size:8px}header,.tabs,.footer,.button-row,.note,.no-print,.segmented,.mobile-entry{display:none!important}.panel{display:block!important}.card{box-shadow:none;break-inside:avoid}main{max-width:none;padding:0}.table-wrap{overflow:visible}.table-wrap table{font-size:9px}.score-table .player-column{position:static}}
+.highlight-stroke td{background:var(--pen-bg);color:var(--pen);font-weight:700}
+@media print{
+  header,
+  .tabs,
+  .footer,
+  button,
+  .button-row,
+  .note,
+  .no-print,
+  .segmented,
+  .mobile-entry,
+  input,
+  select,
+  textarea{
+    display:none!important;
+  }
+
+  .panel{
+    display:block!important;
+  }
+
+  body.print-settlements-only .panel{
+    display:none!important;
+  }
+
+  body.print-settlements-only #settlements{
+    display:block!important;
+  }
+
+  .card{
+    box-shadow:none!important;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+@media print{
+  header,
+  .tabs,
+  .footer,
+  button,
+  .button-row,
+  .note,
+  .no-print,
+  .segmented,
+  .mobile-entry,
+  input,
+  select,
+  textarea{
+    display:none!important;
+  }
+
+  .panel{
+    display:block!important;
+  }
+
+  body.print-settlements-only .panel{
+    display:none!important;
+  }
+
+  body.print-settlements-only #settlements{
+    display:block!important;
+  }
+
+  .card{
+    box-shadow:none!important;
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  .table-wrap{
+    overflow:visible!important;
+  }
+
+  #nassauResults .table-wrap,
+  #nassauSettlement .table-wrap{
+    overflow:visible;
+  }
+
+  #nassauResults .card,
+  #nassauSettlement .card{
+    break-inside:avoid;
+  }
+
+  #nassauResults table{
+    font-size:8px;
+  }
+
+  header,.tabs,.footer,.button-row,.note,
+  .no-print,.segmented,.mobile-entry{
+    display:none!important;
+  }
+
+  .panel{display:block!important}
+  .card{box-shadow:none;break-inside:avoid}
+  main{max-width:none;padding:0}
+  .table-wrap{overflow:visible}
+  .table-wrap table{font-size:9px}
+  .score-table .player-column{position:static}
+
+  /* NEW */
+  #settlements .card,
+  #results .card{
+    break-inside:avoid;
+    page-break-inside:avoid;
+  }
+
+  #settlements h2,
+  #results h2{
+    break-after:avoid;
+  }
+
+  #combinedSettlement{page-break-before:always}
+  table{page-break-inside:auto}
+  tr{page-break-inside:avoid}
+
+  body.print-settlements-only .panel{
+    display:none!important;
+  }
+
+  body.print-settlements-only #settlements{
+    display:block!important;
+  }
+}
+
+/* Public view: hide admin-only elements until unlocked */
+body:not(.admin-unlocked) [data-admin-only]{
+  display:none!important;
+}
+
 /* --- Public view: hide admin-only elements until unlocked --- */
 body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
 </style></head>
 <body>
-<header><div class="top"><h1>🐟 Kalkulator Ikan · Shahar</h1><div class="header-actions"><span class="pill">LOCAL • OFFLINE</span><button class="theme-button" id="themeToggle">🌙 Dark</button></div></div><p>Ikan · Cut Throat · System 36 Scorecard</p></header>
+<header><div class="top"><h1>🐟 Golf Ikan · Shahar</h1><div class="header-actions"><span class="pill">ONLINE</span><button class="theme-button" id="themeToggle">🌙 Dark</button></div></div><p>Ikan · Cut Throat · 30·10·10 Nassau</p></header>
 <nav class="tabs" id="tabs">
   <button type="button" class="tab" data-tab="round"       data-admin-only>Round</button>
   <button type="button" class="tab" data-tab="course"      data-admin-only>Course</button>
@@ -257,7 +795,12 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
   </div>
 </section>
 <section class="panel" id="strokes" data-admin-only><div class="card"><h2>Base Strokes</h2><p class="sub">Positive gives strokes to the second player; negative gives strokes to the first. Applied to the lowest-SI holes in each nine.</p><div id="baseSettings"></div></div><div class="card"><h2>Progressive Strokes</h2><p class="sub">Choose a receiver and tick holes. Combined strokes use MAX(base, progressive), capped at one stroke per player per hole.</p><div id="progressiveStrokes"></div></div><div id="nassauStrokes"></div><div class="card"><h2>Stroke Summary</h2><div id="strokeSummaryContent"></div></div></section>
-<section class="panel" id="scores" data-admin-only><div class="card"><h2>Gross Score Entry</h2><p class="sub">Table entry advances to the next player on the same hole. Mobile entry follows each player's full round in playing sequence.</p><div class="segmented no-print"><button class="button secondary active" data-view="table">Table</button><button class="button secondary" data-view="mobile">Mobile</button></div><div id="scoreEntry" class="table-entry"></div><div id="mobileEntry" class="mobile-entry"></div></div>
+<section class="panel" id="scores" data-admin-only><div class="card"><h2>Gross Score Entry</h2><p class="sub">Table entry advances to the next player on the same hole. Mobile entry follows each player's full round in playing sequence.</p><div class="segmented no-print"><button class="button secondary active" data-view="table">Table</button><button class="button secondary" data-view="mobile">Mobile</button></div><div id="scoreEntry" class="table-entry"></div><div id="mobileEntry" class="mobile-entry"></div>
+<div class="button-row no-print" style="margin-top:10px">
+  <button class="button secondary" id="undoBtn" type="button" disabled>↶ Undo</button>
+  <button class="button warning" id="clearScoresBtn" type="button">🗑️ Clear All Gross Scores</button>
+</div>
+</div>
 
 <div class="card" id="scoreNassauStatus"><h2>Nassau Status</h2><div id="scoreNassauStatusContent"></div></div><div class="card"><h2>Match Status</h2><div id="scoreMatchStatusContent"></div></div>
 
@@ -273,11 +816,15 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
   <div id="bankProgression"></div>
 </section>
 <section class="panel" id="settlements" data-admin-only>
+  <div class="button-row no-print" style="margin-bottom:10px">
+    <button class="button secondary" id="printSettlementsBtn" type="button">🖨️ Print Settlements Only</button>
+  </div>
   <div id="settlementFilters"></div>
   <div id="skinsSettlement"></div>
   <div id="matchSettlement"></div>
   <div id="nassauSettlement"></div>
   <div id="combinedSettlement"></div>
+  <div id="sweepstakesCard"></div>
 </section>
 <section class="panel active" id="public">
   <div class="card" style="display:flex;align-items:center;justify-content:space-between;gap:10px;padding:10px 14px">
@@ -297,9 +844,21 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
   <div id="pubMatchResults"></div>
   <div id="pubNassauResults"></div>
   <div id="pubSkinsResults"></div>
+  <!-- AFTER -->
   <div id="pubBankProgression"></div>
-</section></section>
+</section>
 <section class="panel" id="rules" data-admin-only><div class="card"><h2>How to Play</h2><div id="rulesContent"></div></div></section>
+<div id="quickScoreOverlay" class="quick-score-overlay hidden">
+  <div class="card">
+    <h2>Quick Score Entry</h2>
+    <div id="quickScoreContent"></div>
+
+    <button class="button secondary"
+            id="closeQuickScore">
+      Close
+    </button>
+  </div>
+</div>  
 </main><div class="footer">
   <span id="footerSummary"></span>
   <button class="button secondary" id="btnAdminUnlock" type="button"
@@ -308,78 +867,7 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
           style="flex:0 0 auto;margin:0" data-admin-only>Save</button>
 </div>
 
-<!-- ================================================================
-     B1) ADMIN GATE SCRIPT — first script inside body
-     ================================================================ -->
-<script>
-(function(){
-  'use strict';
-  const ADMIN_PASSWORD_HASH = '6fbd00f0e2e876cdb9cd68d1adaf4f6c431b064a2ac978a6faeebfa00398426c';
-  const ADMIN_SESSION_KEY = 'qmgAdminUnlocked';
-
-  async function sha256(text){
-    const buf = await crypto.subtle.digest('SHA-256',
-      new TextEncoder().encode(text));
-    return Array.from(new Uint8Array(buf))
-      .map(b => b.toString(16).padStart(2,'0')).join('');
-  }
-  function isUnlocked(){
-    return document.body.classList.contains('admin-unlocked');
-  }
-  function switchTabSafe(name){
-    if(window.QMGApp && typeof window.QMGApp.switchTab === 'function'){
-      window.QMGApp.switchTab(name); return;
-    }
-    document.querySelectorAll('.panel').forEach(function(p){
-      p.classList.toggle('active', p.id === name); });
-    document.querySelectorAll('.tabs button').forEach(function(b){
-      b.classList.toggle('active', b.getAttribute('data-tab') === name); });
-  }
-  function setUnlocked(on){
-    if(on){
-      document.body.classList.add('admin-unlocked');
-      try { sessionStorage.setItem(ADMIN_SESSION_KEY, '1'); } catch(e){}
-    } else {
-      document.body.classList.remove('admin-unlocked');
-      try { sessionStorage.removeItem(ADMIN_SESSION_KEY); } catch(e){}
-      switchTabSafe('public');
-    }
-    updateButton();
-  }
-  function updateButton(){
-    const btn = document.getElementById('btnAdminUnlock');
-    if(!btn) return;
-    btn.textContent = isUnlocked() ? '🔓 Lock' : '🔒 Admin';
-  }
-  async function onClickAdmin(){
-    if(isUnlocked()){
-      if(confirm('Lock admin view?')) setUnlocked(false);
-      return;
-    }
-    const pwd = prompt('Enter admin password:');
-    if(pwd === null) return;
-    const h = await sha256(pwd);
-    if(h === ADMIN_PASSWORD_HASH){ setUnlocked(true); switchTabSafe('round'); }
-    else alert('Incorrect password.');
-  }
-  function init(){
-    let saved = false;
-    try { saved = sessionStorage.getItem(ADMIN_SESSION_KEY) === '1'; } catch(e){}
-    if(saved) document.body.classList.add('admin-unlocked');
-    else switchTabSafe('public');
-    updateButton();
-    const btn = document.getElementById('btnAdminUnlock');
-    if(btn) btn.addEventListener('click', onClickAdmin);
-    try {
-      if(new URLSearchParams(location.search).get('admin') === '1' && !isUnlocked())
-        onClickAdmin();
-    } catch(e){}
-  }
-  if(document.readyState === 'loading')
-    document.addEventListener('DOMContentLoaded', init, {once:true});
-  else init();
-})();
-</script>
+<!-- B1 admin-gate script removed — Supabase (B2) is the single admin authority -->
 
 <!-- ================================================================
      B2) SUPABASE CLOUD SYNC SCRIPT
@@ -392,17 +880,47 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
   const SUPABASE_ANON = 'sb_publishable_uhvMHGg0bi4ExmkQjCyYYg_VbEyByty';
   const ROW_ID        = 2;   /* 18-hole uses row id=2, coexists with 9-hole (id=1) */
 
-  const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON);
-  let currentUser = null;
-  var cloudSaveTimer = null;
+  if(!window.supabase?.createClient){
+  console.warn(
+    '[Golf Ikan] Supabase unavailable. Local mode active.'
+  );
 
-  window.scheduleCloudSave = function(){
-    if(cloudSaveTimer) clearTimeout(cloudSaveTimer);
-    cloudSaveTimer = setTimeout(function(){
-      cloudSaveTimer = null;
-      if(window.QMGCloud) window.QMGCloud.save();
-    }, 1500);
+  window.QMGCloud = {
+    save: async()=>{},
+    getUser:()=>null,
+    rowId:ROW_ID,
+    unavailable:true
   };
+
+  return;
+}
+
+const supabase = window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_ANON
+);
+  // AFTER
+let currentUser = null;
+var cloudSaveTimer = null;
+var cloudSaveDeadline = 0;   // max-wait guard
+const CLOUD_DEBOUNCE_MS = 1500;
+const CLOUD_MAX_WAIT_MS = 8000;
+
+window.scheduleCloudSave = function(){
+  const now = Date.now();
+  if(!cloudSaveDeadline) cloudSaveDeadline = now + CLOUD_MAX_WAIT_MS;
+
+  if(cloudSaveTimer) clearTimeout(cloudSaveTimer);
+
+  const remaining = cloudSaveDeadline - now;
+  const delay = Math.max(0, Math.min(CLOUD_DEBOUNCE_MS, remaining));
+
+  cloudSaveTimer = setTimeout(function(){
+    cloudSaveTimer = null;
+    cloudSaveDeadline = 0;
+    if(window.QMGCloud) window.QMGCloud.save();
+  }, delay);
+};
 
   window.saveToCloud = async function(){
     if(!currentUser){ console.warn('[QMG] Not logged in — save blocked.'); return; }
@@ -421,10 +939,30 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
     if(Object.keys(data.data).length === 0) return;
     try{
       /* Mirror loadState(): merge over freshState() then normalize */
-      const merged = Object.assign({}, window.QMGApp.freshState(), data.data);
-      window.QMGApp.setState(merged);
-      window.QMGApp.normalize();
-      window.QMGApp.renderAll();
+      const merged = Object.assign(
+  {},
+  window.QMGApp.freshState(),
+  data.data
+);
+
+window.QMGApp.setState(merged);
+window.QMGApp.normalize();
+
+// Cache cloud data locally without triggering
+// another cloud-save operation.
+try {
+  localStorage.setItem(
+    'kalkulatorIkanGolf_v12',
+    JSON.stringify(window.QMGApp.getState())
+  );
+} catch (cacheError) {
+  console.warn(
+    '[Golf Ikan] Local cache failed:',
+    cacheError
+  );
+}
+
+window.QMGApp.renderAll();
       if(typeof renderPublic === 'function') renderPublic();
       updatePublicTimestamp();
       console.log('[QMG] Loaded from cloud (row ' + ROW_ID + ')');
@@ -500,34 +1038,65 @@ body:not(.admin-unlocked) [data-admin-only]{ display: none !important; }
       });
     }
 
-    /* Admin button in footer — first click logs into Supabase Auth */
-    const adminBtn = document.getElementById('btnAdminUnlock');
-    if(adminBtn){
-      adminBtn.replaceWith(adminBtn.cloneNode(true));
-      const freshBtn = document.getElementById('btnAdminUnlock');
-      freshBtn.addEventListener('click', async function(){
-        if(currentUser){
-          if(confirm('Log out from admin?')){ await logout(); location.reload(); }
-          return;
-        }
-        const email = prompt('Admin email:');
-        if(!email) return;
-        const password = prompt('Admin password:');
-        if(!password) return;
-        try{
-          await login(email.trim(), password);
-          document.body.classList.add('admin-unlocked');
-          try { sessionStorage.setItem('qmgAdminUnlocked','1'); } catch(e){}
-          freshBtn.textContent = '🔓 Logout';
-          if(window.QMGApp) window.QMGApp.switchTab('round');
-          await loadFromCloud();
-        } catch(err){ alert('Login failed: ' + err.message); }
-      });
+    /* Admin button — Supabase is the single authentication authority */
+const adminBtn = document.getElementById('btnAdminUnlock');
+
+if(adminBtn){
+  adminBtn.addEventListener('click', async function(){
+
+    /* Already authenticated: log out */
+    if(currentUser){
+      if(confirm('Log out from admin?')){
+        await logout();
+        document.body.classList.remove('admin-unlocked');
+        location.reload();
+      }
+      return;
     }
-    if(currentUser && adminBtn){
+
+    const email = prompt('Admin email:');
+    if(!email) return;
+
+    const password = prompt('Admin password:');
+    if(!password) return;
+
+    try{
+      /* Authenticate with Supabase */
+      await login(email.trim(), password);
+
+      /* Unlock administrator interface */
       document.body.classList.add('admin-unlocked');
-      document.getElementById('btnAdminUnlock').textContent = '🔓 Logout';
+
+      adminBtn.textContent = '🔓 Logout';
+
+      /* Open the main tournament tab */
+      if(window.QMGApp){
+        window.QMGApp.switchTab('round');
+      }
+
+      /* Load tournament data */
+      await loadFromCloud();
+
+    }catch(err){
+      document.body.classList.remove('admin-unlocked');
+      alert('Login failed: ' + err.message);
     }
+
+  });
+}
+
+/* Restore admin interface only when Supabase confirms a valid session */
+if(currentUser){
+  document.body.classList.add('admin-unlocked');
+  if(adminBtn){
+    adminBtn.textContent = '🔓 Logout';
+  }
+}else{
+  document.body.classList.remove('admin-unlocked');
+  if(adminBtn){
+    adminBtn.textContent = '🔒 Admin';
+  }
+}
   });
 
   window.QMGCloud = {
@@ -611,6 +1180,24 @@ const THAI_COURSES = {
   }
 };
 const $=id=>document.getElementById(id),num=v=>Number.isFinite(Number(v))?Number(v):0,esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+
+let toastT;
+function flashToast(msg){
+  let t = $('appToast');
+  if (!t){
+    t = document.createElement('div');
+    t.id = 'appToast';
+    t.style.cssText = 'position:fixed;left:50%;bottom:74px;transform:translateX(-50%);'+
+      'background:var(--green);color:#fff;padding:9px 14px;border-radius:10px;'+
+      'font-size:12px;font-weight:700;z-index:999;box-shadow:var(--shadow);opacity:0;'+
+      'transition:opacity .15s;pointer-events:none';
+    document.body.appendChild(t);
+  }
+  t.textContent = msg;
+  t.style.opacity = '1';
+  clearTimeout(toastT);
+  toastT = setTimeout(()=>{ t.style.opacity = '0'; }, 1800);
+}
 const today=()=>{const d=new Date();return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`};
 const money=v=>`QAR ${Math.abs(Math.round(v*100)/100).toFixed(2)}`.replace(/\.00$/,'');
 const fmtSigned=v=>(v>0?'+':v<0?'−':'')+money(v);
@@ -629,18 +1216,32 @@ state.filters={
 function loadState(){try{let raw=localStorage.getItem(STORAGE_KEY);if(!raw){raw=localStorage.getItem(PREVIOUS_STORAGE_KEY);if(raw){const old=JSON.parse(raw);state={...freshState(),...old,nassau:old.nassau||{enabled:false},formats:{...freshState().formats,...old.formats},skinsRules:{...freshState().skinsRules,...old.skinsRules},matchplay:{...freshState().matchplay,...old.matchplay}};normalizeState();localStorage.setItem(STORAGE_KEY,JSON.stringify(state));return}}const s=JSON.parse(raw||'null');if(s&&typeof s==='object')state={...freshState(),...s,nassau:s.nassau||{enabled:false},formats:{...freshState().formats,...s.formats},skinsRules:{...freshState().skinsRules,...s.skinsRules},matchplay:{...freshState().matchplay,...s.matchplay}}}catch(e){console.warn('Load failed',e)}normalizeState()}
 function saveState(){
   try{
-    localStorage.setItem(STORAGE_KEY,JSON.stringify(state));
-    $('saveStatus').textContent='Saved · '+new Date().toLocaleTimeString();
-    const footer=$('footerSummary');
-    if(footer && !footer.innerHTML.includes('✓ Saved')){
-      const original=footer.textContent;
-      footer.innerHTML=original+' <span style="color:var(--green2);font-weight:bold;">✓ Saved</span>';
-      setTimeout(()=>footer.textContent=original,2000);
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+
+    const statusEl = $('saveStatus');
+    if(statusEl) statusEl.textContent = 'Saved · ' + new Date().toLocaleTimeString();
+
+    updateFooter();
+
+    const footer = $('footerSummary');
+    if(footer){
+      const existing = footer.querySelector('.save-indicator');
+      if(existing) existing.remove();
+
+      const saved = document.createElement('span');
+      saved.className    = 'save-indicator';
+      saved.textContent  = ' · ✓ Saved';
+      saved.style.color  = 'var(--green2)';
+      saved.style.fontWeight = '800';
+      footer.appendChild(saved);
+
+      setTimeout(() => saved.remove(), 3000);
     }
   }catch(e){
-    $('saveStatus').textContent='Save failed · storage unavailable';
+    const statusEl = $('saveStatus');
+    if(statusEl) statusEl.textContent = 'Save failed · storage unavailable';
+    console.warn('Save failed', e);
   }
-  updateFooter();
   if(typeof window.scheduleCloudSave === 'function') window.scheduleCloudSave();
 }
 function persist(){
@@ -648,7 +1249,32 @@ function persist(){
   saveTimer = setTimeout(saveState, 40);
   if(typeof window.scheduleCloudSave === 'function') window.scheduleCloudSave();
 }
-function applyTheme(t){document.documentElement.dataset.theme=t;localStorage.setItem(THEME_KEY,t);$('themeToggle').textContent=t==='dark'?'☀️ Light':'🌙 Dark';document.querySelector('meta[name="theme-color"]').content=t==='dark'?'#0f1512':'#10251d'}
+function applyTheme(t){
+  t=t==='light'?'light':'dark';
+
+  document.documentElement.dataset.theme=t;
+
+  try {
+    localStorage.setItem(THEME_KEY,t);
+  } catch(e) {
+    console.warn('Theme preference unavailable:',e);
+  }
+
+  const btn=$('themeToggle');
+
+  if(btn){
+    btn.textContent=
+      t==='dark'?'☀️ Light':'🌙 Dark';
+  }
+
+  const meta=document.querySelector(
+    'meta[name="theme-color"]'
+  );
+
+  if(meta){
+    meta.content=t==='dark'?'#0a0e0d':'#fafafa';
+  }
+}
 function switchTab(id){document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('active',b.dataset.tab===id));document.querySelectorAll('.panel').forEach(p=>p.classList.toggle('active',p.id===id));window.scrollTo({top:0,behavior:'instant'})}
 /* 3. SKINS ENGINE — reads only state.scores, state.handicaps, state.skinsRules, state.pars, state.strokeIndexes, state.buyIn. */
 function skinsStrokes(p,h){if(state.skinsRules.scoreBasis!=='net')return 0;const hi=state.handicaps[SLOTS.indexOf(p)],si=state.strokeIndexes[h-1];return hi>=si?1:0}
@@ -675,7 +1301,7 @@ function settleSkins(r){const pot=state.buyIn*r.players.length,validSkins=r.play
 function strokeAllocation(code,hole){const [a,b]=code.split(''),half=hole<=9?'front':'back',base=num(state.matchplay.baseStrokes[code]?.[half]),nine=hole<=9?1:10,rank=Array.from({length:9},(_,i)=>nine+i).sort((x,y)=>state.strokeIndexes[x-1]-state.strokeIndexes[y-1]),applies=rank.indexOf(hole)<Math.abs(base),baseA=applies&&base<0?1:0,baseB=applies&&base>0?1:0,receiver=state.matchplay.progressiveReceivers[code]||b,prog=!!state.matchplay.progressiveStrokes[`${code}_${hole}`],progA=prog&&receiver===a?1:0,progB=prog&&receiver===b?1:0;return{baseA,baseB,progA,progB,aStk:Math.min(1,Math.max(baseA,progA)),bStk:Math.min(1,Math.max(baseB,progB))}}
 function calculateMatch(code){const [a,b]=code.split('');let aw=0,bw=0,ties=0,played=0,running=0,biggest=0;const holes=playingSequence().map(h=>{const st=strokeAllocation(code,h),ag=grossScore(a,h),bg=grossScore(b,h);let an=null,bn=null,result='UNPLAYED';if(ag!==null&&bg!==null){played++;an=ag-st.aStk;bn=bg-st.bStk;if(an<bn){aw++;running++;result='FIRST'}else if(bn<an){bw++;running--;result='SECOND'}else{ties++;result='TIE'}biggest=Math.max(biggest,Math.abs(running))}return{hole:h,ag,bg,an,bn,result,running,...st}});return{code,a,b,holes,aw,bw,ties,played,lead:aw-bw,biggest,money:(aw-bw)*state.stake}}
 function allMatches(){return MATCHUPS.filter(c=>activePlayers().includes(c[0])&&activePlayers().includes(c[1])).map(calculateMatch)}
-function matchStatus(m){const rem=18-m.played,l=Math.abs(m.lead),leader=playerName(m.lead>0?m.a:m.b);if(!m.played)return'No holes played';if(!m.lead)return'AS';if(l>rem)return`${l}&${rem}`;if(l===rem)return`DORMIE ${rem}`;return`${l} ${m.lead>0?'UP':'DN'}`}
+
 function matchProgressPosition(m){
   if(!m.played || m.lead===0) return 'AS';
 
@@ -762,9 +1388,20 @@ function applyCoursePreset(name) {
   if (!name) return;
   const c = THAI_COURSES[name];
   if (!c) return;
+
+  const scores = Object.keys(state.scores || {}).length;
+  if (scores && !confirm(
+    `Load "${name}"?\n\nThis replaces par and Stroke Index for all 18 holes.\n` +
+    `${scores} gross score${scores === 1 ? '' : 's'} already entered will be re-evaluated against the new values.\n\nContinue?`
+  )) {
+    const sel = $('coursePreset');
+    if (sel) sel.value = state.coursePresetName || '';
+    return;
+  }
+
   state.pars = [...c.pars];
   state.strokeIndexes = [...c.si];
-  state.coursePresetName = name;   // optional metadata
+  state.coursePresetName = name;
   renderAll(false);
   persist();
 }
@@ -779,7 +1416,13 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 });
-function renderCourse(){const front=state.pars.slice(0,9).reduce((a,b)=>a+b,0),back=state.pars.slice(9).reduce((a,b)=>a+b,0);$('courseStats').innerHTML=[['Front 9',front],['Back 9',back],['Course Par',front+back]].map(([l,v])=>`<div class="stat"><span class="label">${l}</span><strong>${v}</strong></div>`).join('');$('courseSetup').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Hole</th><th>Par</th><th>Stroke Index</th></tr></thead><tbody>${Array.from({length:18},(_,i)=>`<tr><td>${i+1}</td><td><input class="course-input" type="number" min="3" max="6" data-course="par" data-hole="${i+1}" value="${state.pars[i]}"></td><td><input class="course-input" type="number" min="1" max="18" data-course="si" data-hole="${i+1}" value="${state.strokeIndexes[i]}"></td></tr>`).join('')}</tbody></table></div>`;const valid=validateSI(state.strokeIndexes)&&state.pars.every(v=>Number.isInteger(v)&&v>=3&&v<=6);$('courseValidation').innerHTML=valid?'<span class="positive">✓ Course data valid · SI 1–18 unique · Par 3–6</span>':'<span class="negative">Invalid course data. Check par and unique Stroke Index values.</span>'}
+function renderCourse(){
+  const sel = $('coursePreset');
+  if (sel) sel.value = state.coursePresetName || '';
+
+  const front=state.pars.slice(0,9).reduce((a,b)=>a+b,0), 
+  back=state.pars.slice(9).reduce((a,b)=>a+b,0);  
+  $('courseStats').innerHTML=[['Front 9',front],['Back 9',back],['Course Par',front+back]].map(([l,v])=>`<div class="stat"><span class="label">${l}</span><strong>${v}</strong></div>`).join('');$('courseSetup').innerHTML=`<div class="table-wrap"><table><thead><tr><th>Hole</th><th>Par</th><th>Stroke Index</th></tr></thead><tbody>${Array.from({length:18},(_,i)=>`<tr><td>${i+1}</td><td><input class="course-input" type="number" min="3" max="6" data-course="par" data-hole="${i+1}" value="${state.pars[i]}"></td><td><input class="course-input" type="number" min="1" max="18" data-course="si" data-hole="${i+1}" value="${state.strokeIndexes[i]}"></td></tr>`).join('')}</tbody></table></div>`;const valid=validateSI(state.strokeIndexes)&&state.pars.every(v=>Number.isInteger(v)&&v>=3&&v<=6);$('courseValidation').innerHTML=valid?'<span class="positive">✓ Course data valid · SI 1–18 unique · Par 3–6</span>':'<span class="negative">Invalid course data. Check par and unique Stroke Index values.</span>'}
 function renderStrokes(){if(!state.formats.matchplay){$('strokes').innerHTML='<div class="card"><h2>Match Play Strokes</h2><p class="sub">Enable Match play in Round Setup to configure strokes.</p></div>';return}const pairs=MATCHUPS.filter(c=>activePlayers().includes(c[0])&&activePlayers().includes(c[1]));$('baseSettings').innerHTML=pairs.map(code=>{const x=state.matchplay.baseStrokes[code]||{};return`<div class="match-card"><div class="match-header"><strong>${esc(playerName(code[0]))} vs ${esc(playerName(code[1]))}</strong><span class="status">${code}</span></div><div class="grid"><div class="field"><label>Front 9 Strokes</label><div class="stroke-control"><button class="stroke-btn" data-stroke-action="dec" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="front" aria-label="Decrease">−</button><span class="stroke-value">${x.front??0}</span><button class="stroke-btn" data-stroke-action="inc" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="front" aria-label="Increase">+</button></div></div><div class="field"><label>Back 9 Strokes</label><div class="stroke-control"><button class="stroke-btn" data-stroke-action="dec" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="back" aria-label="Decrease">−</button><span class="stroke-value">${x.back??0}</span><button class="stroke-btn" data-stroke-action="inc" data-stroke-type="base" data-stroke-code="${code}" data-stroke-half="back" aria-label="Increase">+</button></div></div></div><div class="small">Positive: ${esc(playerName(code[1]))} · Negative: ${esc(playerName(code[0]))}</div></div>`}).join('');$('progressiveStrokes').innerHTML=pairs.map(code=>{const receiver=state.matchplay.progressiveReceivers[code]||code[1];return`<div class="match-card"><div class="match-header"><strong>${esc(playerName(code[0]))} vs ${esc(playerName(code[1]))}</strong><span class="status">Progressive</span></div><div class="field" style="margin-bottom:7px"><label>Receiver</label><select data-receiver="${code}"><option value="${code[0]}" ${receiver===code[0]?'selected':''}>${esc(playerName(code[0]))}</option><option value="${code[1]}" ${receiver===code[1]?'selected':''}>${esc(playerName(code[1]))}</option></select></div><div class="checks">${Array.from({length:18},(_,i)=>{const h=i+1,checked=!!state.matchplay.progressiveStrokes[`${code}_${h}`];return`<label class="check-hole ${checked?'checked':''}">H${h}<input type="checkbox" data-progressive="${code}" data-hole="${h}" ${checked?'checked':''}></label>`}).join('')}</div></div>`}).join('');$('strokeSummaryContent').innerHTML=pairs.map(code=>`<div class="match-card"><strong>${esc(playerName(code[0]))} vs ${esc(playerName(code[1]))}</strong><div class="table-wrap"><table><thead><tr><th>Hole</th><th>SI</th><th>Base</th><th>Prog</th><th>Combined</th><th>Receiver</th></tr></thead><tbody>${Array.from({length:18},(_,i)=>{const h=i+1,s=strokeAllocation(code,h),base=s.baseA||s.baseB,prog=s.progA||s.progB,combined=s.aStk||s.bStk,recv=s.aStk?playerName(code[0]):s.bStk?playerName(code[1]):'–';return`<tr><td>${h}</td><td>${state.strokeIndexes[i]}</td><td>${base}</td><td>${prog}</td><td><strong>${combined}</strong></td><td>${esc(recv)}</td></tr>`}).join('')}</tbody></table></div></div>`).join('')}
 function renderScoreTable(){const seq=playingSequence();$('scoreEntry').innerHTML=`<div class="table-wrap"><table class="score-table"><thead><tr><th class="player-column">Player</th>${seq.map(h=>`<th>H${h}<br><span class="small">P${state.pars[h-1]}</span><br><span class="small">SI ${state.strokeIndexes[h-1]}</span></th>`).join('')}</tr></thead><tbody>${activePlayers().map(p=>`<tr><td class="player-column">${esc(playerName(p))}</td>${seq.map(h=>{const g=grossScore(p,h),s=getPlayerStrokes(p,h);const stkStr=s===1?'*':s>=2?'**':'';return`<td><input class="score-input ${g!==null?'saved':''}" inputmode="numeric" type="text" maxlength="2" autocomplete="off" onfocus="this.select()" data-score-player="${p}" data-hole="${h}" value="${g??''}" aria-label="${esc(playerName(p))} hole ${h}"><div class="net-line" style="${s>0?'color:var(--pen);font-weight:bold':''}">${stkStr}${g!==null&&s>0?` Net ${g-s}`:''}</div></td>`}).join('')}</tr>`).join('')}</tbody></table></div>`}
 function sequencePositions(){const seq=playingSequence();return seq.flatMap(h=>activePlayers().map(p=>({slot:p,hole:h}))) }
@@ -793,14 +1436,18 @@ function renderMobile() {
   const header = `
   <div class="mobile-hole-header">
     <div class="mobile-course-title">18 Holes Par ${coursePar}</div>
-    <button class="mobile-nav-btn left" data-mobile-hole-nav="-1">‹</button>
+    <button class="mobile-nav-btn left"
+        data-mobile-hole-nav="-1"
+        aria-label="Previous hole">
+      ‹
+    </button>
     <div style="display:flex;align-items:center;justify-content:center;gap:8px;">
       <h2 class="mobile-hole-number" style="margin:0;">Hole</h2>
       <select id="mobileHoleSelect" class="mobile-hole-select">
         ${playingSequence().map(x => `<option value="${x}" ${x===h?'selected':''}>${x}</option>`).join('')}
       </select>
     </div>
-    <button class="mobile-nav-btn right" data-mobile-hole-nav="1">›</button>
+    <button class="mobile-nav-btn right" data-mobile-hole-nav="1" aria-label="Next hole">›</button>
     <div class="mobile-hole-sub">Par ${state.pars[h-1]}</div>
     <div class="mobile-hole-si">Stroke index ${state.strokeIndexes[h-1]}/<span class="highlight">18</span></div>
   </div>
@@ -823,9 +1470,10 @@ if (score !== null) {
   const stkStr = s === 1 ? '*' : s >= 2 ? '**' : '';
   const netText = `${stkStr}${score !== null && s > 0 ? ` Net ${score - s}` : ''}`;
 
-  return `
-    <div class="mobile-player-card">
-      <div class="mobile-player-info">
+  const isPending = score === null;
+return `
+  <div class="mobile-player-card" style="${isPending ? 'box-shadow:inset 0 0 0 2px #ffd740' : ''}">
+    <div class="mobile-player-info">
         <div class="mobile-player-slot">Slot ${SLOTS[i]}</div>
         <div class="mobile-player-name">${esc(playerName(p))}</div>
         <div class="mobile-player-hcp">Handicap ${state.handicaps[i]}</div>
@@ -907,8 +1555,10 @@ function renderMatchProgressSummary(){
     </div>
   </div>`;
 
-  if(scoresC)  scoresC.innerHTML  = html;
-  if(resultsC) resultsC.innerHTML = state.filters.matchplay ? html : '';
+// AFTER
+  const visible = state.filters.matchplay;
+  if(scoresC)  scoresC.innerHTML  = visible ? html : '';
+  if(resultsC) resultsC.innerHTML = visible ? html : '';
 }
 function renderLiveRoundSummary(){
   const container=$('liveRoundSummary');
@@ -1030,6 +1680,13 @@ function renderMatchResults(){
   if(!state.formats.matchplay || !state.filters.matchplay){$('matchResults').innerHTML='';return;}
 
   const matches=allMatches();
+
+  if (!matches.some(m => m.played)) {
+    $('matchResults').innerHTML =
+      `<div class="card"><h2>Match Play Hole-by-Hole</h2>
+       <p class="sub">No holes played yet — match results will appear as scores are entered.</p></div>`;
+    return;
+  }
 
   $('matchResults').innerHTML=`
     <div class="card">
@@ -1156,8 +1813,15 @@ return `
 function renderSkinsResults(){
   if(!state.formats.skins || !state.filters.skins){$('skinsResults').innerHTML='';return;}
 
-
   const r=calculateSkins();
+
+  if (!r.holesPlayed) {
+    $('skinsResults').innerHTML =
+      `<div class="card"><h2>Skins Results · Hole-by-Hole</h2>
+       <p class="sub">No completed holes yet — skins results will appear once the first hole is fully scored.</p></div>`;
+    return;
+  }
+
   const validSkins=Object.values(r.bank)
     .reduce((sum,value)=>sum+value,0);
 
@@ -1278,9 +1942,15 @@ function renderSkinsResults(){
 function renderBankProgression(){
   const container=$('bankProgression');
   if(!state.formats.skins || !state.filters.skins){container.innerHTML='';return;}
- 
 
   const r=calculateSkins();
+
+  if (!r.holesPlayed) {
+    container.innerHTML =
+      `<div class="card"><h2>Skins Bank Progression</h2>
+       <p class="sub">No completed holes yet — bank progression will appear after the first hole is fully scored.</p></div>`;
+    return;
+  }
 
   container.innerHTML=`
     <div class="card">
@@ -1592,7 +2262,57 @@ function renderSettlements(){
       </span>
     </div>
   ` : '';
- 
+ // AFTER
+const nassauResult = state.nassau?.enabled ? calculateNassau() : null;
+const nassauValid = !!(nassauResult && nassauResult.valid);
+
+const nr = state.filters.nassau &&
+  state.nassau?.enabled
+    ? calculateNassau()
+    : null;
+
+const combined = activePlayers().map(p => ({
+  p,
+  net:
+    (state.formats.skins && state.filters.skins
+      ? Number(s.net[p]) : 0) +
+
+    (state.formats.matchplay && state.filters.matchplay
+      ? Number(ms.balances[p]) : 0) +
+
+    (nr?.valid
+      ? Number(nr.playerNet?.[p] || 0) : 0)
+}));
+const creditors = combined.filter(x => x.net >  0.01).sort((a,b) => b.net - a.net);
+const debtors   = combined.filter(x => x.net < -0.01).sort((a,b) => a.net - b.net);
+let di = 0, ci = 0;
+const payments = [];
+while (di < debtors.length && ci < creditors.length) {
+  const amt = Math.min(-debtors[di].net, creditors[ci].net);
+  payments.push({ from: debtors[di].p, to: creditors[ci].p, amt });
+  debtors[di].net   += amt;
+  creditors[ci].net -= amt;
+  if (debtors[di].net   > -0.01) di++;
+  if (creditors[ci].net <  0.01) ci++;
+}
+// render `payments` as a simple table
+$('sweepstakesCard').innerHTML = payments.length
+  ? `<div class="card">
+      <div class="summary-section-title">
+        <h2>💸 Who Pays Whom</h2>
+        <span class="status">${payments.length} payment${payments.length === 1 ? '' : 's'}</span>
+      </div>
+      <div class="table-wrap"><table>
+        <thead><tr><th>Payer</th><th>Payee</th><th>Amount</th></tr></thead>
+        <tbody>${payments.map(x => `
+          <tr>
+            <td><strong>${esc(playerName(x.from))}</strong></td>
+            <td><strong>${esc(playerName(x.to))}</strong></td>
+            <td class="money">${money(x.amt)}</td>
+          </tr>`).join('')}</tbody>
+      </table></div>
+    </div>`
+  : '';  
   $('combinedSettlement').innerHTML=(()=>{
   const showSkins   = !!state.formats.skins    && state.filters.skins;
     const showMatch   = !!state.formats.matchplay && state.filters.matchplay;
@@ -1693,7 +2413,17 @@ function renderFilterPanel(targetId) {
       </div>
     </div>`;
 }
-function updateFooter(){const bits=[`${state.playerCount} players`,state.formats.skins?`Skins pot ${money(state.buyIn*state.playerCount)}`:'',state.formats.matchplay?`Match ${money(state.stake)}/hole`:'' ,state.nassau?.enabled?`Nassau ${money(state.nassau.frontStakes.base)}/${money(state.nassau.frontStakes.insure)}/${money(state.nassau.frontStakes.buy)} · Back ×${state.nassau.backMultiplier}`:''];$('footerSummary').textContent=bits.filter(Boolean).join(' · ')}
+function updateFooter(){
+  const bits=[
+    `${state.playerCount} players`,
+    state.formats.skins    ? `Skins pot ${money(state.buyIn*state.playerCount)}` : '',
+    state.formats.matchplay ? `Match ${money(state.stake)}/hole`                  : '',
+    state.nassau?.enabled   ? `Nassau ${money(state.nassau.frontStakes.base)}/${money(state.nassau.frontStakes.insure)}/${money(state.nassau.frontStakes.buy)} · Back ×${state.nassau.backMultiplier}` : ''
+  ];
+  const off = ['matchplay','nassau','skins'].filter(k => !state.filters[k]);
+  if (off.length && off.length < 3) bits.push(`Filtered: hides ${off.join(', ')}`);
+  $('footerSummary').textContent = bits.filter(Boolean).join(' · ');
+}
 /* 6A. MODIFIED NASSAU — independent pure scoring and settlement engine */
 const NASSAU_DEFAULTS={enabled:false,mode:'strokes',pair:['A','B'],strokes:{A:{front:0,back:0},B:{front:0,back:0}},frontStakes:{base:30,insure:10,buy:10},backMultiplier:1,autoSuggestedBackMultiplier:null};
 function normalizeNassauState(newRound=false){
@@ -1722,10 +2452,22 @@ if(n.strokeSource==='matchplay'&&(!state.formats.matchplay||n.format==='teams'))
   n.frontStakes=n.frontStakes&&typeof n.frontStakes==='object'?n.frontStakes:{};
   for(const [k,d] of Object.entries({base:30,insure:10,buy:10})){const v=n.frontStakes[k];n.frontStakes[k]=v!==''&&v!==null&&v!==undefined&&String(v).trim()!==''&&Number.isFinite(Number(v))&&Number(v)>=0?Number(v):d;}
   n.backMultiplier=Number(n.backMultiplier)===2?2:1;
-  n.autoSuggestedBackMultiplier=n.autoSuggestedBackMultiplier===2?2:null;
+  // AFTER
+n.autoSuggestedBackMultiplier = null;  // derived at render time, never persisted
   state.nassau=n;
 }
-function nassauStrokes(slot,hole,mode=state.nassau?.mode,strokes=state.nassau?.strokes,strokeIndexes=state.strokeIndexes){
+function nassauPlayingNines(startHole=state.startHole){
+  const seq=Array.from(
+    {length:18},
+    (_,i)=>(startHole-1+i)%18+1
+  );
+
+  return {
+    front:seq.slice(0,9),
+    back:seq.slice(9,18)
+  };
+}
+  function nassauStrokes(slot,hole,mode=state.nassau?.mode,strokes=state.nassau?.strokes,strokeIndexes=state.strokeIndexes){
   if(mode==='scratch')return 0;
   const half=hole<=9?'front':'back',count=Math.max(0,Math.min(18,Math.trunc(Number(strokes?.[slot]?.[half])||0)));
   const holes=Array.from({length:9},(_,i)=>i+(half==='front'?1:10)).sort((a,b)=>Number(strokeIndexes[a-1])-Number(strokeIndexes[b-1]));
@@ -1736,7 +2478,9 @@ function nassauStrokes(slot,hole,mode=state.nassau?.mode,strokes=state.nassau?.s
 // Returns the same shape as nassauStrokeMap(): { A: int[18], B: int[18] } where A=first player, B=second.
 function nassauPairStrokeMapFromMatchPlay(pairSlots, strokeIndexes) {
   const [a, b] = pairSlots;
-  const code = a + b;
+  const code = [a,b]
+  .sort((x,y)=>SLOTS.indexOf(x)-SLOTS.indexOf(y))
+  .join('');
   const mapA = [], mapB = [];
   for (let h = 1; h <= 18; h++) {
     const alloc = strokeAllocation(code, h);
@@ -1864,7 +2608,9 @@ function renderNassauSetup(){
  if(fmt==='pair')assignment=`<div class="grid"><div class="field"><label>Player A</label><select id="nassauPairA">${opts}</select></div><div class="field"><label>Player B</label><select id="nassauPairB">${opts}</select></div></div>`;
  if(fmt==='teams'&&state.playerCount===4)assignment=`<h4>Team A</h4><div class="grid"><div class="field"><label>Player 1</label><select id="nassauTeamA1">${opts}</select></div><div class="field"><label>Player 2</label><select id="nassauTeamA2">${opts}</select></div></div><p class="small">Team B automatically uses the other two players.</p>`;
  const fRange=r.frontHoleRange||'';
-const suggestion=fmt==='pair'&&r.valid&&r.suggestedBackMultiplier===2?`<div class="note">Front 9 <span class="muted-cell">(${fRange})</span> had a winner — double back stakes suggested.</div>`:'';
+const suggestion=fmt==='pair'&&r.valid&&r.suggestedBackMultiplier===2
+  ?`<div class="note">Front 9 <span class="muted-cell">(${fRange})</span> had a winner.
+     <button class="button secondary" id="applyDoubleBack" type="button" style="margin-left:6px">Double back stakes</button></div>`:'';
  box.innerHTML=`<h3>Modified Nassau</h3><label class="checkbox-row"><input type="checkbox" id="nassauEnabled" ${n.enabled?'checked':''}><span>Enable Modified Nassau</span></label><div class="field"><label>Match format</label><select id="nassauFormat"><option value="pair" ${fmt==='pair'?'selected':''}>Two-player match (legacy)</option><option value="teams" ${fmt==='teams'?'selected':''} ${state.playerCount!==4?'disabled':''}>Two teams of two · Four-ball better ball</option><option value="individual" ${fmt==='individual'?'selected':''} ${state.playerCount<3?'disabled':''}>${state.playerCount===3?'Three individual players · three head-to-head matches':state.playerCount===4?'Four individual players · six head-to-head matches':'Individual players · head-to-head matches'}</option></select></div><div class="field"><label>Stroke source</label><select id="nassauStrokeSource" ${fmt==='teams'||!state.formats.matchplay?'disabled':''}><option value="nassau" ${n.strokeSource==='nassau'?'selected':''}>Nassau strokes (own inputs)</option><option value="matchplay" ${n.strokeSource==='matchplay'?'selected':''}>Match Play base + progressive</option></select>${fmt==='teams'?'<div class="small">Not available for teams mode.</div>':!state.formats.matchplay?'<div class="small">Enable Match Play to use this.</div>':''}</div>${assignment}<div class="grid"><div class="field"><label>Front Base stake</label><input type="number" min="0" step="0.01" data-nassau-stake="base" value="${fs.base}"></div><div class="field"><label>Front Insure stake</label><input type="number" min="0" step="0.01" data-nassau-stake="insure" value="${fs.insure}"></div><div class="field"><label>Front Buy stake</label><input type="number" min="0" step="0.01" data-nassau-stake="buy" value="${fs.buy}"></div><div class="field"><label>Back 9 stake multiplier</label><select id="nassauMultiplier"><option value="1" ${m===1?'selected':''}>Same as front (×1)</option><option value="2" ${m===2?'selected':''}>Double front (×2)</option></select></div></div><p class="small">Back stakes: Base ${money(back.base)} · Insure ${money(back.insure)} · Buy ${money(back.buy)}</p>${suggestion}<div class="note">Base, Insure and Buy presses are tracked independently for each nine and each match. In individual mode, every player pairing is settled separately (3 players = 3 matches, 4 players = 6). In team mode, each side uses its lowest net score on every hole. <strong>Stroke source = Match Play</strong> means each Nassau matchup reuses that matchup's Match Play base + progressive allocation; the Strokes tab becomes read-only. <strong>Front 9</strong> in Nassau is the first 9 holes played: start hole 1 → front = holes 1–9; start hole 10 → front = holes 10–18.</div>`;
  if($('nassauPairA'))$('nassauPairA').value=n.pair[0];if($('nassauPairB'))$('nassauPairB').value=n.pair[1];if($('nassauTeamA1'))$('nassauTeamA1').value=team.A[0];if($('nassauTeamA2'))$('nassauTeamA2').value=team.A[1];
 }
@@ -1921,7 +2667,7 @@ function renderNassauStrokes(){
         </div>
         <div class="table-wrap"><table>
           <thead><tr><th>Hole</th><th>SI</th><th>Strokes received</th></tr></thead>
-          <tbody>${map.map((x,j)=>`<tr><td>${j+1}</td><td>${state.strokeIndexes[j]}</td><td>${x}</td></tr>`).join('')}</tbody>
+          <tbody>${map.map((x,j)=>`<tr class="${x>0?'highlight-stroke':''}"><td>${j+1}</td><td>${state.strokeIndexes[j]}</td><td>${x}</td></tr>`).join('')}</tbody>
         </table></div>
       </div>`;
     }).join('')}
@@ -2257,7 +3003,44 @@ function syncPublicCards() {
   });
 }
 /* ---------- B4) PUBLIC VIEW RENDER ---------- */
-function renderPublic(){
+function currentHoleLabel(){
+  const players = activePlayers();
+  const seq = playingSequence();
+  let completed = 0;
+  for (const h of seq){
+    if (players.every(p => grossScore(p, h) !== null)) completed++;
+    else break;
+  }
+  if (completed >= 18) return 'Round complete';
+  return `Hole ${seq[completed]} · ${completed}/18 played`;
+}
+
+function rankedPlayers(){
+  const r  = calculateSkins();
+  const s  = settleSkins(r);
+  const ms = settleMatches(allMatches());
+  const nr = state.nassau?.enabled ? calculateNassau() : null;
+  const nassauValid = !!(nr && nr.valid);
+  return activePlayers().map(p => {
+const skins =
+  state.formats.skins && state.filters.skins
+    ? Number(s.net[p])
+    : 0;
+
+const match =
+  state.formats.matchplay && state.filters.matchplay
+    ? Number(ms.balances[p])
+    : 0;
+
+const nassau =
+  nassauValid && state.filters.nassau
+    ? Number(nr.playerNet?.[p] || 0)
+    : 0;
+    
+    return { p, skins, match, nassau, total: skins + match + nassau };
+  }).sort((a, b) => b.total - a.total);
+}
+  function renderPublic(){
   const wrap = document.getElementById('pubContent');
   if(!wrap) return;
 
@@ -2269,13 +3052,42 @@ function renderPublic(){
   const nassauValid = !!(nr && nr.valid);
   const cls = v => v > 0 ? 'positive' : v < 0 ? 'negative' : 'tie';
 
-  let h = '';
+ let h = '';
 
-  /* --- Round header --- */
-  h += `<div class="card">
-    <h2>${esc(state.coursePresetName || 'Course')}</h2>
-    <p class="sub">📅 ${esc(state.gameDate)} · ${state.playerCount} players · ${state.formats.skins && state.formats.matchplay ? 'Skins + Match Play' : state.formats.skins ? 'Skins' : 'Match Play'}${state.nassau?.enabled ? ' + Nassau' : ''}</p>
-  </div>`;
+/* --- Round header --- */
+h += `<div class="card">
+  <h2>${esc(state.coursePresetName || 'Course')}</h2>
+  <p class="sub">📅 ${esc(state.gameDate)} · ${state.playerCount} players · ${state.formats.skins && state.formats.matchplay ? 'Skins + Match Play' : state.formats.skins ? 'Skins' : 'Match Play'}${state.nassau?.enabled ? ' + Nassau' : ''}</p>
+</div>`;
+
+/* --- NEW: Live leaderboard strip --- */
+const ranked = rankedPlayers();
+const medals = ['🥇','🥈','🥉',''];
+h += `<div class="card">
+  <div class="summary-section-title">
+    <h2>🏁 Live Standings</h2>
+    <span class="status match-live">${esc(currentHoleLabel())}</span>
+  </div>
+  <div class="table-wrap"><table>
+    <thead><tr>
+      <th>#</th><th>Player</th><th>Skins</th><th>Match</th><th>Nassau</th><th>Net</th>
+    </tr></thead>
+    <tbody>
+      ${ranked.map((r, i) => {
+        const medal = medals[i] || String(i + 1);
+        const cls = v => v > 0 ? 'positive' : v < 0 ? 'negative' : 'tie';
+        return `<tr>
+          <td>${medal}</td>
+          <td><strong>${esc(playerName(r.p))}</strong></td>
+          <td class="${cls(r.skins)}">${fmtSigned(r.skins)}</td>
+          <td class="${cls(r.match)}">${fmtSigned(r.match)}</td>
+          <td class="${cls(r.nassau)}">${fmtSigned(r.nassau)}</td>
+          <td class="${cls(r.total)}" style="font-weight:900">${fmtSigned(r.total)}</td>
+        </tr>`;
+      }).join('')}
+    </tbody>
+  </table></div>
+</div>`;
 
   /* --- Combined net settlement (headline) --- */
   h += `<div class="card"><h2>💰 Combined Net Settlement</h2>`;
@@ -2372,8 +3184,11 @@ function renderAll(save=true){
   renderLiveRoundSummary();
   renderMatchResults();
   renderSkinsResults();
+ // AFTER
   renderNassauResults();
   renderBankProgression();
+  renderMatchStatus();        // ← added
+  renderNassauStatus();       // ← added
   renderSettlements();
   renderNassauSettlement();
   renderPublic();                 /* ← NEW: keep public view in sync */
@@ -2388,14 +3203,15 @@ document.addEventListener('click',e=>{
   if(tab){switchTab(tab.dataset.tab);return}
   
   const view=e.target.closest('[data-view]');
-  if(view){
-    mobile.view=view.dataset.view;
-    document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b===view));
-    $('scoreEntry').classList.toggle('hidden',mobile.view!=='table');
-    $('mobileEntry').classList.toggle('active',mobile.view==='mobile');
-    renderMobile();
-    return;
-  }
+if(view){
+  mobile.view=view.dataset.view;
+  document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b===view));
+  $('scoreEntry').classList.toggle('hidden',mobile.view!=='table');
+  $('mobileEntry').classList.toggle('active',mobile.view==='mobile');
+  renderScoreTable();   // ← sync the table to the latest state
+  renderMobile();
+  return;
+}
   
   const chip=e.target.closest('[data-edit-score]');
   if(chip){
@@ -2439,8 +3255,11 @@ function applyScoreDelta(scoreBtn) {
   if (next > 20) next = 20;
 
   const k = key(p, h);
-  if (next === 0) delete state.scores[k];
-  else state.scores[k] = next;
+const oldVal = grossScore(p, h);
+const newVal = next === 0 ? null : next;
+if (oldVal !== newVal) pushHistory(`H${h} · ${playerName(p)}`);
+if (newVal === null) delete state.scores[k];
+else state.scores[k] = newVal;
 
   persist();
 
@@ -2465,14 +3284,13 @@ function applyScoreDelta(scoreBtn) {
     netEl.className = `mobile-net-line ${s > 0 ? 'has-stroke' : ''}`;
   }
 
-  refreshAfterTableScore();
+  scheduleRefresh();
 }
 
 document.addEventListener('pointerdown', e => {
   const scoreBtn = e.target.closest('button[data-mobile-score-player]');
   if (!scoreBtn) return;
   
-  e.preventDefault(); 
   applyScoreDelta(scoreBtn);
 
   pressTimer = setTimeout(() => {
@@ -2482,54 +3300,98 @@ document.addEventListener('pointerdown', e => {
   }, 500);
 });
 
-document.addEventListener('pointerup', e => {
+// AFTER
+function stopPress(){
   clearTimeout(pressTimer);
   clearInterval(pressInterval);
-});
-
-document.addEventListener('pointercancel', e => {
-  clearTimeout(pressTimer);
-  clearInterval(pressInterval);
-});
+  pressTimer = null;
+  pressInterval = null;
+}
+document.addEventListener('pointerup', stopPress);
+document.addEventListener('pointercancel', stopPress);
+document.addEventListener('pointerleave', stopPress, true);  // capture=true so it fires on children too
+window.addEventListener('blur', stopPress);
 
 // --- Mobile Direct Input Handling ---
 let mobileInputTimer = null;
 
-function commitMobileDirect(p, h, val, advance) {
+function commitMobileDirect(p,h,val,advance){
   clearTimeout(mobileInputTimer);
-  const k = key(p, h);
-  if (val === 0) delete state.scores[k];
-  else state.scores[k] = val;
+
+  const validEmpty = val === 0;
+  const validScore =
+    Number.isInteger(Number(val)) &&
+    Number(val) >= 1 &&
+    Number(val) <= 20;
+
+  if(!validEmpty && !validScore){
+    flashToast('Score must be between 1 and 20.');
+
+    const el=document.querySelector(
+      `.mobile-score-input[data-mobile-score-player="${p}"][data-hole="${h}"]`
+    );
+
+    if(el)el.value=grossScore(p,h)??'';
+    return;
+  }
+
+  const k=key(p,h);
+  const oldVal=grossScore(p,h);
+  const newVal=validEmpty?null:Number(val);
+
+  if(oldVal!==newVal)
+    pushHistory(`H${h} · ${playerName(p)}`);
+
+  if(newVal===null)delete state.scores[k];
+  else state.scores[k]=newVal;
 
   persist();
 
-  const el = document.querySelector(`.mobile-score-input[data-mobile-score-player="${p}"][data-hole="${h}"]`);
-  if (el) el.value = val === 0 ? '' : val;
-
-  const netEl = document.querySelector(`.mobile-net-line[data-net-player="${p}"][data-hole="${h}"]`);
-  if (netEl) {
-    const s = getPlayerStrokes(p, h);
-    const stkStr = s === 1 ? '*' : s >= 2 ? '**' : '';
-    netEl.textContent = `${stkStr}${val > 0 && s > 0 ? ` Net ${val - s}` : ''}`;
-    netEl.className = `mobile-net-line ${s > 0 ? 'has-stroke' : ''}`;
-  }
-
   refreshAfterTableScore();
 
-  if (advance) {
-    const ps = activePlayers();
-    const idx = ps.indexOf(p);
-    const nextP = ps[(idx + 1) % ps.length];
-    const nextEl = document.querySelector(`.mobile-score-input[data-mobile-score-player="${nextP}"][data-hole="${h}"]`);
-    if (nextEl) {
-      nextEl.focus();
-      nextEl.select();
+if(advance){
+  const ps=activePlayers();
+  const start=ps.indexOf(p);
+  let nextPlayer=null;
+
+  for(let i=1;i<=ps.length;i++){
+    const candidate=ps[(start+i)%ps.length];
+
+    if(grossScore(candidate,h)===null){
+      nextPlayer=candidate;
+      break;
     }
   }
+
+  if(nextPlayer){
+    document.querySelector(
+      `.mobile-score-input[data-mobile-score-player="${nextPlayer}"][data-hole="${h}"]`
+    )?.focus();
+
+  }else{
+    const seq=playingSequence();
+    const idx=seq.indexOf(h);
+
+    if(idx<seq.length-1){
+      mobile.hole=seq[idx+1];
+    }else{
+      mobile.hole=seq[0];
+    }
+
+    renderMobile();
+
+    const first=ps[0];
+
+document.querySelector(
+      `.mobile-score-input[data-mobile-score-player="${first}"][data-hole="${mobile.hole}"]`
+    )?.focus();
+  }
+}
 }
 
 document.addEventListener('input', e => {
   if (!e.target.matches('.mobile-score-input')) return;
+
   const el = e.target;
   const p = el.dataset.mobileScorePlayer;
   const h = Number(el.dataset.hole);
@@ -2617,13 +3479,24 @@ function commitTableValue(el,value,advance){
   const p=el.dataset.scorePlayer,h=Number(el.dataset.hole),k=key(p,h);
   const v=String(value==null?'':value).trim();
 
-  if(v===''){
-    delete state.scores[k];
-  }else{
-    const n=Number(v);
-    if(!/^\d+$/.test(v)||n<1||n>20){el.value=grossScore(p,h)??'';return}
-    state.scores[k]=n;
+  let newVal;
+  if (v === '') {
+    newVal = null;
+  } else {
+    const n = Number(v);
+    if(!/^\d+$/.test(v)||n<1||n>20){
+      el.value=grossScore(p,h)??'';
+      flashToast('Score must be a whole number from 1 to 20.');
+      return;
+    }
+    newVal = n;
   }
+
+  const old = grossScore(p,h);
+  if (old !== newVal) pushHistory(`H${h} · ${playerName(p)}`);
+
+  if (newVal === null) delete state.scores[k];
+  else state.scores[k] = newVal;
 
   const g=grossScore(p,h),s=state.formats.skins?skinsStrokes(p,h):0;
   el.classList.toggle('saved',g!==null);
@@ -2639,8 +3512,27 @@ function commitTableValue(el,value,advance){
     tableTarget(next.slot,next.hole)?.focus();
   }
 }
+let refreshRaf = null;
+function scheduleRefresh(){
+  if (refreshRaf) return;
+  refreshRaf = requestAnimationFrame(() => {
+    refreshRaf = null;
+    refreshAfterTableScore();
+  });
+}
 
+// AFTER
 function refreshAfterTableScore(){
+  // Rebuild the table view only when it is not the source of the edit.
+  // This lets mobile entries (and the +/- buttons) sync the table while
+  // preserving focus when the user is typing directly into a table cell.
+  const tableVisible = !$('scoreEntry').classList.contains('hidden');
+  const editingTable = document.activeElement?.matches?.('[data-score-player]');
+
+  if (tableVisible && !editingTable) {
+    renderScoreTable();
+  }
+
   renderScorecard();
   renderScoreSummary();
   renderMatchStatus();
@@ -2650,13 +3542,51 @@ function refreshAfterTableScore(){
   renderSkinsResults();
   renderBankProgression();
   renderSettlements();
-  renderNassauSetup();
   renderNassauStatus();
   renderNassauResults();
   renderNassauSettlement();
-  renderPublic();                 /* keep public view in sync */
+  renderPublic();
   updateFooter();
-  if(mobile.view==='mobile')renderMobile();
+  // Mobile view updates in-place — do NOT rebuild the whole panel.
+  if(mobile.view==='mobile') refreshMobileCellsInPlace();
+}
+
+function refreshMobileCellsInPlace(){
+  document.querySelectorAll('#mobileEntry [data-mobile-score-player]').forEach(el => {
+    const isInput = el.matches('input.mobile-score-input');
+    const p = el.dataset.mobileScorePlayer;
+    const h = Number(el.dataset.hole);
+    const g = grossScore(p, h);
+    if(isInput){
+      const par = state.pars[h-1];
+      let colorClass = '';
+      if(g !== null){
+        const d = g - par;
+        if(d <= -1) colorClass = 'score-birdie';
+        else if(d === 1 || d === 2) colorClass = 'score-bogey';
+        else if(d >= 3) colorClass = 'score-triple';
+      }
+      el.className = `mobile-score-input ${colorClass}`;
+      if(document.activeElement !== el) el.value = g === null ? '' : g;
+    } else {
+      // long-press +/- buttons keep their own dataset; nothing to update
+    }
+  });
+  document.querySelectorAll('#mobileEntry .mobile-net-line').forEach(el => {
+    const p = el.dataset.netPlayer, h = Number(el.dataset.hole);
+    const g = grossScore(p, h);
+    const s = getPlayerStrokes(p, h);
+    const stkStr = s === 1 ? '*' : s >= 2 ? '**' : '';
+    el.textContent = `${stkStr}${g !== null && s > 0 ? ` Net ${g - s}` : ''}`;
+    el.className = `mobile-net-line ${s > 0 ? 'has-stroke' : ''}`;
+  });
+  // Cards' pending outline
+  document.querySelectorAll('#mobileEntry .mobile-player-card').forEach(card => {
+    const input = card.querySelector('.mobile-score-input');
+    if(!input) return;
+    const g = grossScore(input.dataset.mobileScorePlayer, Number(input.dataset.hole));
+    card.style.boxShadow = g === null ? 'inset 0 0 0 2px #ffd740' : '';
+  });
 }
   function tableDigit(el, digit) {
   if (!el.isConnected) return;
@@ -2727,7 +3657,17 @@ function refreshAfterTableScore(){
 }
 function commitTableScore(el,advance){if(tablePendingCell===el)clearTablePending();commitTableValue(el,el.value,advance)}
 function focusScore(el,dir){const arr=Array.from(document.querySelectorAll('[data-score-player]')),i=arr.indexOf(el);arr[i+dir]?.focus()}
-$('themeToggle').addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));$('saveNow').addEventListener('click',saveState);$('printPage').addEventListener('click',()=>window.print());$('resetCourse').addEventListener('click', () => {
+$('themeToggle').addEventListener('click',()=>applyTheme(document.documentElement.dataset.theme==='dark'?'light':'dark'));$('saveNow').addEventListener('click',saveState);
+$('printPage').addEventListener('click',()=>window.print());
+$('printSettlementsBtn').addEventListener('click', () => {
+  switchTab('settlements');
+  document.body.classList.add('print-settlements-only');
+  setTimeout(() => {
+    window.print();
+    document.body.classList.remove('print-settlements-only');
+  }, 60);
+});
+$('resetCourse').addEventListener('click', () => {
   if (!confirm('Restore default par and Stroke Index values?')) return;
   state.pars = [...DEFAULT_PAR];
   state.strokeIndexes = [...DEFAULT_SI];
@@ -2735,7 +3675,50 @@ $('themeToggle').addEventListener('click',()=>applyTheme(document.documentElemen
   const sel = document.getElementById('coursePreset');
   if (sel) sel.value = ''; // reset dropdown to “Custom / Default”
   renderAll();
-});$('newRound').addEventListener('click',()=>{if(!confirm('Clear scores and reset all round settings?'))return;state=freshState();normalizeState();renderAll();switchTab('round')});$('exportData').addEventListener('click',()=>{const blob=new Blob([JSON.stringify(state,null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download=`kalkulator-ikan-${state.gameDate}.json`;a.click();setTimeout(()=>URL.revokeObjectURL(url),500)});$('importFile').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x||typeof x!=='object'||!Array.isArray(x.names)||x.names.length<2)throw Error('Backup must contain a names array.');const si=x.strokeIndexes||x.si;if(si&&!validateSI(si))throw Error('Backup Stroke Index values must be unique 1–18.');if(!confirm('Replace the current round with this backup?'))return;state={...freshState(),...x,nassau:x.nassau||{enabled:false},formats:{...freshState().formats,...x.formats},skinsRules:{...freshState().skinsRules,...x.skinsRules},matchplay:{...freshState().matchplay,...x.matchplay}};normalizeState();renderAll();alert('Backup imported successfully.')}catch(err){alert('Import failed: '+err.message)}finally{e.target.value=''}});
+});
+  $('clearScoresBtn').addEventListener('click', () => {
+  const count = Object.keys(state.scores || {}).length;
+  if (!count) { flashToast('No gross scores to clear.'); return; }
+  if (!confirm(`Clear all ${count} gross score${count === 1 ? '' : 's'}?\n\nYou can undo this from the Undo button.`)) return;
+  pushHistory('Clear all scores');
+  state.scores = {};
+  renderAll();
+});
+  $('newRound').addEventListener('click',()=>{
+  if(!confirm('Clear scores and reset all round settings?'))return;
+
+  clearTablePending();
+  clearTimeout(mobileInputTimer);
+  clearTimeout(mobile.pendingTimer);
+
+  state=freshState();
+  normalizeState();
+
+  historyStack.length=0;
+  updateUndoButton();
+
+  mobile.slot=activePlayers()[0];
+  mobile.hole=state.startHole;
+  mobile.buffer='';
+
+  renderAll();
+  switchTab('round');
+
+  flashToast('New round started.');
+});
+  $('exportData').addEventListener('click', () => {
+  const blob = new Blob([JSON.stringify(state, null, 2)], { type: 'application/json' });
+  const url  = URL.createObjectURL(blob);
+  const a    = document.createElement('a');
+  a.href     = url;
+  a.download = `ikan-${state.gameDate}.json`;
+  a.style.display = 'none';
+
+  document.body.appendChild(a);   // ← 1. attach to DOM
+  a.click();                      // ← 2. trigger download
+  document.body.removeChild(a);   // ← 3. clean up anchor
+  setTimeout(() => URL.revokeObjectURL(url), 1000); // ← 4. free blob after write
+});$('importFile').addEventListener('change',async e=>{const f=e.target.files?.[0];if(!f)return;try{const x=JSON.parse(await f.text());if(!x||typeof x!=='object'||!Array.isArray(x.names)||x.names.length<2)throw Error('Backup must contain a names array.');const si=x.strokeIndexes||x.si;if(si&&!validateSI(si))throw Error('Backup Stroke Index values must be unique 1–18.');if(!confirm('Replace the current round with this backup?'))return;state={...freshState(),...x,nassau:x.nassau||{enabled:false},formats:{...freshState().formats,...x.formats},skinsRules:{...freshState().skinsRules,...x.skinsRules},matchplay:{...freshState().matchplay,...x.matchplay}};normalizeState();renderAll();alert('Backup imported successfully.')}catch(err){alert('Import failed: '+err.message)}finally{e.target.value=''}});
 
 
 // Nassau controls use delegated events; existing Skins/Match Play handlers remain untouched.
@@ -2743,7 +3726,10 @@ document.addEventListener('change',e=>{const el=e.target;let changed=false;if(['
 
 /* 8. BOOT */
 loadState();
-applyTheme(localStorage.getItem(THEME_KEY)||'light');
+// AFTER
+const savedTheme = localStorage.getItem(THEME_KEY);
+const prefersDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches;
+applyTheme(savedTheme || (prefersDark === false ? 'light' : 'dark'));
 mobile.slot=activePlayers()[0];
 mobile.hole=state.startHole;
 renderAll(false);
@@ -2950,6 +3936,11 @@ document.addEventListener('click', e => {
     alert("Settlements copied!");
   }
 });
+  document.addEventListener('click', e => {
+  if (e.target.id !== 'applyDoubleBack') return;
+  state.nassau.backMultiplier = 2;
+  persist(); renderAll(false);
+});
 /* --- +/- stroke controls (Base + Nassau) --- */
 document.addEventListener('click', e => {
   const btn = e.target.closest('[data-stroke-action]');
@@ -2977,20 +3968,50 @@ document.addEventListener('click', e => {
 });
 // --- Undo Logic ---
 let historyStack = [];
-function pushHistory() {
-  historyStack.push(JSON.stringify(state.scores));
+
+function pushHistory(label) {
+  const snapshot = JSON.stringify(state.scores);
+  // Skip pushing if this exact snapshot is already at the top
+  const top = historyStack[historyStack.length - 1];
+  if (top && top.scores === snapshot) return;
+  historyStack.push({ scores: snapshot, label: label || '' });
   if (historyStack.length > 20) historyStack.shift();
-  const uBtn = $('undoBtn'); if(uBtn) uBtn.classList.remove('hidden');
+  updateUndoButton();
+}
+
+function updateUndoButton() {
+  const b = $('undoBtn');
+  if (!b) return;
+  b.disabled = historyStack.length === 0;
+  if (!historyStack.length) {
+    b.textContent = '↶ Undo';
+    b.removeAttribute('title');
+    b.removeAttribute('aria-label');
+  } else {
+    const last = historyStack[historyStack.length - 1];
+    // Keep the button compact; move the label into a tooltip / screen-reader hint.
+    b.textContent = '↶ Undo';
+    const label = last.label || '';
+    b.title = `Undo: ${label}`;
+    b.setAttribute('aria-label', `Undo${label ? ': ' + label : ''}`);
+  }
 }
 
 document.addEventListener('click', e => {
-  if (e.target.id === 'undoBtn') {
-    if (historyStack.length > 0) {
-      state.scores = JSON.parse(historyStack.pop());
-      if (historyStack.length === 0) $('undoBtn').classList.add('hidden');
-      persist(); renderAll(false);
-    }
-  }
+  if (e.target.id !== 'undoBtn') return;
+  if (!historyStack.length) return;
+
+  const btn = e.target;
+  const entry = historyStack.pop();
+  state.scores = JSON.parse(entry.scores);
+  updateUndoButton();
+  persist();
+  renderAll(false);
+
+  // Blur so the button doesn't remain "selected". Without this, on mobile
+  // the next tap on a score input is consumed by the blur event and feels
+  // like the undo box is still active.
+  requestAnimationFrame(() => btn.blur());
 });
 
 /* --- Cloud sync bridge (used by the Supabase script) --- */
